@@ -1,0 +1,265 @@
+.blog-standard {
+  padding: 12px;
+  background-color: $n0;
+  margin-bottom: 24px;
+  color: $n700;
+  .blog-content {
+    padding: 0 8px 8px;
+    @include screen(sm) {
+      padding: 0 12px 12px;
+    }
+    @include screen(lg) {
+      padding: 0 20px 20px;
+    }
+    p {
+      color: $n500;
+      margin-bottom: 24px;
+      @include screen(lg) {
+        margin-bottom: 40px;
+      }
+    }
+    ul {
+      li {
+        font-size: 14px;
+        @include screen(lg) {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+.blog-grid {
+  padding: 12px;
+  border: 1px solid rgba(16, 39, 29, 0.15);
+  background-color: $n0;
+  transition-duration: 300ms;
+  &:hover {
+    border: 1px solid $secondary2;
+  }
+  .blog-img {
+    position: relative;
+    .date {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: $secondary3;
+      color: $n0;
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      font-weight: 500;
+      text-align: center;
+      border-radius: 4px;
+      h3{
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 100%;
+        color: $n0;
+        margin-bottom: 0;
+      }
+      p{
+        font-size: 14px;
+        color: $n10;
+        font-weight: 500;
+      }
+    }
+  }
+  .blog-content {
+    padding: 12px;
+    @include screen(lg) {
+      padding: 26px 20px 12px;
+    }
+    color: $n700;
+    a {
+      color: $n700;
+      font-weight: 600;
+    }
+  }
+}
+
+.blog-list {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid rgba(16, 39, 29, 0.15);
+  background-color: $n0;
+  transition-duration: 300ms;
+  &:hover{
+    border: 1px solid $secondary2;
+  }
+  @include screen(md) {
+    flex-direction: row;
+    align-items: center;
+  }
+  @include screen(lg) {
+    gap: 24px;
+  }
+  @include screen(xxl) {
+    gap: 32px;
+  }
+  .blog-img {
+    position: relative;
+    @media (max-width: 767px) {
+      max-width: 100%;
+      width: 100%;
+    }
+    img {
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    @include screen(md) {
+      min-width: 296px;
+      max-width: 296px;
+    }
+    overflow: hidden;
+    height: 100%;
+    flex-shrink: 0;
+    .date {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: $secondary3;
+      color: $n0;
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      font-weight: 500;
+      text-align: center;
+      border-radius: 4px;
+      h3{
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 100%;
+        margin-bottom: 0;
+        color: $n0;
+      }
+      p{
+        font-size: 14px;
+        color: $n10;
+        font-weight: 500;
+      }
+    }
+  }
+  .blog-content {
+    color: $n700;
+    h4 {
+      margin-bottom: 16px;
+    }
+    p {
+      margin-bottom: 24px;
+      @include screen(lg) {
+        margin-bottom: 32px;
+      }
+    }
+    a {
+      color: $n700;
+      font-weight: 600;
+      padding: 12px 24px;
+    }
+  }
+}
+
+.comments {
+  background-color: $bg2;
+  padding: 16px;
+  @include screen(sm) {
+    padding: 24px;
+  }
+  @include screen(lg) {
+    padding: 32px;
+  }
+  select {
+    color: $n0;
+    &:focus {
+      outline: none;
+    }
+    option {
+      background-color: $bg1;
+    }
+  }
+  .comment-box {
+    margin-bottom: 32px;
+    background-color: $bg1;
+    padding: 16px;
+    @include screen(md) {
+      padding: 24px;
+    }
+    .user-part {
+      padding-bottom: 24px;
+      border-bottom: 1px dashed #594e43;
+    }
+    .review-part {
+      padding: 16px 0;
+      @include screen(md) {
+        padding: 22px 0;
+      }
+      border-bottom: 1px dashed #594e43;
+    }
+    input {
+      &:focus {
+        outline: none;
+      }
+      background-color: $bg2;
+      border: none;
+      padding: 16px;
+      color: $n0;
+    }
+    .comment-input {
+      margin-top: -85px;
+      display: flex;
+      opacity: 0;
+      transition: all 400ms ease-in;
+    }
+    .comment-input.active {
+      margin-top: 0;
+      opacity: 1;
+    }
+    .reply-btn {
+      color: $n0;
+    }
+  }
+}
+
+.write-comment-box {
+  background-color: $bg2;
+  padding: 16px;
+  @include screen(sm) {
+    padding: 24px;
+  }
+  @include screen(md) {
+    padding: 32px;
+  }
+  h4 {
+    padding-bottom: 16px;
+    border-bottom: 1px dashed #594e43;
+  }
+  form {
+    color: $n0;
+    label {
+      margin-bottom: 8px;
+      margin-top: 12px;
+      @include screen(lg) {
+        margin-top: 16px;
+      }
+    }
+    label,
+    input {
+      display: block;
+    }
+    input,
+    textarea {
+      padding: 12px 24px;
+      background-color: $bg1;
+      border: none;
+      width: 100%;
+      color: $n0;
+      border: 1px solid $bg1;
+      &:focus {
+        outline: none;
+        border: 1px solid $primary;
+      }
+    }
+  }
+}
+

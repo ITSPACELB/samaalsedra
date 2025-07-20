@@ -1,0 +1,31 @@
+# 👉 ملفات Node.js
+node_modules/
+dist/
+.cache/
+.vite/
+
+# 👉 ملفات بيئة
+.env
+.env.local
+.env.*.local
+
+# 👉 ملفات Log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 👉 نظام التشغيل
+.DS_Store
+Thumbs.db
+
+# 👉 VS Code
+.vscode/
+
+# 👉 Vercel
+.vercel/
+
+# 👉 بناء الإنتاج
+*.local
+*.lock
+*.zip

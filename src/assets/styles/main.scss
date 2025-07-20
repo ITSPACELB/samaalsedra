@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'Markazi Text';
+  src: url('/fonts/markazi/MarkaziText-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+html[lang="ar"] body {
+  font-family: 'Markazi Text', sans-serif !important;
+}
+
+/*---------------------------------------
+    Template Name:  Solarox - Lawer Attory Agency HTML Template
+    Description:    Lawer Attory Agency HTML Template
+    Author Name:    Pixelaxis
+    Author URI:     https://themeforest.net/user/pixelaxis
+    Theme URI:      https://cryptdash.vercel.app/
+    Version:        1.0
+-----------------------------------------
+             Table of contents
+-----------------------------------------
+    color variables
+    Typography 
+    mixins
+    Pages styles
+---------------------------------------*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+// Sass files
+@import "variables";
+@import "bootstrap-custom";
+@import "@yaireo/ui-range/ui-range.css";
+@import "swiper/css";
+@import "swiper/css/pagination";
+@import "swiper/css/navigation";
+@import "typography";
+@import "mixins";
+@import "components";
+@import "header";
+@import "mobile-menu";
+@import "footer";
+@import "pages/home-1";
+@import "pages/home-2";
+@import "pages/home-3";
+@import "pages/home-4";
+@import "pages/home-5";
+@import "pages/home-6";
+@import "pages/about";
+@import "pages/services";
+@import "pages/sercive-details";
+@import "pages/projects";
+@import "pages/project-details";
+@import "pages/products";
+@import "pages/blog";
+@import "pages/contact";
+@import "pages/faq";
+@import "pages/error";
+@import "pages/signup";
+@import "loader";

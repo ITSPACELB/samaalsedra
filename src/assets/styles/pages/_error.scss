@@ -1,0 +1,26 @@
+// error page
+.error {
+  background-color: $bg1;
+  min-height: 100vh;
+  padding: 60px 0;
+  @include screen(xl) {
+    padding: 120px 0;
+  }
+  img {
+    max-width: 856px;
+  }
+  h2 {
+    margin-top: 40px;
+    margin-bottom: 16px;
+    @include screen(lg) {
+      margin-top: 60px;
+    }
+  }
+  p {
+    max-width: 636px;
+    margin-bottom: 30px;
+    @include screen(lg) {
+      margin-bottom: 40px;
+    }
+  }
+}

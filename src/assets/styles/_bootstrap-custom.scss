@@ -1,0 +1,26 @@
+// import color variables
+@import "variables";
+
+// customize colors
+$primary: $primary;
+$secondary: $secondary;
+$dark: $bg1;
+$black: $bg2;
+$light: $n20;
+$accordion-border-radius: 0;
+$accordion-inner-border-radius: 0;
+
+// customize breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  3xl: 1600px,
+  4xl: 1800px,
+);
+
+// import bootstrap source files
+@import "bootstrap/scss/bootstrap";

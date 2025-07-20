@@ -1,0 +1,98 @@
+.contact-page {
+  background-color: $n0;
+  position: relative;
+  z-index: 10;
+  .contact-form {
+    background-color: $bg1;
+    padding: 16px;
+    @include screen(sm) {
+      padding: 24px;
+    }
+    @include screen(md) {
+      padding: 32px;
+    }
+    .contact-title {
+      text-align: center;
+    }
+    form {
+      padding-top: 20px;
+      border-top: 1px dashed $n50;
+      p {
+        padding-bottom: 20px;
+        border-bottom: 1px dashed $n200;
+      }
+      label {
+        margin-bottom: 6px;
+        @include screen(md) {
+          font-size: 18px;
+          font-weight: 500;
+          margin-bottom: 10px;
+        }
+      }
+      textarea,
+      input {
+        background: $n0;
+        padding: 12px;
+        @include screen(xl) {
+          padding: 12px 24px;
+        }
+        color: $n800;
+        border: 1px solid transparent;
+        &:focus {
+          outline: transparent;
+          box-shadow: none;
+        }
+        width: 100%;
+      }
+      .nice-select {
+        background: $n0;
+        .current {
+          color: $n200;
+        }
+        &::after {
+          border-color: $n200 !important;
+        }
+      }
+      select {
+        display: block;
+      }
+    }
+  }
+}
+
+// need more help
+.more-help {
+  background-color: $bg1;
+  padding: 60px 0;
+  @include screen(xl) {
+    padding: 110px 0;
+  }
+  p {
+    margin-bottom: 30px;
+    @include screen(lg) {
+      margin-bottom: 60px;
+    }
+  }
+  .help-card {
+    padding: 16px;
+    @include screen(sm) {
+      padding: 24px;
+    }
+    @include screen(lg) {
+      padding: 32px;
+    }
+    background-color: $n0;
+    text-align: center;
+    .icon {
+      padding: 20px;
+      background-color: $bg1;
+      display: inline-flex;
+      margin-bottom: 28px;
+    }
+    a,
+    span {
+      line-height: 130% !important;
+      color: $bg2;
+    }
+  }
+}

@@ -1,0 +1,635 @@
+.banner-two {
+  position: relative;
+  background-image: url(/images/hero-2-bg.webp);
+  background-size: cover;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(90deg, rgba(16, 39, 29, 0.2) 0%, rgba(16, 39, 29, 0.4) 11.56%, rgba(16, 39, 29, 0.65) 25.64%, rgba(16, 39, 29, 0.8) 49.33%, rgba(16, 39, 29, 0.65) 71.2%, rgba(16, 39, 29, 0.4) 86.08%, rgba(16, 39, 29, 0.2) 100%);
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    z-index: 3;
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 100px;
+    @include screen(md) {
+      gap: 20px;
+      padding-top: 150px;
+      padding-bottom: 140px;
+    }
+    @include screen(lg) {
+      padding-top: 240px;
+      padding-bottom: 200px;
+    }
+    @include screen(xl) {
+      padding-top: 260px;
+      padding-bottom: 280px;
+    }
+    @include screen(xxl) {
+      padding-top: 380px;
+    }
+    h2 {
+      font-size: 38px;
+      text-transform: uppercase;
+      color: $n0;
+      &.primary {
+        color: $primary;
+        text-decoration: underline;
+      }
+      @include screen(md) {
+        font-size: 60px;
+      }
+      @include screen(lg) {
+        font-size: 64px;
+      }
+      @include screen(xl) {
+        font-size: 80px;
+      }
+      @include screen(xxl) {
+        font-size: 108px;
+      }
+    }
+  }
+
+  p {
+    color: $n20;
+  }
+}
+
+// legal partner section
+.legal-partner {
+  position: relative;
+  background-color: $n0;
+  z-index: 10;
+  .scroll-banner {
+    position: absolute;
+    background-color: transparent;
+    @include screen(xxl) {
+      top: 40px;
+      left: -20px;
+    }
+    @include screen(3xl) {
+      left: 60px;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    z-index: 4;
+    .arrow-down {
+      position: relative;
+      img {
+        position: relative;
+        z-index: 4;
+        width: 25px;
+        @include screen(xxl) {
+          width: auto;
+        }
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        @include screen(xxl) {
+          width: 80px;
+          height: 80px;
+        }
+        background-color: $n0;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 5%);
+      }
+    }
+  }
+  position: relative;
+  &::before {
+    content: "";
+    width: 40%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: $bg1;
+    height: 80%;
+    z-index: 1;
+  }
+  .legal-content {
+    background-color: $bg1;
+    padding-top: 60px;
+    position: relative;
+    z-index: 11;
+    @include screen(xl) {
+      padding-top: 120px;
+    }
+    @media (max-width: 1199px) {
+      position: relative;
+      z-index: 11;
+    }
+    @include screen(xl) {
+      left: 0;
+      top: 0;
+      z-index: 2;
+      transform: translateY(-50%);
+      margin-bottom: -185px;
+      &::before {
+        content: "";
+        width: 50%;
+        position: absolute;
+        left: -50%;
+        top: 0;
+        background-color: $bg1;
+        height: 100%;
+      }
+    }
+  }
+  .legal-slider-wrapper {
+    right: 0;
+  }
+  .solar-video {
+    overflow-x: hidden;
+    position: relative;
+    z-index: 3;
+  }
+}
+
+// success story section
+.success-story {
+  background-color: $n0;
+  position: relative;
+  padding: 60px 0;
+  &.two {
+    background-color: $bg1;
+  }
+  @include screen(lg) {
+    padding: 120px 0;
+  }
+  .story-slide-box {
+    position: relative;
+    transition: all 400ms ease-in-out;
+    img {
+      width: 100%;
+    }
+    &.two {
+      .success-info {
+        box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.04);
+        background-color: $n0;
+      }
+    }
+    .success-info {
+      position: absolute;
+      max-width: 636px;
+      bottom: 0;
+      right: 0;
+      background-color: $primary;
+      padding: 16px;
+      transform: scale(0.7);
+      opacity: 0;
+      z-index: 10;
+      transition: all 400ms ease-in-out;
+      @include screen(md) {
+        padding: 30px;
+      }
+      @include screen(xxl) {
+        padding: 40px;
+        left: 10%;
+        bottom: 20px;
+      }
+    }
+  }
+  .swiper-slide-active {
+    z-index: 10;
+    .story-slide-box {
+      &:hover {
+        .success-info {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    }
+  }
+}
+
+// leagl solutions
+.legal-solution {
+  position: relative;
+  overflow: hidden;
+  background-color: $n0;
+  .smart-solution-img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
+    width: 100%;
+  }
+  .scroll-card {
+    width: 280px;
+    background-color: $n0;
+    position: relative;
+    right: 0;
+    z-index: 2;
+    padding-bottom: 80px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  .solution-content {
+    padding-top: 60px;
+    @include screen(lg) {
+      padding-top: 120px;
+      margin-top: 60px;
+    }
+    position: relative;
+    background-color: $bg1;
+    z-index: 3;
+    padding: 16px;
+    @include screen(xxl) {
+      padding: 110px 0 110px 110px;
+      margin-top: 110px;
+    }
+    p {
+      max-width: 636px;
+    }
+  }
+  .solution-swiper {
+    .service-card {
+      background-color: $n0;
+      color: $n700;
+      padding: 16px;
+      @include screen(sm) {
+        padding: 24px;
+      }
+      @include screen(lg) {
+        padding: 32px;
+      }
+      img {
+        margin-bottom: 32px;
+      }
+      .hr-line {
+        display: block;
+        height: 1px;
+        width: 100%;
+        background-color: $primary;
+        opacity: 0.4;
+        margin-bottom: 24px;
+      }
+      a {
+        color: $bg2;
+      }
+    }
+  }
+}
+.scroll-card {
+  background-color: $bg1;
+  padding: 20px 0;
+  padding-bottom: 80px;
+  @include screen(md) {
+    padding: 40px 0;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  .arrow-down {
+    position: relative;
+    img {
+      position: relative;
+      z-index: 1;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background-color: $bg1;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -16%);
+    }
+  }
+}
+// why choose us section
+.why-choose-2 {
+  background-color: $n0;
+  overflow-x: hidden;
+  padding: 60px 0;
+  @include screen(lg) {
+    padding: 120px 0;
+  }
+  .player-container {
+    position: relative;
+    z-index: 1;
+  }
+  .video-img {
+    @include screen(xl) {
+      max-width: unset;
+    }
+  }
+  .why-2-card {
+    padding: 24px;
+    @include screen(sm) {
+      padding: 30px;
+    }
+    @include screen(lg) {
+      padding: 50px;
+    }
+    @include screen(xxl) {
+      padding: 120px 110px;
+    }
+    background-color: $bg1;
+    .why-list {
+      column-count: 1;
+      font-weight: 500;
+      @include screen(lg) {
+        font-size: 20px;
+        column-count: 2;
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .why-counter {
+    margin-top: 30px;
+    @include screen(xl) {
+      margin-top: -380px;
+    }
+    z-index: 3;
+    position: relative;
+  }
+}
+.play-btn {
+  top: 50%;
+  left: 50%;
+  &.unset {
+    @include screen(xxl) {
+      left: 58%;
+    }
+  }
+  transform: translate(-50%, -50%);
+  position: absolute;
+  height: 48px;
+  width: 48px;
+  font-size: 1.3rem;
+  @include screen(xl) {
+    font-size: 1.6rem;
+    width: 64px;
+    height: 64px;
+  }
+  background-color: $primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  i,
+  svg {
+    color: $n700;
+  }
+}
+.counter-card {
+  background-color: $bg2;
+  h2 span,
+  h2 {
+    color: $primary;
+    transition-duration: 300ms;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 50px 24px;
+  transition: all 400ms ease-in-out;
+  span {
+    color: $n0;
+    transition-duration: 300ms;
+  }
+  &.bg1 {
+    background-color: $bg1;
+    h2 {
+      color: $bg2;
+    }
+    span {
+      color: $bg2;
+    }
+  }
+  &:hover {
+    background-color: $primary;
+    h2,
+    h2 span,
+    span {
+      color: $n700;
+    }
+  }
+  @include screen(xl) {
+    padding: 80px 24px;
+  }
+}
+// expert section 2
+
+.expert-card-2 {
+  overflow: hidden;
+  padding: 8px;
+  background-color: $n0;
+  border: 1px solid $primary;
+  transition-duration: 300ms;
+  &:hover {
+    border-color: $secondary;
+  }
+  .img-box {
+    display: flex;
+    justify-content: center;
+    background-color: $primary;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  .links {
+    position: absolute;
+    padding: 0;
+    top: -265%;
+    flex-direction: column;
+    display: flex;
+    left: -30%;
+    list-style: none;
+    align-items: center;
+    flex-grow: 1;
+    z-index: 2;
+    transition: all 500ms cubic-bezier(0.86, 0, 0.07, 1);
+    li {
+      a {
+        border-bottom: 1px solid #c0a28667;
+      }
+    }
+  }
+  .links.active {
+    left: 0;
+  }
+  .social-btn,
+  li > a {
+    border: 0;
+    background-color: $bg2;
+    color: $primary;
+    transition: all 400ms ease-in-out;
+    &:hover {
+      background-color: $primary;
+      color: $n700;
+    }
+    width: 60px;
+    height: 60px;
+    @include screen(md) {
+      width: 85px;
+      height: 85px;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+  }
+}
+
+// testimonial home 2
+.testimonial-2 {
+  position: relative;
+  background-color: $n0;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 40%;
+    position: absolute;
+    background: $bg1;
+    bottom: 0;
+    left: 0;
+  }
+  .testimonial-title {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    @include screen(lg) {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+    @include screen(xl) {
+      padding-top: 110px;
+    }
+    @include screen(4xl) {
+      padding-left: 30px;
+    }
+  }
+  .left-side {
+    z-index: 5;
+    position: relative;
+    padding-right: 20px;
+    padding-bottom: 50px;
+    @include screen(lg) {
+      padding-right: 60px;
+    }
+    @include screen(xxl) {
+      padding-right: 120px;
+      padding-bottom: 100px;
+    }
+  }
+  .right-side {
+    position: relative;
+    z-index: 2;
+  }
+}
+.testimonial-card-2 {
+  position: relative;
+  padding: 20px;
+  &::after {
+    background: $bg2 !important;
+  }
+  z-index: 5;
+  @include screen(xl) {
+    padding: 30px;
+    i,
+    svg {
+      font-size: 1.3rem;
+    }
+  }
+  @include screen(xxl) {
+    padding: 40px;
+  }
+  background: $bg2;
+  border: 1px solid #4d453f;
+  span {
+    color: $n20;
+  }
+  .quote {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+  }
+  p {
+    font-size: 14px;
+    @include screen(lg) {
+      font-size: 16px;
+    }
+  }
+  .quote {
+    opacity: 0.2;
+  }
+}
+// faq seciotn
+.faq-2 {
+  background-color: $n0;
+  .swiper-wrapper {
+    -webkit-transition-timing-function: linear !important;
+    -o-transition-timing-function: linear !important;
+    transition-timing-function: linear !important;
+  }
+  .scroll-card-2 {
+    @extend .scroll-card;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    @include screen(xl) {
+      bottom: 220px;
+    }
+    padding-bottom: 80px;
+    .arrow-down {
+      &::after {
+        background-color: $n0;
+      }
+    }
+  }
+  .logo-slider-2 {
+    background-color: $bg1;
+    img {
+      padding: 20px;
+      @include screen(lg) {
+        padding: 60px 20px;
+      }
+    }
+  }
+  .faq-content {
+    background-color: $n0;
+    padding: 16px;
+    @include screen(sm) {
+      padding: 30px;
+    }
+    @include screen(xl) {
+      padding: 80px 20px 250px 90px;
+    }
+    &.no-cta {
+      @include screen(xl) {
+        padding: 120px 20px 120px 90px;
+      }
+    }
+  }
+}

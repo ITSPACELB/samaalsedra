@@ -1,0 +1,328 @@
+
+> solarox-vue@0.0.0 build
+> run-p type-check "build-only {@}" --
+
+
+> solarox-vue@0.0.0 build-only
+> vite build
+
+
+> solarox-vue@0.0.0 type-check
+> vue-tsc --build
+
+[36mvite v6.3.5 [32mbuilding for production...[36m[39m
+transforming...
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   Γò╖
+30 Γöé @import "variables";
+   Γöé         ^^^^^^^^^^^
+   Γò╡
+    src\assets\styles\main.scss 30:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   Γò╖
+31 Γöé @import "bootstrap-custom";
+   Γöé         ^^^^^^^^^^^^^^^^^^
+   Γò╡
+    src\assets\styles\main.scss 31:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   Γò╖
+33 Γöé @import "swiper/css";
+   Γöé         ^^^^^^^^^^^^
+   Γò╡
+    src\assets\styles\main.scss 33:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   Γò╖
+34 Γöé @import "swiper/css/pagination";
+   Γöé         ^^^^^^^^^^^^^^^^^^^^^^^
+   Γò╡
+    src\assets\styles\main.scss 34:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   Γò╖
+35 Γöé @import "swiper/css/navigation";
+   Γöé         ^^^^^^^^^^^^^^^^^^^^^^^
+   Γò╡
+    src\assets\styles\main.scss 35:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.mix instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    Γò╖
+207 Γöé   @return mix(white, $color, $weight);
+    Γöé           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Γò╡
+    node_modules\bootstrap\scss\_functions.scss 207:11  tint-color()
+    node_modules\bootstrap\scss\_variables.scss 79:12   @import
+    node_modules\bootstrap\scss\bootstrap.scss 8:9      @import
+    src\assets\styles\_bootstrap-custom.scss 26:9       @import
+    src\assets\styles\main.scss 31:9                    root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.mix instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    Γò╖
+212 Γöé   @return mix(black, $color, $weight);
+    Γöé           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Γò╡
+    node_modules\bootstrap\scss\_functions.scss 212:11  shade-color()
+    node_modules\bootstrap\scss\_variables.scss 84:12   @import
+    node_modules\bootstrap\scss\bootstrap.scss 8:9      @import
+    src\assets\styles\_bootstrap-custom.scss 26:9       @import
+    src\assets\styles\main.scss 31:9                    root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.mix instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    Γò╖
+342 Γöé $light-bg-subtle:         mix($gray-100, $white) !default;
+    Γöé                           ^^^^^^^^^^^^^^^^^^^^^^
+    Γò╡
+    node_modules\bootstrap\scss\_variables.scss 342:27  @import
+    node_modules\bootstrap\scss\bootstrap.scss 8:9      @import
+    src\assets\styles\_bootstrap-custom.scss 26:9       @import
+    src\assets\styles\main.scss 31:9                    root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use math.unit instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   Γò╖
+11 Γöé     @if $prev-num == null or unit($num) == "%" or unit($prev-num) == "%" {
+   Γöé                              ^^^^^^^^^^
+   Γò╡
+    node_modules\bootstrap\scss\_functions.scss 11:30  -assert-ascending()
+    node_modules\bootstrap\scss\_variables.scss 494:1  @import
+    node_modules\bootstrap\scss\bootstrap.scss 8:9     @import
+    src\assets\styles\_bootstrap-custom.scss 26:9      @import
+    src\assets\styles\main.scss 31:9                   root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use math.unit instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   Γò╖
+11 Γöé     @if $prev-num == null or unit($num) == "%" or unit($prev-num) == "%" {
+   Γöé                                                   ^^^^^^^^^^^^^^^
+   Γò╡
+    node_modules\bootstrap\scss\_functions.scss 11:51  -assert-ascending()
+    node_modules\bootstrap\scss\_variables.scss 494:1  @import
+    node_modules\bootstrap\scss\bootstrap.scss 8:9     @import
+    src\assets\styles\_bootstrap-custom.scss 26:9      @import
+    src\assets\styles\main.scss 31:9                   root stylesheet
+
+DEPRECATION WARNING [color-functions]: red() is deprecated. Suggestion:
+
+color.channel($color, "red", $space: rgb)
+
+More info: https://sass-lang.com/d/color-functions
+
+    Γò╖
+185 Γöé     "r": red($color),
+    Γöé          ^^^^^^^^^^^
+    Γò╡
+    node_modules\bootstrap\scss\_functions.scss 185:10  luminance()
+    node_modules\bootstrap\scss\_functions.scss 174:8   contrast-ratio()
+    node_modules\bootstrap\scss\_functions.scss 159:22  color-contrast()
+    node_modules\bootstrap\scss\_variables.scss 846:42  @import
+    node_modules\bootstrap\scss\bootstrap.scss 8:9      @import
+    src\assets\styles\_bootstrap-custom.scss 26:9       @import
+    src\assets\styles\main.scss 31:9                    root stylesheet
+
+DEPRECATION WARNING [color-functions]: green() is deprecated. Suggestion:
+
+color.channel($color, "green", $space: rgb)
+
+More info: https://sass-lang.com/d/color-functions
+
+    Γò╖
+186 Γöé     "g": green($color),
+    Γöé          ^^^^^^^^^^^^^
+    Γò╡
+    node_modules\bootstrap\scss\_functions.scss 186:10  luminance()
+    node_modules\bootstrap\scss\_functions.scss 174:8   contrast-ratio()
+    node_modules\bootstrap\scss\_functions.scss 159:22  color-contrast()
+    node_modules\bootstrap\scss\_variables.scss 846:42  @import
+    node_modules\bootstrap\scss\bootstrap.scss 8:9      @import
+    src\assets\styles\_bootstrap-custom.scss 26:9       @import
+    src\assets\styles\main.scss 31:9                    root stylesheet
+
+DEPRECATION WARNING [color-functions]: blue() is deprecated. Suggestion:
+
+color.channel($color, "blue", $space: rgb)
+
+More info: https://sass-lang.com/d/color-functions
+
+    Γò╖
+187 Γöé     "b": blue($color)
+    Γöé          ^^^^^^^^^^^^
+    Γò╡
+    node_modules\bootstrap\scss\_functions.scss 187:10  luminance()
+    node_modules\bootstrap\scss\_functions.scss 174:8   contrast-ratio()
+    node_modules\bootstrap\scss\_functions.scss 159:22  color-contrast()
+    node_modules\bootstrap\scss\_variables.scss 846:42  @import
+    node_modules\bootstrap\scss\bootstrap.scss 8:9      @import
+    src\assets\styles\_bootstrap-custom.scss 26:9       @import
+    src\assets\styles\main.scss 31:9                    root stylesheet
+
+DEPRECATION WARNING [color-functions]: red() is deprecated. Suggestion:
+
+color.channel($color, "red", $space: rgb)
+
+More info: https://sass-lang.com/d/color-functions
+
+   Γò╖
+37 Γöé   @return red($value), green($value), blue($value);
+   Γöé           ^^^^^^^^^^^
+   Γò╡
+    node_modules\bootstrap\scss\_functions.scss 37:11   to-rgb()
+    node_modules\bootstrap\scss\_variables.scss 846:31  @import
+    node_modules\bootstrap\scss\bootstrap.scss 8:9      @import
+    src\assets\styles\_bootstrap-custom.scss 26:9       @import
+    src\assets\styles\main.scss 31:9                    root stylesheet
+
+DEPRECATION WARNING [color-functions]: green() is deprecated. Suggestion:
+
+color.channel($color, "green", $space: rgb)
+
+More info: https://sass-lang.com/d/color-functions
+
+   Γò╖
+37 Γöé   @return red($value), green($value), blue($value);
+   Γöé                        ^^^^^^^^^^^^^
+   Γò╡
+    node_modules\bootstrap\scss\_functions.scss 37:24   to-rgb()
+    node_modules\bootstrap\scss\_variables.scss 846:31  @import
+    node_modules\bootstrap\scss\bootstrap.scss 8:9      @import
+    src\assets\styles\_bootstrap-custom.scss 26:9       @import
+    src\assets\styles\main.scss 31:9                    root stylesheet
+
+DEPRECATION WARNING [mixed-decls]: Sass's behavior for declarations that appear after nested
+rules will be changing to match the behavior specified by CSS in an upcoming
+version. To keep the existing behavior, move the declaration above the nested
+rule. To opt into the new behavior, wrap the declaration in `& {}`.
+
+More info: https://sass-lang.com/d/mixed-decls
+
+    Γò╖
+422 Γöé Γöî     @media (min-width: 580px) {
+423 Γöé Γöé       min-width: 300px;
+424 Γöé Γöé     }
+    Γöé ΓööΓöÇΓöÇΓöÇ nested rule
+425 Γöé       padding: 12px 16px;
+    Γöé       ^^^^^^^^^^^^^^^^^^ declaration
+    Γò╡
+    src\assets\styles\_header.scss 425:5  @import
+    src\assets\styles\main.scss 39:9      root stylesheet
+
+DEPRECATION WARNING [mixed-decls]: Sass's behavior for declarations that appear after nested
+rules will be changing to match the behavior specified by CSS in an upcoming
+version. To keep the existing behavior, move the declaration above the nested
+rule. To opt into the new behavior, wrap the declaration in `& {}`.
+
+More info: https://sass-lang.com/d/mixed-decls
+
+   ΓöîΓöÇΓöÇ> src\assets\styles\_footer.scss
+88 Γöé       background-size: cover;
+   Γöé       ^^^^^^^^^^^^^^^^^^^^^^ declaration
+   Γò╡
+   ΓöîΓöÇΓöÇ> src\assets\styles\_mixins.scss
+14 Γöé Γöî   @media (min-width: $size) {
+15 Γöé Γöé     @content;
+16 Γöé Γöé   }
+   Γöé ΓööΓöÇΓöÇΓöÇ nested rule
+   Γò╡
+    src\assets\styles\_footer.scss 88:5  @import
+    src\assets\styles\main.scss 41:9     root stylesheet
+
+DEPRECATION WARNING [mixed-decls]: Sass's behavior for declarations that appear after nested
+rules will be changing to match the behavior specified by CSS in an upcoming
+version. To keep the existing behavior, move the declaration above the nested
+rule. To opt into the new behavior, wrap the declaration in `& {}`.
+
+More info: https://sass-lang.com/d/mixed-decls
+
+   ΓöîΓöÇΓöÇ> src\assets\styles\_footer.scss
+88 Γöé       background-size: cover;
+   Γöé       ^^^^^^^^^^^^^^^^^^^^^^ declaration
+   Γò╡
+   ΓöîΓöÇΓöÇ> src\assets\styles\_mixins.scss
+14 Γöé Γöî   @media (min-width: $size) {
+15 Γöé Γöé     @content;
+16 Γöé Γöé   }
+   Γöé ΓööΓöÇΓöÇΓöÇ nested rule
+   Γò╡
+    src\assets\styles\_footer.scss 88:5  @import
+    src\assets\styles\main.scss 41:9     root stylesheet
+
+DEPRECATION WARNING [mixed-decls]: Sass's behavior for declarations that appear after nested
+rules will be changing to match the behavior specified by CSS in an upcoming
+version. To keep the existing behavior, move the declaration above the nested
+rule. To opt into the new behavior, wrap the declaration in `& {}`.
+
+More info: https://sass-lang.com/d/mixed-decls
+
+   ΓöîΓöÇΓöÇ> src\assets\styles\_footer.scss
+88 Γöé       background-size: cover;
+   Γöé       ^^^^^^^^^^^^^^^^^^^^^^ declaration
+   Γò╡
+   ΓöîΓöÇΓöÇ> src\assets\styles\_mixins.scss
+14 Γöé Γöî   @media (min-width: $size) {
+15 Γöé Γöé     @content;
+16 Γöé Γöé   }
+   Γöé ΓööΓöÇΓöÇΓöÇ nested rule
+   Γò╡
+    src\assets\styles\_footer.scss 88:5  @import
+    src\assets\styles\main.scss 41:9     root stylesheet
+
+DEPRECATION WARNING [mixed-decls]: Sass's behavior for declarations that appear after nested
+rules will be changing to match the behavior specified by CSS in an upcoming
+version. To keep the existing behavior, move the declaration above the nested
+rule. To opt into the new behavior, wrap the declaration in `& {}`.
+
+More info: https://sass-lang.com/d/mixed-decls
+
+   ΓöîΓöÇΓöÇ> src\assets\styles\_footer.scss
+89 Γöé       background-repeat: no-repeat;
+   Γöé       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ declaration
+   Γò╡
+   ΓöîΓöÇΓöÇ> src\assets\styles\_mixins.scss
+14 Γöé Γöî   @media (min-width: $size) {
+15 Γöé Γöé     @content;
+16 Γöé Γöé   }
+   Γöé ΓööΓöÇΓöÇΓöÇ nested rule
+   Γò╡
+    src\assets\styles\_footer.scss 89:5  @import
+    src\assets\styles\main.scss 41:9     root stylesheet
+
+WARNING: 519 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+[32mΓ£ô[39m 1700 modules transformed.
+src/assets/data/products.ts(1,1): error TS1435: Unknown keyword or identifier. Did you mean 'export'?
+ERROR: "type-check" exited with 2.

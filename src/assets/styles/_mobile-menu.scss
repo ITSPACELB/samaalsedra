@@ -1,0 +1,97 @@
+/*============NAVBAR============*/
+.mobile-menu {
+  background-color: $bg2;
+  z-index: 22;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 16px 12px;
+  max-width: 350px;
+  transform: translateX(-120%);
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 30px;
+  &.open {
+    transform: translateX(0);
+  }
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 20;
+    padding: 20px 0;
+    margin: 0 auto;
+    li {
+      display: flex;
+      align-items: center;
+    }
+    li span,
+    li a {
+      color: $n0;
+      width: 100%;
+      padding: 8px;
+      border: 1px solid rgba($color: $primary, $alpha: 0.4);
+      &.active {
+        color: $primary;
+      }
+    }
+
+    .submenu {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      span {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        @media (max-width: 991px) {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+        }
+        i,
+        svg {
+          font-size: 1.2rem;
+          margin-top: 3px;
+        }
+      }
+      span.active {
+        color: $primary;
+      }
+      .submenu-dropdown {
+        padding-left: 16px;
+        z-index: 19;
+        list-style: none;
+        width: 100%;
+        margin-top: 6px;
+        li a {
+          position: relative;
+          margin-bottom: 6px;
+          padding: 8px;
+          display: block;
+          width: 100%;
+          color: $n0;
+          &:hover {
+            color: $primary;
+          }
+          &.active {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+.mobile-menu.open + .mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba($color: $bg2, $alpha: 0.6);
+  z-index: 21;
+  transition: all 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}

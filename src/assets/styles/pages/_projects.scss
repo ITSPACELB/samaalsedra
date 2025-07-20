@@ -1,0 +1,12 @@
+.project-page {
+  position: relative;
+  z-index: 2;
+  .container {
+    padding-top: 60px;
+    @include screen(xl) {
+      padding-top: 110px;
+    }
+    z-index: 22;
+    position: relative;
+  }
+}

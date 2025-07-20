@@ -1,0 +1,503 @@
+.hero-5 {
+  margin-top: 72px;
+  @media (min-width: 992) {
+    margin-top: 96px;
+  }
+  @media (min-width: 1400px) {
+    margin-top: 112px;
+  }
+  position: relative;
+  background-color: $n0;
+  .swiper-slide {
+    position: relative;
+    background-size: cover;
+    .hero5-banner-content {
+      padding: 60px 0;
+      @media (min-width: 768px) {
+        padding: 100px 0;
+      }
+      @media (min-width: 1200px) {
+        padding: 120px 0;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(16, 39, 29, 0.9) 0%, rgba(16, 39, 29, 0.7) 52.66%, rgba(16, 39, 29, 0.3) 77.69%, rgba(16, 39, 29, 0.7) 100%);
+      }
+      .container {
+        position: relative;
+        z-index: 3;
+        .deal-heading {
+          color: $primary;
+          font-size: 18px;
+          @media (min-width: 768px) {
+            font-size: 24px;
+          }
+          font-weight: 500;
+          text-transform: uppercase;
+          margin-bottom: 4px;
+          padding: 10px 35px;
+          position: relative;
+          display: inline-block;
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 12px;
+            width: 100%;
+            height: 100%;
+            transform: skew(-20deg);
+            border: 1px solid $primary;
+          }
+        }
+        .discount {
+          font-size: 80px;
+          font-weight: 600;
+          color: $n0;
+          line-height: 100%;
+          margin-bottom: 8px;
+          @media (min-width: 768px) {
+            font-size: 140px;
+          }
+          @media (min-width: 992px) {
+            font-size: 160px;
+          }
+          @media (min-width: 1200px) {
+            font-size: 280px;
+          }
+        }
+        .percent {
+          font-size: 48px;
+          color: $n0;
+          line-height: 100%;
+          @media (min-width: 768px) {
+            font-size: 80px;
+          }
+          @media (min-width: 992px) {
+            font-size: 90px;
+          }
+          @media (min-width: 1200px) {
+            font-size: 140px;
+          }
+          @media (min-width: 1400px) {
+            font-size: 160px;
+          }
+        }
+        .off {
+          font-size: 30px;
+          color: $n0;
+          text-transform: uppercase;
+          line-height: 100%;
+          @media (min-width: 768px) {
+            font-size: 40px;
+          }
+          @media (min-width: 992px) {
+            font-size: 52px;
+          }
+          @media (min-width: 1200px) {
+            font-size: 72px;
+          }
+        }
+        .subheading {
+          font-size: 40px;
+          color: $n0;
+          font-weight: 600;
+          line-height: 100%;
+          margin-bottom: 24px;
+          @media (min-width: 768px) {
+            font-size: 50px;
+          }
+          @media (min-width: 992px) {
+            font-size: 60px;
+          }
+          @media (min-width: 1200px) {
+            font-size: 80px;
+            margin-bottom: 40px;
+          }
+          @media (min-width: 1400px) {
+            font-size: 100px;
+          }
+        }
+      }
+    }
+  }
+  .hero5-pagination {
+    position: absolute;
+    right: 32px;
+    left: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: max-content;
+    max-height: max-content;
+    @media (min-width: 1400px) {
+      right: 72px;
+    }
+    .swiper-pagination-bullet {
+      background-color: $n0;
+      opacity: 1;
+      position: relative;
+      transition-duration: 300ms;
+      &::after {
+        content: "";
+        transition-duration: 300ms;
+        width: 24px;
+        height: 24px;
+        border: 1px solid $n0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+      }
+      &.swiper-pagination-bullet-active {
+        background-color: $primary;
+        &::after {
+          border-color: $primary;
+        }
+      }
+    }
+  }
+}
+
+.discounts {
+  background-color: $n0;
+}
+.discount-card {
+  background-color: $bg1;
+  position: relative;
+  padding: 16px;
+  overflow: hidden;
+  height: 100%;
+  .discount-percent {
+    background-image: url(/images/discount-bg.png);
+    height: 88px;
+    width: 88px;
+    position: absolute;
+    top: 20px;
+    left: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: $n0;
+    span {
+      font-size: 12px;
+    }
+  }
+  @media (min-width: 1400px) {
+    padding: 24px;
+  }
+  @media (min-width: 1800px) {
+    padding: 40px;
+  }
+  h2,
+  h5,
+  a {
+    position: relative;
+    z-index: 2;
+  }
+  h5 {
+    color: $secondary3;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  h2 {
+    margin-bottom: 28px;
+    max-width: 520px;
+    @media (min-width: 1200px) {
+      margin-bottom: 40px;
+    }
+  }
+  .solar {
+    position: absolute;
+    right: -20px;
+    top: 10px;
+  }
+  .battery {
+    position: absolute;
+    bottom: -4px;
+    right: -2px;
+  }
+}
+
+// products
+.products {
+  background-color: $n0;
+  .section-title {
+    text-align: center;
+    max-width: 526px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.product-card {
+  overflow: hidden;
+  border: 1px solid rgba(16, 39, 29, 0.1);
+  background-color: $n0;
+  transition-duration: 300ms;
+  padding: 12px;
+  .img {
+    border: 1px solid rgba(16, 39, 29, 0.1);
+    padding: 12px;
+    position: relative;
+    overflow: hidden;
+    @media (min-width: 1400px) {
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+    .off {
+      display: inline-block;
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      color: $n0;
+      font-weight: 600;
+      font-size: 12px;
+      background-color: $secondary3;
+      padding: 4px 8px;
+    }
+    .new {
+      display: inline-block;
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      color: $n0;
+      font-weight: 600;
+      font-size: 12px;
+      background-color: $primary;
+      padding: 4px 8px;
+    }
+  }
+  .action-btns {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    button {
+      transition-duration: 300ms;
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+      border: 1px solid rgba(16, 39, 29, 0.1);
+      transform: translateX(150px);
+      font-size: 1.1rem;
+      &:nth-child(2) {
+        transition-delay: 100ms;
+      }
+      &:nth-child(3) {
+        transition-delay: 200ms;
+      }
+      &:hover {
+        background-color: $primary;
+        color: $n700;
+      }
+    }
+  }
+  .desc {
+    padding: 0 12px 12px;
+    @media (min-width: 1200px) {
+      padding: 0 20px 12px;
+    }
+    display: block;
+    h4 {
+      color: $n700;
+    }
+    .rating {
+      color: $n200;
+    }
+    .sp-price {
+      font-weight: 600;
+      font-size: 24px;
+      color: $secondary3;
+    }
+    .main-price {
+      font-size: 18px;
+      text-decoration-line: line-through;
+      color: $n100;
+    }
+    i,
+    svg {
+      color: #ffcc00;
+    }
+  }
+  &:hover {
+    border-color: $secondary2;
+    .action-btns {
+      button {
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
+.about-five {
+  background-color: $n0;
+  .about-five-content {
+    background-color: $bg1;
+  }
+  .quote {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background-color: $n0;
+    margin-bottom: 24px;
+    border: 1px solid rgba(16, 39, 29, 0.15);
+    @media (min-width: 1400px) {
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+    i,
+    svg {
+      color: $secondary3;
+      font-size: 3rem;
+    }
+  }
+  .feature {
+    button {
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+      background-color: $secondary2;
+      color: $n0;
+      font-size: 14px;
+    }
+    h5 {
+      margin-bottom: 0;
+    }
+    &.one {
+      @media (min-width: 768px) {
+        border-right: 1px dashed $secondary;
+        padding-right: 20px;
+      }
+      @media (min-width: 1400px) {
+        padding-right: 32px;
+      }
+    }
+    &.two {
+      @media (min-width: 768px) {
+        padding-left: 20px;
+      }
+      @media (min-width: 1400px) {
+        padding-left: 32px;
+      }
+    }
+  }
+  .about-img {
+    position: relative;
+    @media (min-width: 1600px) {
+      transform: translateX(120px);
+    }
+    .about-img-1 {
+      position: absolute;
+      left: 0;
+      border: 2px solid $n0;
+      z-index: 2;
+      top: 20px;
+      @media (min-width: 1200px) {
+        top: 215px;
+      }
+    }
+    .about-img-2 {
+      position: relative;
+      padding-bottom: 80px;
+      .about-line {
+        display: none;
+      }
+      @media (min-width: 1200px) {
+        .about-line {
+          display: block;
+          position: absolute;
+          left: -36px;
+          top: 0;
+          width: 16px;
+          height: 194px;
+          border-radius: 4px;
+          background: #ffa65e;
+        }
+      }
+    }
+    .rating {
+      position: absolute;
+      border: 2px solid $n0;
+      display: flex;
+      gap: 16px;
+      background-color: $primary;
+      align-items: center;
+      padding: 16px;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(40px);
+      z-index: 3;
+      .icon {
+        background-color: $bg2;
+        padding: 24px;
+      }
+      @media (min-width: 1400px) {
+        gap: 32px;
+        min-width: 390px;
+      }
+    }
+  }
+}
+.trending-pagination {
+  margin-top: 40px;
+  @media (min-width: 1200px) {
+    margin-top: 60px;
+  }
+  display: flex;
+  z-index: 4;
+  justify-content: center;
+  .swiper-pagination-bullet {
+    background-color: $bg1;
+    opacity: 1;
+    height: 12px;
+    width: 12px;
+    transition-duration: 300ms;
+    &.swiper-pagination-bullet-active {
+      width: 28px;
+      border-radius: 20px;
+      background-color: $secondary2;
+    }
+  }
+}
+
+// features
+.features {
+  background-color: $bg1;
+  padding: 40px 0;
+  @media (min-width: 992px) {
+    padding: 60px 0;
+  }
+  @media (min-width: 1200px) {
+    .feature-card {
+      border-right: 1px solid rgba($color: $secondary2, $alpha: 0.2);
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+  @media (min-width: 1400px) {
+    .feature-card {
+      padding: 0 16px;
+    }
+  }
+}
+.countup-wrap {
+  display: inline;
+  max-width: max-content;
+}

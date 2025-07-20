@@ -1,0 +1,557 @@
+.banner-3 {
+  position: relative;
+  .scroll-banner {
+    position: absolute;
+    background-color: transparent;
+    left: 10px;
+    bottom: 80px;
+    @include screen(xxl) {
+      bottom: 280px;
+      left: 40px;
+    }
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    z-index: 4;
+    .arrow-down {
+      position: relative;
+      img {
+        position: relative;
+        z-index: 4;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        background-color: $bg1;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 0%);
+      }
+    }
+    display: none;
+    @media (min-width: 1750px) {
+      display: flex;
+    }
+  }
+  background-color: $bg1;
+  .banner-content {
+    position: relative;
+    z-index: 2;
+    padding: 60px 12px;
+    @include screen(lg) {
+      padding: 90px 0;
+    }
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 29%;
+    background-color: $n0;
+  }
+}
+.nav-btns-home-3 {
+  display: flex;
+  gap: 12px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  @include screen(lg) {
+    bottom: 40px;
+    right: 0;
+  }
+  button {
+    border: 1px solid $primary;
+    width: 40px;
+    height: 40px;
+    @include screen(sm) {
+      width: 56px;
+      height: 56px;
+    }
+    background-color: $n0;
+    color: $primary;
+    font-size: 1.4rem;
+    transition: all 400ms ease-in-out;
+    top: 30%;
+    z-index: 5;
+    &:hover {
+      background-color: $primary;
+      color: $n700;
+    }
+  }
+}
+// brand slider section
+.brand-slider {
+  background-color: $n0;
+  padding: 60px 0;
+  @include screen(lg) {
+    p {
+      font-size: 20px;
+    }
+  }
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    max-width: max-content;
+    img {
+      padding: 0 16px;
+    }
+  }
+}
+
+// empower section
+.empower {
+  background-color: $bg1;
+  background-image: url(/images/turbine.webp);
+  background-position: left top;
+  background-size: auto;
+  background-repeat: no-repeat;
+  padding-top: 150px;
+  @include screen(lg) {
+    padding-top: 300px;
+  }
+  @include screen(xl) {
+    padding-top: 416px;
+  }
+  .empower-card {
+    background-color: $n0;
+    padding: 16px;
+    @include screen(sm) {
+      padding: 30px;
+    }
+    @include screen(md) {
+      padding: 60px;
+    }
+    @include screen(xl) {
+      padding: 120px 80px;
+    }
+  }
+}
+.read-more-three {
+  --x: 0;
+  --y: 0;
+  position: relative;
+  padding: 12px 24px;
+  overflow: hidden;
+  border-radius: 40px;
+  @include screen(xl) {
+    border-radius: 90px;
+    padding: 24px 48px;
+  }
+  color: $bg2;
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  border: 1px solid $bg2;
+  z-index: 2;
+  font-family: var(--font-playfair);
+  text-transform: uppercase;
+  font-weight: 500;
+  span {
+    width: 40px;
+    height: 40px;
+    @include screen(xl) {
+      width: 64px;
+      height: 64px;
+    }
+    background-color: $primary;
+    transition-duration: 500ms;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  i,
+  svg {
+    font-size: 1.8rem;
+    color: $n700;
+  }
+  &.primary {
+    color: $primary;
+    border-color: $primary;
+  }
+  &.v2 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 70px;
+    padding: 40px 25px;
+    @include screen(md) {
+      padding: 60px 40px;
+      border-radius: 93px;
+    }
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    top: var(--y);
+    left: var(--x);
+    width: 0;
+    height: 0;
+    z-index: -1;
+    background-color: $primary;
+    transition-duration: 500ms;
+    border-radius: 40px;
+    @include screen(xl) {
+      border-radius: 90px;
+    }
+    transition: all 400ms ease-in-out;
+  }
+  &:hover {
+    color: $n700;
+    border-color: $primary !important;
+    span {
+      background-color: $bg2 !important;
+    }
+    i,
+    svg {
+      color: $n0 !important;
+    }
+    &::after {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.empower-home-three {
+  position: relative;
+  background-color: $n0;
+  padding: 60px 0;
+  @include screen(xl) {
+    padding: 112px 0 120px;
+  }
+  .empower-pagination {
+    margin-top: 20px;
+    display: flex;
+    gap: 6px;
+    .swiper-pagination-bullet {
+      background-color: rgba($color: $bg2, $alpha: 0.3);
+      opacity: 1;
+      border-radius: 50%;
+      height: 8px;
+      width: 8px;
+      @media (min-width: 768px) {
+        height: 12px;
+        width: 12px;
+      }
+      transition-duration: 300ms;
+      &.swiper-pagination-bullet-active {
+        width: 28px;
+        border-radius: 20px;
+        background-color: $bg2;
+      }
+    }
+  }
+}
+// triumph card
+.triumph-card {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 400ms ease-in-out;
+    background: linear-gradient(180deg, rgba(16, 39, 29, 0) 0%, rgba(16, 39, 29, 0.4) 33.16%, rgba(16, 39, 29, 0.75) 58.88%, #10271d 100%);
+    bottom: 0;
+    left: 0;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 400ms ease-in-out;
+    transform: translateY(100%);
+    bottom: 0;
+    left: 0;
+  }
+  &:hover {
+    .card-content {
+      .arrow-sm,
+      p {
+        @include screen(md) {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      h3 {
+        transform: translateY(0);
+      }
+    }
+  }
+  .card-content {
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    color: $n0;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    @include screen(lg) {
+      padding: 20px;
+    }
+    z-index: 3;
+    transition: all 400ms ease-in-out;
+    h3 {
+      transition-duration: 400ms;
+      transform: translateY(60px);
+      color: $n0;
+    }
+    p {
+      transition-duration: 400ms;
+      color: $n0;
+      margin-bottom: 0;
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    @include screen(xl) {
+      padding: 40px;
+    }
+    .arrow-sm {
+      transition: all 400ms ease-in-out;
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      margin-top: 20px;
+      background-color: $primary;
+      color: $n700;
+      font-size: 1.6rem;
+      transition-duration: 300ms;
+      opacity: 0;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      transform: translateY(60px);
+    }
+  }
+}
+
+// leagal solution
+.legal-solution-3 {
+  .scroll-banner {
+    position: absolute;
+    background-color: transparent;
+    right: 30px;
+    bottom: 60px;
+    @include screen(xxl) {
+      bottom: 120px;
+      right: 90px;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    z-index: 4;
+    .arrow-down {
+      position: relative;
+      img {
+        position: relative;
+        z-index: 4;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        background-color: $n0;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 0%);
+      }
+    }
+  }
+  background-color: $bg1;
+  padding: 60px 0;
+  @include screen(xl) {
+    padding: 120px 0;
+  }
+}
+.legal-card {
+  background-color: $n0;
+  padding: 16px;
+  transition: all 400ms ease-in-out;
+  border: 1px solid $n0;
+  z-index: 2;
+  display: block;
+  position: relative;
+  &:hover {
+    border-color: $secondary;
+  }
+  @include screen(sm) {
+    padding: 24px;
+  }
+  @include screen(md) {
+    padding: 32px;
+  }
+  p {
+    color: $n500;
+  }
+  h4 {
+    color: $n700;
+  }
+  &.bg1 {
+    background-color: $bg1;
+    border: 1px solid $bg1;
+    &:hover {
+      background-color: $n0;
+      border: 1px solid $secondary2;
+    }
+  }
+}
+// counter section 3
+.counter-3 {
+  background-color: $n0;
+  padding: 60px 0;
+  @include screen(xl) {
+    padding: 120px 0;
+  }
+  .counter-swiper {
+    img {
+      height: 220px;
+      @include screen(sm) {
+        height: 350px;
+      }
+      @include screen(md) {
+        height: 450px;
+      }
+      @include screen(md) {
+        height: auto;
+      }
+    }
+  }
+  .counter-nav-btns-home-3 {
+    @extend .nav-btns-home-3;
+    right: 20px;
+    @include screen(md) {
+      right: 40px;
+    }
+  }
+  .counter-content {
+    max-width: 636px;
+    padding-top: 60px;
+    @include screen(xl) {
+      padding-top: 110px;
+    }
+  }
+}
+
+// testimonial
+.testimonial-3 {
+  background-color: $bg1;
+  position: relative;
+  &::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 0;
+    background-color: $n0;
+    width: 100%;
+    height: 15%;
+    @include screen(lg) {
+      height: 46%;
+    }
+  }
+  .left-side {
+    padding: 60px 0 0;
+    @include screen(xl) {
+      padding: 120px 0;
+    }
+    p {
+      max-width: 636px;
+    }
+  }
+}
+
+// experts section
+.experts-3 {
+  background-color: $n0;
+  padding: 60px 0;
+  @include screen(xl) {
+    padding: 120px 0;
+  }
+  .expert-card {
+    padding: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid $primary;
+    .img-box {
+      border-radius: 50%;
+      background-color: $primary;
+      height: 282px;
+      width: 282px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      img {
+        border-radius: 50%;
+      }
+      .social {
+        position: absolute;
+        bottom: 28px;
+        right: 0;
+        border: 2px solid $n0;
+        border-radius: 50px;
+        background-color: $primary;
+        overflow: hidden;
+        .social-btn {
+          height: 64px;
+          border: none;
+          background-color: transparent;
+          width: 64px;
+          color: $n700;
+          font-size: 1.3rem;
+        }
+        .links {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          opacity: 0;
+          max-height: 0;
+          visibility: hidden;
+          height: 0;
+          transition: all 800ms ease;
+          li > a {
+            color: $n700;
+            font-size: 1.5rem;
+            padding: 10px;
+            display: inline-flex;
+          }
+        }
+        .links.active {
+          position: static;
+          opacity: 1;
+          max-height: 400px;
+          visibility: visible;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+// footer
+.footer-3 {
+  padding: 60px 0;
+  @include screen(xl) {
+    padding: 120px 0;
+  }
+  .form-3 {
+    background-color: $bg2;
+  }
+}
