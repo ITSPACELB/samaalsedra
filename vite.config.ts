@@ -5,6 +5,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: './', // ✅ تضبط كل المسارات لتكون relative
   plugins: [
     vue(),
     vueDevTools(),
@@ -21,7 +22,6 @@ export default defineConfig({
           vue: ['vue'],
           'vue-i18n': ['vue-i18n'],
           phosphor: ['@phosphor-icons/vue']
-          // 🔴 شلنا vue3-lottie لأنو عم يطلع chunk فاضي
         }
       }
     }
