@@ -423,7 +423,6 @@
         "squareMeter": "m²",
         "hours": "hours",
         "consumptionNote": "⚠️ Consumption not clearly defined. Please estimate usage per appliance (e.g., fridge = 2A, TV = 0.5A, light = 0.1A, AC = 6–10A).",
-        "batteryStatus": "⚠️ Your selected battery ({{user}} kWh) is below the required size. We recommend a {{recommended}} kWh battery ({{panelName}}) to ensure full coverage and avoid performance or cost issues.",
         "inverterStatus": "⚠️ Your selected inverter ({{user}} kW) is not optimal. We recommend {{recommended}} kW to ensure efficient load handling with safety margin.",
         "efficiencyNote": "⚠️ The system may face challenges due to long outages, low sunlight, or high energy demand. Consider redesigning or adjusting usage for better performance.",
         "nightOnlyNote": "⚠️ Since all outages occur at night, a battery of {{suggestedBattery}} kWh may be sufficient to cover {{nightLoad}} Wh consumption without requiring solar panels.",
