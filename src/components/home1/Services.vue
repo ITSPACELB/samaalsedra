@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// ✅ تعديل بسيط لإجبار Vercel على إعادة النشر 🚀
+
 import { Swiper, SwiperSlide } from "swiper/vue"
 import service1 from "/images/service-1.png"
 import service2 from "/images/service-2.png"
