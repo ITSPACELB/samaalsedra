@@ -8,7 +8,7 @@ html, body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-  font-family: 'Markazi Text', 'Inter', sans-serif;
+  font-family: 'markazi Text', 'Inter', sans-serif;
   direction: rtl;
   background-color: #fff;
   color: #222;
@@ -40,14 +40,14 @@ button {
   ✅ Custom Font
 --------------------------------------------------------------*/
 @font-face {
-  font-family: 'Markazi Text';
+  font-family: 'markazi Text';
 src: url('/fonts/markazi/markazitext-semibold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 
 html[lang="ar"] body {
-  font-family: 'Markazi Text', sans-serif !important;
+  font-family: 'markazi Text', sans-serif !important;
 }
 
 

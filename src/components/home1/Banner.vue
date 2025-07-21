@@ -255,7 +255,7 @@ onMounted(() => {
   letter-spacing: 0.2px;
   margin-bottom: 0.3rem;
   text-align: center;
-  font-family: 'Markazi Text', 'Tajawal', Arial, sans-serif;
+  font-family: 'markazi Text', 'Tajawal', Arial, sans-serif;
 }
 .hero-sub-title {
   margin-bottom: 0.3rem;
