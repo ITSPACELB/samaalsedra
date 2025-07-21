@@ -1,411 +1,481 @@
 {
-  "navbar": {
-    "home": "Home",
-    "solarSolution": "Solar Solution",
-    "solarCompany": "Solar Company",
-    "windEnergy": "Wind Energy",
-    "hydropower": "Hydropower",
-    "onlineShop": "Online Shop",
-    "videoBackground": "Video Background",
-    "about": "About",
-    "service": "Service",
-    "blog": "Blog",
-    "shop": "Shop",
-    "pages": "Pages",
-    "services": "Services",
-    "serviceDetails": "Service Details",
-    "blogStandard": "Blog Standard",
-    "blogGrid": "Blog Grid",
-    "blogList": "Blog List",
-    "blogDetails": "Blog Details",
-    "products": "Products",
-    "productDetails": "Product Details",
-    "cart": "Cart",
-    "billing": "Billing",
-    "payment": "Payment",
-    "projects": "Projects",
-    "projectDetails": "Project Details",
-    "contact": "Contact",
-    "faq": "FAQ",
-    "signUp": "Sign Up",
-    "signIn": "Sign In",
-    "error404": "404"
-  },
-  "banner": {
-    "solarMadeEnergy": "Solar Made Energy"
-  },
-  "site": {
-    "companyFullName": "Sama ALSedra",
-    "companySlogan": "For Sustainable and Renewable Solar Energy",
-    "companyTagline": "Highest Quality - Lowest Cost"
-
-  },
-  "about": {
-    "titleVertical": "About Us",
-    "yearsExperience": "Years of Experience",
-    "solarInstallation": "Solar Installations",
-    "totalTechnician": "Total Technicians",
-    "awardsAchievement": "Awards & Achievements",
-    "mainTitle": "Effective Green Energy Solutions",
-    "description": "A company specialized in solar energy solutions, we provide design and installation services for solar systems for homes and businesses with the highest standards of quality and efficiency.",
-    "satisfactionRate": "Customer satisfaction rate 99%",
-    "completionRate": "Project completion rate 100%",
-    "clientCentric": "Our approach is customer-centric",
-    "ourServicesBtn": "Our Services"
-  },
-"services": {
-  "verticalLabel": "Services",
-  "sectionTitle": "Trusted Solar Expertise to Power Your Sustainability Goals",
-  "sectionDesc": "Sama Al-Sidra, a leading provider of solar energy solutions in Iraq, offers a comprehensive suite of services tailored to meet the unique needs of both individuals and businesses. From technical assessments and personalized consultations to precision installations and ongoing maintenance, we ensure reliable performance and long-term value from your clean energy investment.",
-
-  "solarPanelInstallationTitle": "Solar System Installation",
-  "solarPanelInstallationDesc": "Professional installation of solar panels using the latest technologies to ensure high energy output and system stability. We deliver customized solutions for residential rooftops and commercial buildings to meet the highest standards of quality and efficiency.",
-  "solarPanelInstallationBenefit": "Seamless integration for maximum operational efficiency.",
-
-  "maintenanceTitle": "Maintenance & Repairs",
-  "maintenanceDesc": "Comprehensive maintenance services and rapid-response repair solutions to keep your solar system operating at peak performance. We provide technical inspections, panel cleaning, and replacement of faulty components.",
-  "maintenanceBenefit": "Reliable system uptime through fast and effective technical support.",
-
-  "residentialTitle": "Residential Solar Solutions",
-  "residentialDesc": "Innovative solar energy systems tailored to Iraqi households and residential environments. Designed to reduce electricity costs, lower grid dependency, and provide long-term energy savings.",
-  "residentialBenefit": "Flexible designs that grow with your home's energy needs."
-},
-"whychoose": {
-  "vertical": "Why Choose Us",
-  "title": "Why We're the Best Choice!",
-  "descFinal": "Choosing your partner in the transition to solar energy goes beyond technical specifications — it’s a commitment to a more sustainable future. At Sama Al-Sidra, we don't just sell systems; we provide a complete experience starting with tailored consultations, offering personalized solar solutions with fully transparent pricing and no hidden costs. We rely on high-quality components built to global standards and operate with full environmental responsibility to ensure a reliable, long-term system. Our responsive support team, extended warranties, and after-sales services are designed to keep your mind at ease for years to come."
-},
-  "partners": {
-    "vertical": "Partners",
-  "title": "Sama Al-Sidra Global Partners",
-  "desc": "We are proud to partner with leading global solar energy brands, reflecting our commitment to quality and innovation.\nThese exclusive agencies ensure our clients get reliable and long-term energy solutions they can trust.",
-    "chint": {
-      "title": "chisage",
-      "desc": "A global leader in solar energy and batteries, based in China."
+    "navbar": {
+        "home": "Home",
+        "solarSolution": "Solar Solution",
+        "solarCompany": "Solar Company",
+        "windEnergy": "Wind Energy",
+        "hydropower": "Hydropower",
+        "onlineShop": "Online Shop",
+        "videoBackground": "Video Background",
+        "about": "About",
+        "service": "Service",
+        "blog": "Blog",
+        "shop": "Shop",
+        "pages": "Pages",
+        "services": "Services",
+        "serviceDetails": "Service Details",
+        "blogStandard": "Blog Standard",
+        "blogGrid": "Blog Grid",
+        "blogList": "Blog List",
+        "blogDetails": "Blog Details",
+        "products": "Products",
+        "productDetails": "Product Details",
+        "cart": "Cart",
+        "billing": "Billing",
+        "payment": "Payment",
+        "projects": "Projects",
+        "projectDetails": "Project Details",
+        "contact": "Contact",
+        "faq": "FAQ",
+        "signUp": "Sign Up",
+        "signIn": "Sign In",
+        "error404": "404"
     },
-    "easun": {
-      "title": "Itel",
-      "desc": "Reliable supplier of solar panels and integrated power solutions."
+    "banner": {
+        "solarMadeEnergy": "Solar Made Energy"
     },
-    "cospower": {
-      "title": "Cos Power",
-      "desc": "Pioneers in renewable energy technology and innovative products."
+    "site": {
+        "companyFullName": "Sama ALSedra",
+        "companySlogan": "For Sustainable and Renewable Solar Energy",
+        "companyTagline": "Highest Quality - Lowest Cost"
     },
-    "sofar": {
-      "title": "SOFAR Solar",
-      "desc": "A leading global company in smart solar energy systems."
+    "about": {
+        "titleVertical": "About Us",
+        "yearsExperience": "Years of Experience",
+        "solarInstallation": "Solar Installations",
+        "totalTechnician": "Total Technicians",
+        "awardsAchievement": "Awards & Achievements",
+        "mainTitle": "Effective Green Energy Solutions",
+        "description": "A company specialized in solar energy solutions, we provide design and installation services for solar systems for homes and businesses with the highest standards of quality and efficiency.",
+        "satisfactionRate": "Customer satisfaction rate 99%",
+        "completionRate": "Project completion rate 100%",
+        "clientCentric": "Our approach is customer-centric",
+        "ourServicesBtn": "Our Services"
     },
-    "dyness": {
-      "title": "Dyness",
-      "desc": "Specialized in high-performance lithium batteries for solar energy."
+    "services": {
+        "verticalLabel": "Services",
+        "sectionTitle": "Trusted Solar Expertise to Power Your Sustainability Goals",
+        "sectionDesc": "Sama Al-Sidra, a leading provider of solar energy solutions in Iraq, offers a comprehensive suite of services tailored to meet the unique needs of both individuals and businesses. From technical assessments and personalized consultations to precision installations and ongoing maintenance, we ensure reliable performance and long-term value from your clean energy investment.",
+        "solarPanelInstallationTitle": "Solar System Installation",
+        "solarPanelInstallationDesc": "Professional installation of solar panels using the latest technologies to ensure high energy output and system stability. We deliver customized solutions for residential rooftops and commercial buildings to meet the highest standards of quality and efficiency.",
+        "solarPanelInstallationBenefit": "Seamless integration for maximum operational efficiency.",
+        "maintenanceTitle": "Maintenance & Repairs",
+        "maintenanceDesc": "Comprehensive maintenance services and rapid-response repair solutions to keep your solar system operating at peak performance. We provide technical inspections, panel cleaning, and replacement of faulty components.",
+        "maintenanceBenefit": "Reliable system uptime through fast and effective technical support.",
+        "residentialTitle": "Residential Solar Solutions",
+        "residentialDesc": "Innovative solar energy systems tailored to Iraqi households and residential environments. Designed to reduce electricity costs, lower grid dependency, and provide long-term energy savings.",
+        "residentialBenefit": "Flexible designs that grow with your home's energy needs."
     },
-    "risen": {
-      "title": "Risen Energy",
-      "desc": "One of the world's top producers of reliable solar panels."
-    }
-  },
-  "testimonials": {
-    "vertical": "Testimonials",
-  "title": "What Our Clients Say",
-    "desc": "Your satisfaction is our priority. Our team always strives to provide the best solar solutions from the world's top brands, with competitive prices and outstanding 24/7 service. We are the first company in Iraq to use artificial intelligence, a smart calculator, and a team of expert engineers.",
-      "whatsappFeedback": "Don't hesitate to reach out — we're here to listen.",
-    "slides": [
-      "What I love most about Sama Al-Sedra is their 24/7 support, plus their AI bot that answers instantly at any time!",
-      "The smart solar calculator on the website saved me a lot of time in finding the perfect system for my home.",
-      "The technical team was very professional, and the installation was done quickly and efficiently.",
-      "Sama Al-Sedra stands out from other companies for transparency, product quality, and customer care.",
-      "I felt comfortable from the first call, and every question I had was answered clearly by the Sama AI bot.",
-      "First time to see a company with its own solar AI assistant for all solar inquiries—amazing experience.",
-      "After-installation follow-up was continuous, and their team is highly experienced.",
-      "Prices are reasonable compared to the high quality and honest advice.",
-      "I recommend Sama Al-Sedra to everyone—their team is helpful and pays attention to every detail.",
-      "Their use of the latest technologies and global solutions makes a real difference.",
-      "I tried SamaGPT and felt like I was talking to a real expert.",
-      "The energy calculator made my decision easy, and their service is fast and clear.",
-      "Best company in Iraq for after-sales service and warranties.",
-      "The staff is very polite, and all my questions get answered directly by Sama.",
-      "Sama Al-Sedra is truly an exclusive agent for top global brands, and their devices are genuine.",
-      "Having Sama AI on the site made everything easier and faster for me.",
-      "The system installation was precise and quick with no issues.",
-      "The best solar solution I ever got was from Sama Al-Sedra, and their support is unmatched.",
-      "Their engineers are knowledgeable and give honest advice with no tricks.",
-      "They care about customer satisfaction more than profit and always follow up.",
-      "First company I've seen in Iraq using AI for solar services.",
-      "If you want to reach out any time, even at night, the Sama bot answers instantly.",
-      "Excellent service from the first call to after installation.",
-      "The smart energy calculator saved me a lot of confusion.",
-      "Their engineers are experts and explain everything simply.",
-      "Their products are genuine and backed by real warranty.",
-      "Technical support available 24/7.",
-      "Sama Al-Sedra always brings the latest in solar technology.",
-      "Amazing attention to detail.",
-      "Unmatched credibility and speed in execution."
-    ],
-    "shareBtn": "Share your feedback on WhatsApp"
-  },
-  "faq": {
-    "vertical": "FAQs",
-    "title": "Most Common Questions about Sama Al-Sedra & Solar Energy",
-    "desc": "Here we answer the most important questions about solar energy and Sama Al-Sedra’s services.",
-    "items": [
-      {
-        "q": "How does Sama Al-Sedra’s solar system work?",
-        "a": "Our systems work by capturing sunlight through premium solar panels and converting it to electricity, ensuring a continuous power supply for your home or business. We use only the best brands, and installation is handled by specialized engineers."
-      },
-      {
-        "q": "What benefits do I get by choosing Sama Al-Sedra?",
-        "a": "With Sama Al-Sedra, you get reliable power, lower electricity bills, 24/7 technical support, a smart calculator for system selection, and exclusive access to our AI assistant SamaGPT for instant answers."
-      },
-      {
-        "q": "Can I install solar at my house or business in Iraq?",
-        "a": "Absolutely! We provide flexible solutions for all property types in Iraq, with fast installation and genuine product warranties. Our engineers visit you for a free consultation and a tailored plan."
-      },
-      {
-        "q": "Is there a warranty and after-sales service?",
-        "a": "All our devices come with authentic warranties. Plus, our after-sales team is available 24/7 for maintenance, support, and troubleshooting—even long after installation."
-      },
-      {
-        "q": "What is the advantage of the Smart Energy Calculator?",
-        "a": "Our exclusive Smart Calculator helps you find the best solar system for your needs quickly. Just enter your energy usage, and you’ll see instant, accurate recommendations."
-      },
-      {
-        "q": "Does Sama Al-Sedra use AI in its service?",
-        "a": "Yes! We are the first in Iraq to offer an AI robot (SamaGPT) to answer your solar questions, day or night, in Arabic and English, and provide you with the best technical support instantly."
-      },
-      {
-        "q": "How long does it take to install a solar system?",
-        "a": "Most installations take 1–3 days, depending on the system size and property complexity. We handle everything from permits to grid connection, for a worry-free experience."
-      },
-      {
-        "q": "What maintenance is required?",
-        "a": "Solar systems need minimal maintenance—mainly cleaning panels a few times a year. We offer ongoing checks and technical support to keep your system efficient."
-      },
-      {
-        "q": "Are solar panels effective in cloudy weather?",
-        "a": "Yes, our panels produce electricity even on cloudy days, although with slightly reduced efficiency. We select panels optimized for Iraq’s climate."
-      },
-      {
-        "q": "How can I contact you or get more info?",
-        "a": "You can contact us anytime via WhatsApp, phone, or through our website. Plus, our SamaGPT assistant is ready to answer you instantly online!"
-      }
-    ]
-  },
-  "footer": {
-    "ctaTitle": "Start Your Solar Journey Today",
-    "ctaDesc": "Ready to embrace the power of the sun? Take the first step toward a sustainable future with Sama Al-Sedra Solar Energy.",
-    "ctaBtn": "Contact Us",
-    "desc": "Welcome to Sama Al-Sedra, where global expertise meets local customer care. Our team of specialized engineers delivers the best solar solutions for Iraq and the region.",
-    "quickLink": "Quick Links",
-    "aboutUs": "About Us",
-    "services": "Services",
-    "projects": "Projects",
-    "blog": "Blog",
-    "contactUs": "Contact Us",
-    "contact": "Contact",
-    "phone": "Phone",
-    "email": "Email",
-    "address": "Address",
-    "addressText": "Baghdad, Iraq – almansour Dawody St., next to Al-TANKY",
-    "subscribe": "Subscribe",
-    "emailPlaceholder": "Your Email...",
-    "copyright": "All rights reserved ©...............",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
-  },
-"calculator": {
-  "title": "Solar Energy Calculator",
-  "aiStartMsg": "Start entering your data to design your solar system!",
-  "aiPreviewMsg": "AI is analyzing your selections, please wait a few seconds for the plan...",
-  "aiError": "Sorry, an error occurred while analyzing data. Please try again later.",
-  "warnings": {
-    "panels": "It is recommended to increase the number of panels to match the inverter capacity for better performance.",
-    "battery": "It is recommended to choose a larger capacity battery to ensure system stability."
-  },
-  "questionCutHours": "Within your electricity outage schedule, how many hours does the national grid cut off continuously before coming back?\n\nFor example: If your schedule is 3 hours off, then 2 hours on, then 3 hours off, just enter 3.",
-  "cutPeriodDay": "Daytime Only",
-  "cutPeriodDayNight": "Day and Night",
-  "cutPeriodNight": "Night only",
-  "home": "Home",
-  "company": "Company",
-  "governoratePlaceholder": "Select your governorate",
-  "yes": "Yes",
-  "no": "No",
-  "priorityCost": "Cost Saving",
-  "priorityReliability": "Reliability",
-  "priorityPower": "High Power",
-  "ampHourPlaceholder": "Enter ampere-hours (e.g., 15)",
-  "cutDayPlaceholder": "Enter daytime power cut hours (e.g., 12)",
-  "cutNightPlaceholder": "Enter nighttime power cut hours (e.g., 9)",
-  "batteryPlaceholder": "Choose Battery",
-  "inverterPlaceholder": "Choose Inverter",
-  "phonePlaceholder": "Enter your phone number to receive cost details via WhatsApp!",
-  "next": "Next",
-  "back": "Back",
-  "submit": "Submit",
-  "reset": "Reset",
-  "previewText": "Your system requires approximately {panels} solar panels based on the selected inverter.",
-  "costText": "Cost calculation in progress by the company",
-  "whatsappPrompt": "Enter your phone number to receive cost details via WhatsApp!",
-  "currency": "IQD",
-  "errors": {
-    "ampHour": "Invalid ampere-hour value",
-    "cutDay": "Invalid daytime power cut hours",
-    "cutNight": "Invalid nighttime power cut hours",
-    "phone": "Invalid phone number (10-15 digits)"
-  },
-  "iraqGovernorates": {
-    "baghdad": "Baghdad",
-    "basra": "Basra",
-    "ninawa": "Nineveh",
-    "erbil": "Erbil",
-    "sulaymaniyah": "Sulaymaniyah",
-    "duhok": "Duhok",
-    "kirkuk": "Kirkuk",
-    "diyala": "Diyala",
-    "anbar": "Anbar",
-    "babel": "Babel",
-    "karbala": "Karbala",
-    "najaf": "Najaf",
-    "muthanna": "Muthanna",
-    "qadisiyah": "Qadisiyah",
-    "wasit": "Wasit",
-    "maysan": "Maysan",
-    "dhiqar": "Dhi Qar",
-    "salahaddin": "Salahaddin"
-  },
-  "chisag": "Chisag",
-  "etel": "Etel",
-  "cospower": "Cospower",
-  "sofar": "Sofar",
-  "dynes": "Dynes",
-  "battery": {
-    "chisag5": "Chisag 5 kWh (12V)",
-    "chisag8": "Chisag 8 kWh (24V)",
-    "chisag10": "Chisag 10 kWh (24V)",
-    "chisag16": "Chisag 16 kWh (48V)",
-    "etel2_5": "Etel 2.5 kWh (24V)",
-    "etel5_12": "Etel 5.12 kWh (24V)",
-    "etel10": "Etel 10 kWh (48V)",
-    "etel14_33": "Etel 14.33 kWh (48V)",
-    "cospower2_5": "Cospower 2.5 kWh (24V)",
-    "cospower5_12": "Cospower 5.12 kWh (24V)",
-    "cospower10": "Cospower 10 kWh (48V)",
-    "cospower14_3": "Cospower 14.3 kWh (48V)",
-    "cospower16": "Cospower 16 kWh (48V)",
-    "sofar5": "Sofar 5 kWh (24V)",
-    "dynes5": "Dynes 5 kWh (24V)",
-    "dynes10": "Dynes 10 kWh (48V)",
-    "dynes14_36": "Dynes 14.36 kWh (48V)"
-  },
-  "inverter": {
-    "chisag6": "Chisag 6 kW",
-    "chisag8": "Chisag 8 kW",
-    "chisag10": "Chisag 10 kW",
-    "chisag12": "Chisag 12 kW",
-    "chisag14": "Chisag 14 kW",
-    "etel4": "Etel 4 kW (24V)",
-    "etel6": "Etel 6 kW (24V)",
-    "etel12": "Etel 12 kW (48V)",
-    "cospower4": "Cospower 4 kW (24V)",
-    "cospower6": "Cospower 6 kW (24V)",
-    "cospower12": "Cospower 12 kW (48V)",
-    "sofar20": "Sofar 20 kW (48V)"
-  },
-  "step1": "System Type",
-  "step2": "Governorate",
-  "step3": "Sunlight",
-  "step4": "Tall Buildings",
-  "step5": "Priority",
-  "step6": "Ampere-Hour",
-  "step7": "Daytime Cuts",
-  "step8": "Nighttime Cuts",
-  "step9": "Battery",
-  "step10": "Inverter",
-  "step11": "Preview",
-  "step12": "Result",
-
-
-  "planTitle": "Proposed Solar Power System Design",
-  "totalConsumption": "Total Daily Consumption",
-  "nightConsumption": "Consumption During Outage (Night)",
-  "dayConsumption": "Consumption During Grid Availability (Day)",
-  "suggestedBattery": "Recommended Battery Capacity",
-  "suggestedInverter": "Recommended Inverter Capacity",
-  "requiredPanels": "Required Number of Panels",
-  "panelArea": "Required Panel Installation Area",
-  "wattHour": "Wh",
-  "ampHour": "Ah",
-  "kwh": "kWh",
-  "kw": "kW",
-  "watt": "W",
-  "squareMeter": "m²",
-  "hours": "hours",
-  "consumptionNote": "⚠️ Consumption not clearly defined. Please estimate usage per appliance (e.g., fridge = 2A, TV = 0.5A, light = 0.1A, AC = 6–10A).",
-  "batteryStatus": "⚠️ Your selected battery ({{user}} kWh) is below the required size. We recommend a {{recommended}} kWh battery ({{panelName}}) to ensure full coverage and avoid performance or cost issues.",
-  "inverterStatus": "⚠️ Your selected inverter ({{user}} kW) is not optimal. We recommend {{recommended}} kW to ensure efficient load handling with safety margin.",
-  "efficiencyNote": "⚠️ The system may face challenges due to long outages, low sunlight, or high energy demand. Consider redesigning or adjusting usage for better performance.",
-  "nightOnlyNote": "⚠️ Since all outages occur at night, a battery of {{suggestedBattery}} kWh may be sufficient to cover {{nightLoad}} Wh consumption without requiring solar panels.",
-  "spaceNote": "Required space: {{area}} m² (south-facing, unshaded) to install {{count}} panel(s) of {{watt}} W each ({{panelName}}).",
-  "largeAreaNote": "⚠️ The required installation area ({{area}} m²) is relatively large. Ensure space availability or contact us to optimize the layout.",
-  "supportNote": "Our technical team is ready to design a tailored solar system and offer solutions to optimize performance or reduce costs. Contact us at 009647749992888.",
-  "teamSignature": "— Technical Team – Your Solar Energy Company —",
-  "lossNote": "Note: Calculations include battery efficiency loss (15%) and solar panel loss (10%) for realistic estimation.",
-  "consumptionHeader": "Energy Consumption Details",
-  "systemComponents": "System Components Overview",
-  "warningsHeader": "Technical Notes & Recommendations",
-  "scheduleSummary": "Schedule: {{cutDuration}} h outage → {{availableHours}} h grid → repeats {{cycles}} times/day",
-  "cutScheduleExplanation": "Power schedule: National grid is available for (X) hours, then off for (Y) hours, repeating daily.",
-  "cutDuration": "Outage Duration (hrs)",
-  "cutDurationPlaceholder": "Number of continuous blackout hours",
-  "availableHours": "Grid Availability Duration (hrs)",
-  "availableHoursPlaceholder": "Number of hours before next outage",
-  "chargeWarning": "⚠️ Grid availability ({{availableHours}} hrs) may be insufficient to fully charge the battery, especially at night.",
-  "questionSystemType": "What type of system are you looking for? (Economical, Reliable, High Performance)",
-  "questionGovernorate": "Which governorate are you located in?",
-  "questionGoodSunlight": "Does your area receive good sunlight?",
-  "questionHighBuildings": "Are there tall buildings nearby that could shade the panels?",
-  "questionPriority": "What’s your priority? (Cost Saving, Full Coverage, High Output)",
-  "questionAmpHour": "What is your estimated daily consumption (in Ah)?",
-  "questioncycleCut": "Please enter your power cut pattern (e.g., 3h off, 3h on)",
-  "questionCutPeriod": "What are the durations of outages and grid availability?",
-"questionBattery": "What battery capacity are you considering? (Or let the system choose for you)",
-"questionInverter": "What inverter capacity are you considering? (Or let the system choose for you)",
-  "fixErrors": "Please fix the following issues:",
-  "panel": {
-    "etel": "Etel",
-    "risen": "Risen",
-  "phone": "Phone number",
-  "battery": "Battery",
-  "inverter": "Inverter",
-  "governorate": "Governorate"
-
-  },
-    "cycleCut": "عدد ساعات القطع المتتالية",
-  "cycleSupply": "عدد ساعات التجهيز المتتالية",
-  "governorate": "المحافظة",
-  "errors": {
-    "cutDuration": "عدد ساعات القطع غير صالح. الرجاء إدخال رقم بين 1 و 24.",
-    "availableHours": "عدد ساعات التجهيز غير صالح. الرجاء إدخال رقم بين 1 و 24."
-  }
-
-},
-"productsSection": {
-  "title": "Our Products at Sama Al-Sidra",
-  "desc": "Explore a selection of premium products from our global solar energy partners.\nThese trusted technologies are known for their high efficiency and proven performance in thousands of projects worldwide."
-  
-  
-  },
+    "whychoose": {
+        "vertical": "Why Choose Us",
+        "title": "Why We're the Best Choice!",
+        "descFinal": "Choosing your partner in the transition to solar energy goes beyond technical specifications — it’s a commitment to a more sustainable future. At Sama Al-Sidra, we don't just sell systems; we provide a complete experience starting with tailored consultations, offering personalized solar solutions with fully transparent pricing and no hidden costs. We rely on high-quality components built to global standards and operate with full environmental responsibility to ensure a reliable, long-term system. Our responsive support team, extended warranties, and after-sales services are designed to keep your mind at ease for years to come."
+    },
+    "partners": {
+        "vertical": "Partners",
+        "title": "Sama Al-Sidra Global Partners",
+        "desc": "We are proud to partner with leading global solar energy brands, reflecting our commitment to quality and innovation.\nThese exclusive agencies ensure our clients get reliable and long-term energy solutions they can trust.",
+        "chint": {
+            "title": "chisage",
+            "desc": "A global leader in solar energy and batteries, based in China."
+        },
+        "easun": {
+            "title": "Itel",
+            "desc": "Reliable supplier of solar panels and integrated power solutions."
+        },
+        "cospower": {
+            "title": "Cos Power",
+            "desc": "Pioneers in renewable energy technology and innovative products."
+        },
+        "sofar": {
+            "title": "SOFAR Solar",
+            "desc": "A leading global company in smart solar energy systems."
+        },
+        "dyness": {
+            "title": "Dyness",
+            "desc": "Specialized in high-performance lithium batteries for solar energy."
+        },
+        "risen": {
+            "title": "Risen Energy",
+            "desc": "One of the world's top producers of reliable solar panels."
+        }
+    },
+    "testimonials": {
+        "vertical": "Testimonials",
+        "title": "What Our Clients Say",
+        "desc": "Your satisfaction is our priority. Our team always strives to provide the best solar solutions from the world's top brands, with competitive prices and outstanding 24/7 service. We are the first company in Iraq to use artificial intelligence, a smart calculator, and a team of expert engineers.",
+        "whatsappFeedback": "Don't hesitate to reach out — we're here to listen.",
+        "slides": [
+            "What I love most about Sama Al-Sedra is their 24/7 support, plus their AI bot that answers instantly at any time!",
+            "The smart solar calculator on the website saved me a lot of time in finding the perfect system for my home.",
+            "The technical team was very professional, and the installation was done quickly and efficiently.",
+            "Sama Al-Sedra stands out from other companies for transparency, product quality, and customer care.",
+            "I felt comfortable from the first call, and every question I had was answered clearly by the Sama AI bot.",
+            "First time to see a company with its own solar AI assistant for all solar inquiries—amazing experience.",
+            "After-installation follow-up was continuous, and their team is highly experienced.",
+            "Prices are reasonable compared to the high quality and honest advice.",
+            "I recommend Sama Al-Sedra to everyone—their team is helpful and pays attention to every detail.",
+            "Their use of the latest technologies and global solutions makes a real difference.",
+            "I tried SamaGPT and felt like I was talking to a real expert.",
+            "The energy calculator made my decision easy, and their service is fast and clear.",
+            "Best company in Iraq for after-sales service and warranties.",
+            "The staff is very polite, and all my questions get answered directly by Sama.",
+            "Sama Al-Sedra is truly an exclusive agent for top global brands, and their devices are genuine.",
+            "Having Sama AI on the site made everything easier and faster for me.",
+            "The system installation was precise and quick with no issues.",
+            "The best solar solution I ever got was from Sama Al-Sedra, and their support is unmatched.",
+            "Their engineers are knowledgeable and give honest advice with no tricks.",
+            "They care about customer satisfaction more than profit and always follow up.",
+            "First company I've seen in Iraq using AI for solar services.",
+            "If you want to reach out any time, even at night, the Sama bot answers instantly.",
+            "Excellent service from the first call to after installation.",
+            "The smart energy calculator saved me a lot of confusion.",
+            "Their engineers are experts and explain everything simply.",
+            "Their products are genuine and backed by real warranty.",
+            "Technical support available 24/7.",
+            "Sama Al-Sedra always brings the latest in solar technology.",
+            "Amazing attention to detail.",
+            "Unmatched credibility and speed in execution."
+        ],
+        "shareBtn": "Share your feedback on WhatsApp"
+    },
+    "faq": {
+        "vertical": "FAQs",
+        "title": "Most Common Questions about Sama Al-Sedra & Solar Energy",
+        "desc": "Here we answer the most important questions about solar energy and Sama Al-Sedra’s services.",
+        "description": "Clear and scientific answers to common questions about solar energy and our services.",
+        "showMore": "Show More",
+        "showLess": "Show Less",
+        "items": [
+            {
+                "q": "How does Sama Al-Sedra’s solar system work?",
+                "a": "Our systems work by capturing sunlight through premium solar panels and converting it to electricity, ensuring a continuous power supply for your home or business. We use only the best brands, and installation is handled by specialized engineers."
+            },
+            {
+                "q": "What benefits do I get by choosing Sama Al-Sedra?",
+                "a": "With Sama Al-Sedra, you get reliable power, lower electricity bills, 24/7 technical support, a smart calculator for system selection, and exclusive access to our AI assistant SamaGPT for instant answers."
+            },
+            {
+                "q": "Can I install solar at my house or business in Iraq?",
+                "a": "Absolutely! We provide flexible solutions for all property types in Iraq, with fast installation and genuine product warranties. Our engineers visit you for a free consultation and a tailored plan."
+            },
+            {
+                "q": "Is there a warranty and after-sales service?",
+                "a": "All our devices come with authentic warranties. Plus, our after-sales team is available 24/7 for maintenance, support, and troubleshooting—even long after installation."
+            },
+            {
+                "q": "What is the advantage of the Smart Energy Calculator?",
+                "a": "Our exclusive Smart Calculator helps you find the best solar system for your needs quickly. Just enter your energy usage, and you’ll see instant, accurate recommendations."
+            },
+            {
+                "q": "Does Sama Al-Sedra use AI in its service?",
+                "a": "Yes! We are the first in Iraq to offer an AI robot (SamaGPT) to answer your solar questions, day or night, in Arabic and English, and provide you with the best technical support instantly."
+            },
+            {
+                "q": "How long does it take to install a solar system?",
+                "a": "Most installations take 1–3 days, depending on the system size and property complexity. We handle everything from permits to grid connection, for a worry-free experience."
+            },
+            {
+                "q": "What maintenance is required?",
+                "a": "Solar systems need minimal maintenance—mainly cleaning panels a few times a year. We offer ongoing checks and technical support to keep your system efficient."
+            },
+            {
+                "q": "Are solar panels effective in cloudy weather?",
+                "a": "Yes, our panels produce electricity even on cloudy days, although with slightly reduced efficiency. We select panels optimized for Iraq’s climate."
+            },
+            {
+                "q": "How can I contact you or get more info?",
+                "a": "You can contact us anytime via WhatsApp, phone, or through our website. Plus, our SamaGPT assistant is ready to answer you instantly online!"
+            }
+        ],
+        "faqs": {
+            "1": {
+                "q": { "en": "What are the components of a solar power system?" },
+                "a": { "en": "A typical solar system includes solar panels, storage batteries, a charge controller, an inverter, and protective wiring and equipment." }
+            },
+            "2": {
+                "q": { "en": "Can a solar system work at night?" },
+                "a": { "en": "Solar panels do not generate electricity at night, but with storage batteries, you can use the stored power to run appliances during nighttime." }
+            },
+            "3": {
+                "q": { "en": "How long does a solar system last?" },
+                "a": { "en": "Solar panels typically last 25 years or more. Battery lifespan varies by type, usually ranging from 5 to 15 years." }
+            },
+            "4": {
+                "q": { "en": "Does a solar system require regular maintenance?" },
+                "a": { "en": "Solar systems require minimal maintenance, mainly cleaning panels and checking connections to ensure optimal performance." }
+            },
+            "5": {
+                "q": { "en": "How is the number of required panels and batteries calculated?" },
+                "a": { "en": "This depends on your daily consumption (in watts or amp-hours), outage duration, and device types. Our smart calculator can assist you with precise planning." }
+            },
+            "6": {
+                "q": { "en": "Can the system be expanded later if my energy needs grow?" },
+                "a": { "en": "Yes, most systems are designed to be scalable — you can add panels, batteries, or even upgrade the inverter later." }
+            },
+            "7": {
+                "q": { "en": "Does inverter quality affect the performance of the system?" },
+                "a": { "en": "Yes, the inverter manages conversion and distribution. Its quality affects efficiency, energy use, and even battery lifespan." }
+            },
+            "8": {
+                "q": { "en": "What’s the difference between a regular inverter and a hybrid inverter?" },
+                "a": { "en": "A regular inverter connects only to the grid or generator, while a hybrid one combines grid, battery, and solar and works automatically during outages." }
+            },
+            "9": {
+                "q": { "en": "Can solar power run air conditioning units?" },
+                "a": { "en": "Yes, but it's recommended to use high-efficiency ACs (like inverter ACs) and ensure your battery and inverter can handle the load." }
+            },
+            "10": {
+                "q": { "en": "Is it true that panels don’t produce electricity in winter or cloudy days?" },
+                "a": { "en": "Panels still produce electricity on cloudy days, just less. They may be more efficient in winter due to lower heat losses." }
+            },
+            "11": {
+                "q": { "en": "What is an inverter, and why is it important in a solar system?" },
+                "a": { "en": "The inverter converts DC electricity from panels into AC power usable by appliances. It's the heart of the solar system and affects its efficiency and performance." }
+            },
+            "12": {
+                "q": { "en": "Does distance between panels and batteries affect efficiency?" },
+                "a": { "en": "Yes, long cables lead to voltage drop and energy loss. Proper cable sizing ensures minimal loss and better efficiency." }
+            },
+            "13": {
+                "q": { "en": "When is a solar system not suitable?" },
+                "a": { "en": "If the site is heavily shaded, lacks panel space, or has irregular consumption without suitable batteries, solar may not be ideal." }
+            },
+            "14": {
+                "q": { "en": "Does the solar system work during national power outages?" },
+                "a": { "en": "Yes, if your system includes batteries and a hybrid or off-grid inverter, it can automatically operate during national power outages." }
+            },
+            "15": {
+                "q": { "en": "Do Iraq’s high temperatures affect solar panel performance?" },
+                "a": { "en": "Yes, slightly. Performance decreases as temperatures rise above 25°C, but high-quality panels are designed to handle up to 70°C efficiently." }
+            },
+            "16": {
+                "q": { "en": "What is the difference between Mono and Poly solar panels?" },
+                "a": { "en": "Mono panels are more efficient and perform better in low-light conditions, while Poly panels are cheaper but slightly less efficient." }
+            },
+            "17": {
+                "q": { "en": "Can panels be installed on uneven or shaded roofs?" },
+                "a": { "en": "We can use special mounting structures to adjust for uneven surfaces. Shading reduces performance, but it can be managed with good design or technologies like micro-inverters." }
+            },
+            "18": {
+                "q": { "en": "Can a solar system be integrated with a diesel generator?" },
+                "a": { "en": "Yes, modern systems allow smart integration between the inverter and diesel generators to ensure continuous power and reduce fuel usage." }
+            },
+            "19": {
+                "q": { "en": "Does dust affect the efficiency of solar panels?" },
+                "a": { "en": "Yes, dust buildup reduces light absorption and can lower output by up to 20%. Regular cleaning is recommended, especially in dry regions like Iraq." }
+            },
+            "20": {
+                "q": { "en": "Does solar energy actually save money in the long run?" },
+                "a": { "en": "Yes, despite the upfront cost, monthly bills drop significantly. The investment is usually recouped within 3–5 years, after which energy is nearly free." }
+            }
+        }
+    },
+    "footer": {
+        "ctaTitle": "Start Your Solar Journey Today",
+        "ctaDesc": "Ready to embrace the power of the sun? Take the first step toward a sustainable future with Sama Al-Sedra Solar Energy.",
+        "ctaBtn": "Contact Us",
+        "desc": "Welcome to Sama Al-Sedra, where global expertise meets local customer care. Our team of specialized engineers delivers the best solar solutions for Iraq and the region.",
+        "quickLink": "Quick Links",
+        "aboutUs": "About Us",
+        "services": "Services",
+        "projects": "Projects",
+        "blog": "Blog",
+        "contactUs": "Contact Us",
+        "contact": "Contact",
+        "phone": "Phone",
+        "email": "Email",
+        "address": "Address",
+        "addressText": "Baghdad, Iraq – almansour Dawody St., next to Al-TANKY",
+        "subscribe": "Subscribe",
+        "emailPlaceholder": "Your Email...",
+        "copyright": "All rights reserved ©...............",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service"
+    },
+    "calculator": {
+        "title": "Solar Energy Calculator",
+        "aiStartMsg": "Start entering your data to design your solar system!",
+        "aiPreviewMsg": "AI is analyzing your selections, please wait a few seconds for the plan...",
+        "aiError": "Sorry, an error occurred while analyzing data. Please try again later.",
+        "warnings": {
+            "panels": "It is recommended to increase the number of panels to match the inverter capacity for better performance.",
+            "battery": "It is recommended to choose a larger capacity battery to ensure system stability.",
+            "cycleCut": "Hours of blackout (continuous)",
+            "cycleSupply": "Hours of national electricity (supply)",
+            "governorate": "Governorate"
+        },
+        "questionCutHours": "Within your electricity outage schedule, how many hours does the national grid cut off continuously before coming back?\n\nFor example: If your schedule is 3 hours off, then 2 hours on, then 3 hours off, just enter 3.",
+        "cutPeriodDay": "Daytime Only",
+        "cutPeriodDayNight": "Day and Night",
+        "cutPeriodNight": "Night only",
+        "home": "Home",
+        "company": "Company",
+        "governoratePlaceholder": "Select your governorate",
+        "yes": "Yes",
+        "no": "No",
+        "priorityCost": "Cost Saving",
+        "priorityReliability": "Reliability",
+        "priorityPower": "High Power",
+        "ampHourPlaceholder": "Enter ampere-hours (e.g., 15)",
+        "cutDayPlaceholder": "Enter daytime power cut hours (e.g., 12)",
+        "cutNightPlaceholder": "Enter nighttime power cut hours (e.g., 9)",
+        "batteryPlaceholder": "Choose Battery",
+        "inverterPlaceholder": "Choose Inverter",
+        "phonePlaceholder": "Enter your phone number to receive cost details via WhatsApp!",
+        "next": "Next",
+        "back": "Back",
+        "submit": "Submit",
+        "reset": "Reset",
+        "previewText": "Your system requires approximately {panels} solar panels based on the selected inverter.",
+        "costText": "Cost calculation in progress by the company",
+        "whatsappPrompt": "Enter your phone number to receive cost details via WhatsApp!",
+        "currency": "IQD",
+        "errors": {
+            "ampHour": "Invalid ampere-hour value",
+            "cutDay": "Invalid daytime power cut hours",
+            "cutNight": "Invalid nighttime power cut hours",
+            "phone": "Invalid phone number (10-15 digits)"
+        },
+        "iraqGovernorates": {
+            "baghdad": "Baghdad",
+            "basra": "Basra",
+            "ninawa": "Nineveh",
+            "erbil": "Erbil",
+            "sulaymaniyah": "Sulaymaniyah",
+            "duhok": "Duhok",
+            "kirkuk": "Kirkuk",
+            "diyala": "Diyala",
+            "anbar": "Anbar",
+            "babel": "Babel",
+            "karbala": "Karbala",
+            "najaf": "Najaf",
+            "muthanna": "Muthanna",
+            "qadisiyah": "Qadisiyah",
+            "wasit": "Wasit",
+            "maysan": "Maysan",
+            "dhiqar": "Dhi Qar",
+            "salahaddin": "Salahaddin"
+        },
+        "chisag": "Chisag",
+        "etel": "Etel",
+        "cospower": "Cospower",
+        "sofar": "Sofar",
+        "dynes": "Dynes",
+        "battery": {
+            "chisag5": "Chisag 5 kWh (12V)",
+            "chisag8": "Chisag 8 kWh (24V)",
+            "chisag10": "Chisag 10 kWh (24V)",
+            "chisag16": "Chisag 16 kWh (48V)",
+            "etel2_5": "Etel 2.5 kWh (24V)",
+            "etel5_12": "Etel 5.12 kWh (24V)",
+            "etel10": "Etel 10 kWh (48V)",
+            "etel14_33": "Etel 14.33 kWh (48V)",
+            "cospower2_5": "Cospower 2.5 kWh (24V)",
+            "cospower5_12": "Cospower 5.12 kWh (24V)",
+            "cospower10": "Cospower 10 kWh (48V)",
+            "cospower14_3": "Cospower 14.3 kWh (48V)",
+            "cospower16": "Cospower 16 kWh (48V)",
+            "sofar5": "Sofar 5 kWh (24V)",
+            "dynes5": "Dynes 5 kWh (24V)",
+            "dynes10": "Dynes 10 kWh (48V)",
+            "dynes14_36": "Dynes 14.36 kWh (48V)"
+        },
+        "inverter": {
+            "chisag6": "Chisag 6 kW",
+            "chisag8": "Chisag 8 kW",
+            "chisag10": "Chisag 10 kW",
+            "chisag12": "Chisag 12 kW",
+            "chisag14": "Chisag 14 kW",
+            "etel4": "Etel 4 kW (24V)",
+            "etel6": "Etel 6 kW (24V)",
+            "etel12": "Etel 12 kW (48V)",
+            "cospower4": "Cospower 4 kW (24V)",
+            "cospower6": "Cospower 6 kW (24V)",
+            "cospower12": "Cospower 12 kW (48V)",
+            "sofar20": "Sofar 20 kW (48V)"
+        },
+        "step1": "System Type",
+        "step2": "Governorate",
+        "step3": "Sunlight",
+        "step4": "Tall Buildings",
+        "step5": "Priority",
+        "step6": "Ampere-Hour",
+        "step7": "Daytime Cuts",
+        "step8": "Nighttime Cuts",
+        "step9": "Battery",
+        "step10": "Inverter",
+        "step11": "Preview",
+        "step12": "Result",
+        "planTitle": "Proposed Solar Power System Design",
+        "totalConsumption": "Total Daily Consumption",
+        "nightConsumption": "Consumption During Outage (Night)",
+        "dayConsumption": "Consumption During Grid Availability (Day)",
+        "suggestedBattery": "Recommended Battery Capacity",
+        "suggestedInverter": "Recommended Inverter Capacity",
+        "requiredPanels": "Required Number of Panels",
+        "panelArea": "Required Panel Installation Area",
+        "wattHour": "Wh",
+        "ampHour": "Ah",
+        "kwh": "kWh",
+        "kw": "kW",
+        "watt": "W",
+        "squareMeter": "m²",
+        "hours": "hours",
+        "consumptionNote": "⚠️ Consumption not clearly defined. Please estimate usage per appliance (e.g., fridge = 2A, TV = 0.5A, light = 0.1A, AC = 6–10A).",
+        "batteryStatus": "⚠️ Your selected battery ({{user}} kWh) is below the required size. We recommend a {{recommended}} kWh battery ({{panelName}}) to ensure full coverage and avoid performance or cost issues.",
+        "inverterStatus": "⚠️ Your selected inverter ({{user}} kW) is not optimal. We recommend {{recommended}} kW to ensure efficient load handling with safety margin.",
+        "efficiencyNote": "⚠️ The system may face challenges due to long outages, low sunlight, or high energy demand. Consider redesigning or adjusting usage for better performance.",
+        "nightOnlyNote": "⚠️ Since all outages occur at night, a battery of {{suggestedBattery}} kWh may be sufficient to cover {{nightLoad}} Wh consumption without requiring solar panels.",
+        "spaceNote": "Required space: {{area}} m² (south-facing, unshaded) to install {{count}} panel(s) of {{watt}} W each ({{panelName}}).",
+        "largeAreaNote": "⚠️ The required installation area ({{area}} m²) is relatively large. Ensure space availability or contact us to optimize the layout.",
+        "supportNote": "Our technical team is ready to design a tailored solar system and offer solutions to optimize performance or reduce costs. Contact us at 009647749992888.",
+        "teamSignature": "— Technical Team – Your Solar Energy Company —",
+        "lossNote": "Note: Calculations include battery efficiency loss (15%) and solar panel loss (10%) for realistic estimation.",
+        "consumptionHeader": "Energy Consumption Details",
+        "systemComponents": "System Components Overview",
+        "warningsHeader": "Technical Notes & Recommendations",
+        "scheduleSummary": "Schedule: {{cutDuration}} h outage → {{availableHours}} h grid → repeats {{cycles}} times/day",
+        "cutScheduleExplanation": "Power schedule: National grid is available for (X) hours, then off for (Y) hours, repeating daily.",
+        "cutDuration": "Outage Duration (hrs)",
+        "cutDurationPlaceholder": "Number of continuous blackout hours",
+        "availableHours": "Grid Availability Duration (hrs)",
+        "availableHoursPlaceholder": "Number of hours before next outage",
+        "chargeWarning": "⚠️ Grid availability ({{availableHours}} hrs) may be insufficient to fully charge the battery, especially at night.",
+        "questionSystemType": "What type of system are you looking for? (Economical, Reliable, High Performance)",
+        "questionGovernorate": "Which governorate are you located in?",
+        "questionGoodSunlight": "Does your area receive good sunlight?",
+        "questionHighBuildings": "Are there tall buildings nearby that could shade the panels?",
+        "questionPriority": "What’s your priority? (Cost Saving, Full Coverage, High Output)",
+        "questionAmpHour": "What is your estimated daily consumption (in Ah)?",
+        "questioncycleCut": "Please enter your power cut pattern (e.g., 3h off, 3h on)",
+        "questionCutPeriod": "What are the durations of outages and grid availability?",
+        "questionBattery": "What battery capacity are you considering? (Or let the system choose for you)",
+        "questionInverter": "What inverter capacity are you considering? (Or let the system choose for you)",
+        "fixErrors": "Please fix the following issues:",
+        "phone": "Phone number",
+        "batteryLabel": "Battery",
+        "inverterLabel": "Inverter",
+        "governorate": "Governorate",
+        "defaultSummary": "⚠️ The plan report has not been generated yet. Please check the previous steps.",
+        "panel": {
+            "etel": "Etel",
+            "risen": "Risen"
+        }
+    },
+    "productsSection": {
+        "title": "Our Products at Sama Al-Sidra",
+        "desc": "Explore a selection of premium products from our global solar energy partners.\nThese trusted technologies are known for their high efficiency and proven performance in thousands of projects worldwide."
+    },
     "weather": {
-    "loading": "Loading weather data...",
-    "error": "Failed to load weather data, please try again later",
-    "geolocationError": "Unable to access your location, please check location settings",
-    "geolocationNotSupported": "Geolocation is not supported by your browser",
-    "retry": "Retry",
-    "currentIconAlt": "Current weather icon:",
-    "forecastIconAlt": "Forecast weather icon:",
-    "today": "Today",
-    "tomorrow": "Tomorrow"
-  }
+        "loading": "Loading weather data...",
+        "error": "Failed to load weather data, please try again later",
+        "geolocationError": "Unable to access your location, please check location settings",
+        "geolocationNotSupported": "Geolocation is not supported by your browser",
+        "retry": "Retry",
+        "currentIconAlt": "Current weather icon:",
+        "forecastIconAlt": "Forecast weather icon:",
+        "today": "Today",
+        "tomorrow": "Tomorrow"
+    }
 }
-
-

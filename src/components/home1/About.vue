@@ -189,7 +189,7 @@ import { nextTick } from 'vue';
 let lastStep: number | null = null;
 let lastLocale: string | null = null;
 
-watch([step, locale], async ([newStep, newLocale]) => {
+watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
   const stepChanged = newStep !== lastStep;
   const localeChanged = newLocale !== lastLocale;
 
@@ -377,6 +377,7 @@ const scheduleNote = replacePlaceholders(t('calculator.scheduleSummary'), {
   details += `\n\n— ${t('calculator.teamSignature')} —`;
 
   aiMsg.value = details;
+  
 } else if (newStep >= 1 && newStep <= 10) {
   const questionKeys = [
     "calculator.questionSystemType",
@@ -401,20 +402,19 @@ const scheduleNote = replacePlaceholders(t('calculator.scheduleSummary'), {
         cutDuration: user.cutDuration,
         availableHours: user.availableHours,
         cycles: Math.floor(24 / (parseFloat(user.cutDuration) + parseFloat(user.availableHours))).toString()
-});
-
+      });
     }
   }
+  
 } else {
   aiMsg.value = t('calculator.aiStartMsg');
 }
 });
-
 // -----------------------------------
 // التحقق من المدخلات
 // -----------------------------------
 const validateNumeric = (value: string, min: number, max: number, errorMsg: string) => {
-  if (!value || value.trim() === "") return "";
+  if (!value || String(value).trim() === "") return "";
   const num = parseFloat(value);
   return !isNaN(num) && num >= min && num <= max && Number.isInteger(num) ? "" : errorMsg;
 };
@@ -481,7 +481,10 @@ function sendWhatsApp() {
     alert(t('calculator.errors.phone'));
     return;
   }
-  
+
+  // 🔒 حماية إذا aiMsg فاضي أو undefined
+  const summary = aiMsg.value?.trim() ? aiMsg.value : t('calculator.defaultSummary');
+
   let msg = `مرحبا، أحتاج خطة طاقة شمسية:\n
 - نوع المنظومة: ${user.systemType}
 - المحافظة: ${t(`calculator.iraqGovernorates.${user.governorate}`)}
@@ -497,8 +500,11 @@ function sendWhatsApp() {
 - الألواح المقدرة: ${estimatedPanels.value}
 - رقم الهاتف: ${user.phone}
 
-${aiMsg.value}`;
-  
+${summary}`;
+
+  // 🔍 Debug
+  console.log("WHATSAPP MSG:", msg);
+
   window.open(`https://wa.me/009647800530333?text=${encodeURIComponent(msg)}`, "_blank");
 }
 
@@ -539,7 +545,7 @@ function resetCalculator() {
         <div v-if="aiLoading" class="ai-spinner">
           <span>.</span><span>.</span><span>.</span>
         </div>
-        <span v-else>{{ aiMsg }}</span>
+        <span v-else v-html="aiMsg"></span>
       </div>
     </div>
     <div class="calculator-main-col">
@@ -668,7 +674,7 @@ function resetCalculator() {
                 <option v-for="item in group.items" :value="item">{{ item }}</option>
               </optgroup>
             </select>
-            <label class="floating-label">{{ t('calculator.battery') }}</label>
+            <label class="floating-label">{{ t('calculator.batteryLabel') }}</label>
           </div>
         </template>
         
@@ -679,7 +685,7 @@ function resetCalculator() {
               <option value="" disabled>{{ t('calculator.inverterPlaceholder') }}</option>
               <option v-for="option in inverterOptions" :value="option">{{ option }}</option>
             </select>
-            <label class="floating-label">{{ t('calculator.inverter') }}</label>
+            <label class="floating-label">{{ t('calculator.inverterLabel') }}</label>
           </div>
         </template>
         
