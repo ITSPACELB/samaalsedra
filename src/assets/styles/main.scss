@@ -1,3 +1,18 @@
+/* ✅ Base RTL & Font Reset */
+html, body {
+  direction: rtl;
+  text-align: right;
+  font-size: 16px !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Tajawal', sans-serif; /* أو اسم font العربي الرئيسي في الثيم */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* -------------------------------------------------------------- */
 :root {
   font-size: 19px; /* زد إلى 20px إذا لزم، لكن ابدأ بـ18px */
 }
