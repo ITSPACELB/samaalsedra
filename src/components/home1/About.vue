@@ -360,7 +360,7 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
 
       let spaceNote = "";
       if (optimalPanels > 0) {
-        spaceNote = replacePlaceholders(safeTranslate(t, 'calculator.spaceNote', 'المساحة المطلوبة: {{area}} متر مربع لـ {{count}} لوح بقدرة {{watt}} واط ({{panelName}})'), {
+        spaceNote = replacePlaceholders(safeTranslate(t, 'calculator.spaceNote', '|المساحة المطلوبة:| {{area}} |متر مربع لـ| {{count}} |لوح بقدرة| {{watt}} |واط| ({{panelName}})'), {
           area: totalPanelArea.toString(),
           count: optimalPanels.toString(),
           watt: panelWatt.toString(),
@@ -370,14 +370,14 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
 
       let largeAreaNote = "";
       if (totalPanelArea > 20) {
-        largeAreaNote = replacePlaceholders(safeTranslate(t, 'calculator.largeAreaNote', 'المساحة المطلوبة كبيرة: {{area}} متر مربع'), {
+        largeAreaNote = replacePlaceholders(safeTranslate(t, 'calculator.largeAreaNote', '|المساحة المطلوبة كبيرة:| {{area}} |متر مربع|'), {
           area: totalPanelArea.toString()
         });
       }
 
       const lossNote = safeTranslate(t, 'calculator.lossNote', 'ملاحظة: الحسابات تأخذ بعين الاعتبار فاقد الكفاءة');
 
-      const scheduleNote = replacePlaceholders(safeTranslate(t, 'calculator.scheduleSummary', 'جدول الانقطاع: مدة القطع {{cutDuration}} ساعة، ساعات التوفر {{availableHours}} ساعة، عدد الدورات يوميًا: {{cycles}}'), {
+      const scheduleNote = replacePlaceholders(safeTranslate(t, 'calculator.scheduleSummary', '|جدول الانقطاع:| |مدة القطع| {{cutDuration}} |ساعة، ساعات التوفر| {{availableHours}} |ساعة، عدد الدورات يوميًا:| {{cycles}}'), {
         cutDuration: cycleCut.toString(),
         availableHours: cycleSupply.toString(),
         cycles: cyclesPerDay.toString()
@@ -433,7 +433,7 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
           if (errors.cycleCut) aiMsg.value += `\n- ${errors.cycleCut}`;
           if (errors.cycleSupply) aiMsg.value += `\n- ${errors.cycleSupply}`;
         } else if (user.cycleCut && user.cycleSupply) {
-          aiMsg.value += `\n` + replacePlaceholders(safeTranslate(t, 'calculator.scheduleSummary', 'جدول الانقطاع: مدة القطع {{cutDuration}} ساعة، ساعات التوفر {{availableHours}} ساعة، عدد الدورات يوميًا: {{cycles}}'), {
+          aiMsg.value += `\n` + replacePlaceholders(safeTranslate(t, 'calculator.scheduleSummary', '|جدول الانقطاع:| |مدة القطع| {{cutDuration}} |ساعة، ساعات التوفر| {{availableHours}} |ساعة، عدد الدورات يوميًا:| {{cycles}}'), {
             cutDuration: user.cycleCut,
             availableHours: user.cycleSupply,
             cycles: Math.floor(24 / (parseFloat(user.cycleCut) + parseFloat(user.cycleSupply))).toString()

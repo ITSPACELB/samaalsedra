@@ -2,11 +2,11 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
-import autoprefixer from 'autoprefixer'
+import autoprefixer from 'autoprefixer' // إضافة Autoprefixer
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/', // حل مشكلة المسارات على Vercel
+  base: '/', // ✅ الحل لمشكلة Vercel
   plugins: [
     vue(),
     vueDevTools(),
@@ -19,10 +19,9 @@ export default defineConfig({
   css: {
     postcss: {
       plugins: [
-        autoprefixer(),
+        autoprefixer(), // إضافة Autoprefixer كمكوّن PostCSS
       ],
     },
-    // في Vite ما في css.loaderOptions.css.url، إذا عندك مشكلة بالمسارات لازم تحلها بطريقة ثانية
   },
   build: {
     rollupOptions: {
