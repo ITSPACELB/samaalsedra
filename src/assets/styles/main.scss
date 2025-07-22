@@ -1,34 +1,41 @@
+/* ✅ Font Face Definitions */
+@font-face {
+  font-family: 'Tajawal';
+  src: url('@/assets/fonts/Tajawal-Regular.woff2') format('woff2'),
+       url('@/assets/fonts/Tajawal-Regular.woff') format('woff'),
+       url('@/assets/fonts/Tajawal-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('@/assets/fonts/Tajawal-Bold.woff2') format('woff2'),
+       url('@/assets/fonts/Tajawal-Bold.woff') format('woff'),
+       url('@/assets/fonts/Tajawal-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+}
+
 /* ✅ Base RTL & Font Reset */
-html, body {
+html,
+body {
+  font-family: 'Tajawal', sans-serif !important;
   direction: rtl;
   text-align: right;
   font-size: 16px !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Tajawal', sans-serif; /* أو اسم font العربي الرئيسي في الثيم */
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* -------------------------------------------------------------- */
-:root {
-  font-size: 19px; /* زد إلى 20px إذا لزم، لكن ابدأ بـ18px */
-}
-
-html {
-  font-size: 16px !important; /* base لـrem، غير إلى 18px إذا لزم */
-  -webkit-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  font-family: 'YourFont', sans-serif; /* استبدل باسم font الرئيسي */
-  margin: 0;
-  padding: 0;
-  line-height: 1.5;
+  font-smooth: always;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  background-color: #fff;
+  color: #222;
+  line-height: 1.6;
 }
 
 *,
@@ -39,15 +46,21 @@ body {
   padding: 0;
 }
 
-html,
+:root {
+  font-size: 19px;
+}
+
+html {
+  font-size: 16px !important;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  scroll-behavior: smooth;
-  direction: rtl;
-  background-color: #fff;
-  color: #222;
-  font-size: 16px;
-  line-height: 1.6;
-  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
 }
 
 img,
@@ -71,31 +84,18 @@ button {
   font: inherit;
 }
 
-/*--------------------------------------------------------------
-  ✅ Custom Font
---------------------------------------------------------------*/
+/*✅ Custom Font for Arabic */
 html[lang="ar"] body {
   font-family: 'Tajawal', sans-serif !important;
 }
 
-/*---------------------------------------
-    Template Name:  Solarox - Lawer Attory Agency HTML Template
-    Description:    Lawer Attory Agency HTML Template
-    Author Name:    Pixelaxis
-    Author URI:     https://themeforest.net/user/pixelaxis
-    Theme URI:      https://cryptdash.vercel.app/
-    Version:        1.0
------------------------------------------
-             Table of contents
------------------------------------------
-    color variables
-    Typography 
-    mixins
-    Pages styles
----------------------------------------*/
+/*--------------------------------------------------------------
+  Template Name: Solarox - Lawer Attory Agency HTML Template
+  Author: Pixelaxis
+--------------------------------------------------------------*/
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
-// Sass files
+/* Sass Imports (إذا عم تستخدم SCSS/Vue SFCs) */
 @import "variables";
 @import "bootstrap-custom";
 @import "@yaireo/ui-range/ui-range.css";
