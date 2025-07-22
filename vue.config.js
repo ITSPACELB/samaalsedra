@@ -1,11 +1,14 @@
 // vue.config.js
 
 module.exports = {
-  publicPath: '/',
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/sama-18pfprnjw-1984-project-28463c2c.vercel.app/'
+    : '/',
   filenameHashing: true,
-  assetsDir: 'assets', // تحديد مجلد الأصول
+  assetsDir: 'assets',
   css: {
-    extract: true, // استخراج CSS في ملف منفصل
+    extract: true,
+    sourceMap: false,
     loaderOptions: {
       css: {
         modules: false
@@ -13,6 +16,10 @@ module.exports = {
     }
   },
   chainWebpack: (config) => {
+    // إضافة hash للأسماء لتجنّب مشاكل الكاش
+    config.output.filename('[name].[contenthash].js').end();
+    config.output.chunkFilename('[name].[contenthash].js').end();
+
     // دعم custom elements
     config.module
       .rule('vue')
@@ -33,7 +40,7 @@ module.exports = {
       .use('url-loader')
       .loader('url-loader')
       .tap(() => ({
-        limit: 10000, // تحويل الملفات الصغيرة إلى base64
+        limit: 10000,
         name: 'fonts/[name].[hash:7].[ext]'
       }));
   }

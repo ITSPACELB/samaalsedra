@@ -89,13 +89,50 @@ html[lang="ar"] body {
   font-family: 'Tajawal', sans-serif !important;
 }
 
+/* ✅ Base Card Styles */
+.card {
+  width: 100%;
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* ✅ Media Queries */
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+    margin: 5px 0;
+  }
+
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .card {
+    max-width: 45%;
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+@media (min-width: 1025px) {
+  .card {
+    max-width: 30%;
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
 /*--------------------------------------------------------------
   Template Name: Solarox - Lawer Attory Agency HTML Template
   Author: Pixelaxis
 --------------------------------------------------------------*/
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
-/* Sass Imports (إذا عم تستخدم SCSS/Vue SFCs) */
+/* ✅ Sass Imports (إذا عم تستخدم SCSS/Vue SFCs) */
 @import "variables";
 @import "bootstrap-custom";
 @import "@yaireo/ui-range/ui-range.css";
