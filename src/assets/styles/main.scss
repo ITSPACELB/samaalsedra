@@ -1,9 +1,9 @@
 /* ✅ Font Face Definitions */
 @font-face {
   font-family: 'Tajawal';
-  src: url('@/assets/fonts/Tajawal-Regular.woff2') format('woff2'),
-       url('@/assets/fonts/Tajawal-Regular.woff') format('woff'),
-       url('@/assets/fonts/Tajawal-Regular.ttf') format('truetype');
+  src: url('~@/assets/fonts/Tajawal-Regular.woff2') format('woff2'),
+       url('~@/assets/fonts/Tajawal-Regular.woff') format('woff'),
+       url('~@/assets/fonts/Tajawal-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -12,9 +12,9 @@
 
 @font-face {
   font-family: 'Tajawal';
-  src: url('@/assets/fonts/Tajawal-Bold.woff2') format('woff2'),
-       url('@/assets/fonts/Tajawal-Bold.woff') format('woff'),
-       url('@/assets/fonts/Tajawal-Bold.ttf') format('truetype');
+  src: url('~@/assets/fonts/Tajawal-Bold.woff2') format('woff2'),
+       url('~@/assets/fonts/Tajawal-Bold.woff') format('woff'),
+       url('~@/assets/fonts/Tajawal-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -84,7 +84,7 @@ button {
   font: inherit;
 }
 
-/*✅ Custom Font for Arabic */
+/* ✅ Custom Font for Arabic */
 html[lang="ar"] body {
   font-family: 'Tajawal', sans-serif !important;
 }
@@ -104,7 +104,6 @@ html[lang="ar"] body {
     max-width: 100%;
     margin: 5px 0;
   }
-
   body {
     font-size: 14px;
   }
@@ -126,13 +125,7 @@ html[lang="ar"] body {
   }
 }
 
-/*--------------------------------------------------------------
-  Template Name: Solarox - Lawer Attory Agency HTML Template
-  Author: Pixelaxis
---------------------------------------------------------------*/
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
-
-/* ✅ Sass Imports (إذا عم تستخدم SCSS/Vue SFCs) */
+/* ✅ Sass Imports (بعد تعريف الفئات الأساسية) */
 @import "variables";
 @import "bootstrap-custom";
 @import "@yaireo/ui-range/ui-range.css";

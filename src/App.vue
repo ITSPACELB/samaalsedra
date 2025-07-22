@@ -22,6 +22,16 @@ watch(locale, (newLang) => {
   <component :is="$route.meta.layout || RootLayout">
     <RouterView />
   </component>
-  <!-- SamaGPT Chat دائماً موجود بكل الموقع -->
   <SamaGPTChat />
 </template>
+
+<style>
+/* تأكيد تطبيق الـ styles الأساسية */
+:root {
+  font-size: 16px;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+</style>
