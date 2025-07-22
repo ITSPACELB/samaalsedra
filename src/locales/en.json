@@ -434,7 +434,7 @@
         "consumptionHeader": "Energy Consumption Details",
         "systemComponents": "System Components Overview",
         "warningsHeader": "Technical Notes & Recommendations",
-        "scheduleSummary": "Schedule: {{cutDuration}} h outage → {{availableHours}} h grid → repeats {{cycles}} times/day",
+        "scheduleSummary": "Daily schedule: Outage duration {{cutDuration}} hours, Grid availability {{availableHours}} hours, repeats {{cycles}} times per day",
         "cutScheduleExplanation": "Power schedule: National grid is available for (X) hours, then off for (Y) hours, repeating daily.",
         "cutDuration": "Outage Duration (hrs)",
         "cutDurationPlaceholder": "Number of continuous blackout hours",

@@ -416,13 +416,13 @@
         "consumptionHeader": "تفاصيل استهلاك الطاقة",
         "systemComponents": "مكوّنات النظام المقترح",
         "warningsHeader": "ملاحظات فنية",
-        "scheduleSummary": "الجدول اليومي: {{cutDuration}} س انقطاع ← {{availableHours}} س تشغيل ← يتكرر {{cycles}} مرة/يوم",
+        "scheduleSummary": "الجدول اليومي: مدة الانقطاع {{cutDuration}} ساعة، مدة التشغيل {{availableHours}} ساعة، يتكرر {{cycles}} مرة يوميًا",
         "cutScheduleExplanation": "جدول الكهرباء: فترة تشغيل يليها فترة انقطاع، بالتناوب خلال اليوم.",
         "cutDuration": "مدة الانقطاع (س)",
         "cutDurationPlaceholder": "عدد ساعات الانقطاع المستمرة",
         "availableHours": "مدة التشغيل الوطني (س)",
         "availableHoursPlaceholder": "عدد ساعات التشغيل قبل الانقطاع التالي",
-        "chargeWarning": "⚠️ زمن التشغيل ({{availableHours}} س) قد لا يكفي لشحن البطارية بالكامل، خاصة عند التشغيل ليلاً.",
+        "chargeWarning": "⚠️ زمن التشغيل ({{availableHours}} ساعة) قد لا يكفي لشحن البطارية بالكامل، خاصة عند التشغيل ليلاً.",
         "questionSystemType": "ما نوع النظام الذي ترغب به؟ (اقتصادي، مستقر، عالي الأداء)",
         "questionGovernorate": "في أي محافظة تقع المنشأة؟",
         "questionGoodSunlight": "هل تتلقى منطقتك إشعاعًا شمسيًا جيدًا؟",
@@ -438,12 +438,7 @@
         "batteryLabel": "البطارية",
         "inverterLabel": "الإنفرتر",
         "governorate": "المحافظة",
-          "defaultSummary": "⚠️ لم يتم توليد تقرير الخطة بعد. يرجى التحقق من الخطوات السابقة.",
-
-        "panel": {
-            "etel": "ايتل",
-            "risen": "رايزن"
-        }
+        "defaultSummary": "⚠️ لم يتم توليد تقرير الخطة بعد. يرجى التحقق من الخطوات السابقة."
     },
     "productsSection": {
         "title": "منتجاتنا في سما السدرة",

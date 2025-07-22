@@ -358,88 +358,100 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
         });
       }
 
-      let spaceNote = "";
-      if (optimalPanels > 0) {
-        spaceNote = replacePlaceholders(safeTranslate(t, 'calculator.spaceNote', "المساحة المطلوبة: {{area}} متر مربع لـ {{count}} لوح بقدرة {{watt}} واط ({{panelName}})"), {
-          area: totalPanelArea.toString(),
-          count: optimalPanels.toString(),
-          watt: panelWatt.toString(),
-          panelName
-        });
-      }
+let spaceNote = "";
+if (optimalPanels > 0) {
+  spaceNote = replacePlaceholders(
+    safeTranslate(t, 'calculator.spaceNote', 'Required space: {{area}} m² for {{count}} panels of {{watt}} W each ({{panelName}})'),
+    {
+      area: totalPanelArea.toString(),
+      count: optimalPanels.toString(),
+      watt: panelWatt.toString(),
+      panelName: panelName || 'Unknown'
+    }
+  );
+}
 
-      let largeAreaNote = "";
-      if (totalPanelArea > 20) {
-        largeAreaNote = replacePlaceholders(safeTranslate(t, 'calculator.largeAreaNote', "المساحة المطلوبة كبيرة: {{area}} متر مربع"), {
-          area: totalPanelArea.toString()
-        });
-      }
+let largeAreaNote = "";
+if (totalPanelArea > 20) {
+  largeAreaNote = replacePlaceholders(
+    safeTranslate(t, 'calculator.largeAreaNote', '⚠️ Required area is large: {{area}} m²'),
+    {
+      area: totalPanelArea.toString()
+    }
+  );
+}
 
-      const lossNote = safeTranslate(t, 'calculator.lossNote', 'ملاحظة: الحسابات تأخذ بعين الاعتبار فاقد الكفاءة');
+const lossNote = safeTranslate(t, 'calculator.lossNote', 'Note: Calculations account for efficiency losses (15% battery, 10% panels)');
 
-      const scheduleNote = replacePlaceholders(safeTranslate(t, 'calculator.scheduleSummary', "جدول الانقطاع: مدة القطع {{cutDuration}} ساعة، ساعات التوفر {{availableHours}} ساعة، عدد الدورات يوميًا: {{cycles}}"), {
-        cutDuration: cycleCut.toString(),
-        availableHours: cycleSupply.toString(),
-        cycles: cyclesPerDay.toString()
-      });
+const scheduleNote = replacePlaceholders(
+  safeTranslate(t, 'calculator.scheduleSummary', 'Outage schedule: {{cutDuration}} hours off, {{availableHours}} hours on, {{cycles}} cycles per day'),
+  {
+    cutDuration: cycleCut.toString(),
+    availableHours: cycleSupply.toString(),
+    cycles: cyclesPerDay.toString()
+  }
+);
 
-      // توليد التقرير النهائي
-      let details = `🔆 **${safeTranslate(t, 'calculator.planTitle', 'خطة الطاقة الشمسية')}**\n\n`;
-      if (consumptionNote) details += `${consumptionNote}\n\n`;
-      details += `**${safeTranslate(t, 'calculator.consumptionHeader', 'الاستهلاك')}**\n`;
-      details += `${scheduleNote}\n`;
-      details += `• ${safeTranslate(t, 'calculator.totalConsumption', 'إجمالي الاستهلاك')}: **${totalConsumptionWatt} ${safeTranslate(t, 'calculator.wattHour', 'واط ساعة')}** (${totalConsumptionAmp} ${safeTranslate(t, 'calculator.ampHour', 'أمبير ساعة')})\n`;
-      details += `• ${safeTranslate(t, 'calculator.nightConsumption', 'الاستهلاك الليلي')}: **${nightLoadWatt} ${safeTranslate(t, 'calculator.wattHour', 'واط ساعة')}** (${nightLoadAmp} ${safeTranslate(t, 'calculator.ampHour', 'أمبير ساعة')} - ${Math.round(nightCut)} ${safeTranslate(t, 'calculator.hours', 'ساعات')})\n`;
-      details += `• ${safeTranslate(t, 'calculator.dayConsumption', 'الاستهلاك النهاري')}: **${dayLoadWatt} ${safeTranslate(t, 'calculator.wattHour', 'واط ساعة')}** (${dayLoadAmp} ${safeTranslate(t, 'calculator.ampHour', 'أمبير ساعة')} - ${Math.round(dayCut)} ${safeTranslate(t, 'calculator.hours', 'ساعات')})\n\n`;
-      details += `**${safeTranslate(t, 'calculator.systemComponents', 'مكونات النظام')}**\n`;
-      details += `• ${safeTranslate(t, 'calculator.suggestedBattery', 'البطارية المقترحة')}: **${suggestedBattery} ${safeTranslate(t, 'calculator.kwh', 'كيلوواط ساعة')} (${panelName})**\n`;
-      details += `• ${safeTranslate(t, 'calculator.suggestedInverter', 'الإنفرتر المقترح')}: **${suggestedInverter} ${safeTranslate(t, 'calculator.kw', 'كيلوواط')}**\n`;
-      if (optimalPanels > 0) {
-        details += `• ${safeTranslate(t, 'calculator.requiredPanels', 'الألواح المطلوبة')}: **${optimalPanels} × ${panelWatt} ${safeTranslate(t, 'calculator.watt', 'واط')} (${panelName})**\n`;
-        details += `• ${safeTranslate(t, 'calculator.panelArea', 'مساحة الألواح')}: **${totalPanelArea} ${safeTranslate(t, 'calculator.squareMeter', 'متر مربع')}**\n`;
-      }
-      details += `\n${lossNote}\n`;
-      if (batteryStatus || inverterStatus || efficiencyNote || nightOnlyNote || largeAreaNote) {
-        details += `\n**${safeTranslate(t, 'calculator.warningsHeader', 'تحذيرات')}**\n`;
-        if (batteryStatus) details += `${batteryStatus}\n`;
-        if (inverterStatus) details += `${inverterStatus}\n`;
-        if (efficiencyNote) details += `${efficiencyNote}\n`;
-        if (nightOnlyNote) details += `${nightOnlyNote}\n`;
-        if (largeAreaNote) details += `${largeAreaNote}\n`;
-      }
-      if (spaceNote) details += `\n${spaceNote}\n`;
-      details += `\n🟢 ${safeTranslate(t, 'calculator.supportNote', 'للحصول على دعم إضافي، تواصلوا معنا')}`;
-      details += `\n\n— ${safeTranslate(t, 'calculator.teamSignature', 'فريق سدرة')} —`;
+// توليد التقرير النهائي
+let details = `🔆 **${safeTranslate(t, 'calculator.planTitle', 'Proposed Solar Power System Design')}**\n\n`;
+if (consumptionNote) details += `${consumptionNote}\n\n`;
+details += `**${safeTranslate(t, 'calculator.consumptionHeader', 'Energy Consumption Details')}**\n`;
+details += `${scheduleNote}\n`;
+details += `• ${safeTranslate(t, 'calculator.totalConsumption', 'Total Daily Consumption')}: **${totalConsumptionWatt} ${safeTranslate(t, 'calculator.wattHour', 'Wh')}** (${totalConsumptionAmp} ${safeTranslate(t, 'calculator.ampHour', 'Ah')})\n`;
+details += `• ${safeTranslate(t, 'calculator.nightConsumption', 'Consumption During Outage (Night)')}: **${nightLoadWatt} ${safeTranslate(t, 'calculator.wattHour', 'Wh')}** (${nightLoadAmp} ${safeTranslate(t, 'calculator.ampHour', 'Ah')} - ${Math.round(nightCut)} ${safeTranslate(t, 'calculator.hours', 'hours')})\n`;
+details += `• ${safeTranslate(t, 'calculator.dayConsumption', 'Consumption During Grid Availability (Day)')}: **${dayLoadWatt} ${safeTranslate(t, 'calculator.wattHour', 'Wh')}** (${dayLoadAmp} ${safeTranslate(t, 'calculator.ampHour', 'Ah')} - ${Math.round(dayCut)} ${safeTranslate(t, 'calculator.hours', 'hours')})\n\n`;
+details += `**${safeTranslate(t, 'calculator.systemComponents', 'System Components Overview')}**\n`;
+details += `• ${safeTranslate(t, 'calculator.suggestedBattery', 'Recommended Battery Capacity')}: **${suggestedBattery} ${safeTranslate(t, 'calculator.kwh', 'kWh')} (${panelName})**\n`;
+details += `• ${safeTranslate(t, 'calculator.suggestedInverter', 'Recommended Inverter Capacity')}: **${suggestedInverter} ${safeTranslate(t, 'calculator.kw', 'kW')}**\n`;
+if (optimalPanels > 0) {
+  details += `• ${safeTranslate(t, 'calculator.requiredPanels', 'Required Number of Panels')}: **${optimalPanels} × ${panelWatt} ${safeTranslate(t, 'calculator.watt', 'W')} (${panelName})**\n`;
+  details += `• ${safeTranslate(t, 'calculator.panelArea', 'Required Panel Installation Area')}: **${totalPanelArea} ${safeTranslate(t, 'calculator.squareMeter', 'm²')}**\n`;
+}
+details += `\n${lossNote}\n`;
+if (batteryStatus || inverterStatus || efficiencyNote || nightOnlyNote || largeAreaNote) {
+  details += `\n**${safeTranslate(t, 'calculator.warningsHeader', 'Technical Notes & Recommendations')}**\n`;
+  if (batteryStatus) details += `${batteryStatus}\n`;
+  if (inverterStatus) details += `${inverterStatus}\n`;
+  if (efficiencyNote) details += `${efficiencyNote}\n`;
+  if (nightOnlyNote) details += `${nightOnlyNote}\n`;
+  if (largeAreaNote) details += `${largeAreaNote}\n`;
+}
+if (spaceNote) details += `\n${spaceNote}\n`;
+details += `\n🟢 ${safeTranslate(t, 'calculator.supportNote', 'Contact us at 009647749992888 for tailored support.')}`;
+details += `\n\n— ${safeTranslate(t, 'calculator.teamSignature', 'Technical Team – Sama Al-Sedra')} —`;
 
-      aiMsg.value = details;
-      console.log('Step 11 report generated:', aiMsg.value);
-    } else if (newStep >= 1 && newStep <= 10) {
-      const questionKeys = [
-        "calculator.questionSystemType",
-        "calculator.questionGovernorate",
-        "calculator.questionGoodSunlight",
-        "calculator.questionHighBuildings",
-        "calculator.questionPriority",
-        "calculator.questionAmpHour",
-        "calculator.questionCycleCut",
-        "calculator.questionCutPeriod",
-        "calculator.questionBattery",
-        "calculator.questionInverter"
-      ];
-      aiMsg.value = safeTranslate(t, questionKeys[newStep - 1], `سؤال الخطوة ${newStep}`);
-      if (newStep === 7) {
-        if (errors.cycleCut || errors.cycleSupply) {
-          aiMsg.value += `\n${safeTranslate(t, 'calculator.fixErrors', 'يرجى تصحيح الأخطاء')}`;
-          if (errors.cycleCut) aiMsg.value += `\n- ${errors.cycleCut}`;
-          if (errors.cycleSupply) aiMsg.value += `\n- ${errors.cycleSupply}`;
-        } else if (user.cycleCut && user.cycleSupply) {
-          aiMsg.value += `\n` + replacePlaceholders(safeTranslate(t, 'calculator.scheduleSummary', "جدول الانقطاع: مدة القطع {{cutDuration}} ساعة، ساعات التوفر {{availableHours}} ساعة، عدد الدورات يوميًا: {{cycles}}"), {
-            cutDuration: user.cycleCut,
-            availableHours: user.cycleSupply,
-            cycles: Math.floor(24 / (parseFloat(user.cycleCut) + parseFloat(user.cycleSupply))).toString()
-          });
+aiMsg.value = details;
+console.log('Step 11 report generated:', aiMsg.value);
+} else if (newStep >= 1 && newStep <= 10) {
+  const questionKeys = [
+    "calculator.questionSystemType",
+    "calculator.questionGovernorate",
+    "calculator.questionGoodSunlight",
+    "calculator.questionHighBuildings",
+    "calculator.questionPriority",
+    "calculator.questionAmpHour",
+    "calculator.questionCycleCut",
+    "calculator.questionCutPeriod",
+    "calculator.questionBattery",
+    "calculator.questionInverter"
+  ];
+  aiMsg.value = safeTranslate(t, questionKeys[newStep - 1], `Step ${newStep} Question`);
+  if (newStep === 7) {
+    if (errors.cycleCut || errors.cycleSupply) {
+      aiMsg.value += `\n${safeTranslate(t, 'calculator.fixErrors', 'Please fix the following errors:')}`;
+      if (errors.cycleCut) aiMsg.value += `\n- ${errors.cycleCut}`;
+      if (errors.cycleSupply) aiMsg.value += `\n- ${errors.cycleSupply}`;
+    } else if (user.cycleCut && user.cycleSupply) {
+      aiMsg.value += `\n` + replacePlaceholders(
+        safeTranslate(t, 'calculator.scheduleSummary', 'Outage schedule: {{cutDuration}} hours off, {{availableHours}} hours on, {{cycles}} cycles per day'),
+        {
+          cutDuration: user.cycleCut,
+          availableHours: user.cycleSupply,
+          cycles: Math.floor(24 / (parseFloat(user.cycleCut) + parseFloat(user.cycleSupply))).toString()
         }
-      }
+      );
+    }
+  }
     } else {
       aiMsg.value = safeTranslate(t, 'calculator.aiStartMsg', 'ابدأ باختيار نوع النظام');
     }
