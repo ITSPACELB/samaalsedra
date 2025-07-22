@@ -47,9 +47,7 @@ const { t, locale } = useI18n()
         <div class="row g-3 g-lg-4">
           <div class="col-md-6 col-xl-3">
             <div class="footer-card fade_up_anim">
-              <a href="/">
-                <img :src="logo" class="img-fluid mb-4" alt="Sama Al-Sedra Logo" />
-              </a>
+              <a href="/"><img :src="logo" class="img-fluid mb-4" alt="Sama Al-Sedra Logo" /></a>
               <p class="mb-4 pb-lg-3 text-white">{{ t('footer.desc') }}</p>
               <ul class="social-link">
                 <li>
@@ -89,45 +87,38 @@ const { t, locale } = useI18n()
                     <a href="mailto:info@samaalsedra.com" class="text-white">info@samaalsedra.com</a>
                   </div>
                 </li>
-<li class="contact-item">
-  <div class="contact-icon"><PhMapPin /></div>
-  <div class="d-flex flex-column gap-1">
-    <a
-      href="https://maps.app.goo.gl/kACRTDJPCiwboe4p6"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="text-white d-inline-block"
-      style="text-decoration: none; position: relative;"
-    >
-<span class="text-white" style="display: inline-block;">{{ t('footer.addressText') }}</span>
-
-      <!-- السيارة على خط شارع -->
-      <span style="display: inline-block; position: relative; margin-top: 5px; width: 100%; height: 20px;">
-        <span
-          style="
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: repeating-linear-gradient(to right, #fff 0 5px, transparent 5px 10px);
-            position: absolute;
-            bottom: 0;
-          "
-        ></span>
-        <span
-          class="animated-car"
-          style="
-            position: absolute;
-            bottom: 3px;
-            left: 0;
-            font-size: 1.2em;
-          "
-        >
-          🚕
-        </span>
-      </span>
-    </a>
-  </div>
-</li>
+                <li class="contact-item">
+                  <div class="contact-icon"><PhMapPin /></div>
+                  <div class="d-flex flex-column gap-1">
+                    <a
+                      href="https://maps.app.goo.gl/kACRTDJPCiwboe4p6"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-white d-inline-block"
+                      style="text-decoration: none; position: relative;"
+                    >
+                      <span class="text-white" style="display: inline-block;">{{ t('footer.addressText') }}</span>
+                      <span style="display: inline-block; position: relative; margin-top: 5px; width: 100%; height: 20px;">
+                        <span
+                          style="
+                            display: block;
+                            width: 100%;
+                            height: 2px;
+                            background: repeating-linear-gradient(to right, #fff 0 5px, transparent 5px 10px);
+                            position: absolute;
+                            bottom: 0;
+                          "
+                        ></span>
+                        <span
+                          class="animated-car"
+                          style="position: absolute; bottom: 3px; left: 0; font-size: 1.2em;"
+                        >
+                          🚕
+                        </span>
+                      </span>
+                    </a>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -158,7 +149,13 @@ const { t, locale } = useI18n()
   </footer>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/_mixins.scss";
+
+.footer {
+  @include preserve-layout($key: 'md');
+}
+
 @keyframes drive-alternate {
   0% {
     left: 0%;
@@ -188,9 +185,9 @@ const { t, locale } = useI18n()
     left: 100%;
   }
 }
+
 [dir-auto] {
   unicode-bidi: plaintext;
   direction: inherit;
 }
-
 </style>
