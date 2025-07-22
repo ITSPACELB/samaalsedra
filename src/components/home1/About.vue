@@ -227,10 +227,10 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
   setTimeout(async () => {
     await nextTick();
 
-    // دالة استبدال المتغيرات داخل النصوص المترجمة
+    // دالة استبدال المتغيرات داخل النصوص المترجمة - غيرت لتدعم {key} بدلاً من {{key}}
     function replacePlaceholders(str: string, replacements: Record<string, string>) {
       try {
-        return str.replace(/{{(\w+)}}/g, (_: string, key: string) => replacements[key] ?? '');
+        return str.replace(/{(\w+)}/g, (_: string, key: string) => replacements[key] ?? '');
       } catch (e) {
         console.error('Error in replacePlaceholders:', e);
         return str;
@@ -256,7 +256,7 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
 
       // البطارية والإنفرتر
       const inverterUser = parseFloat(user.inverter?.match(/(\d+(\.\d+)?)/)?.[0] || "0");
-      const batteryUser = parseFloat(user.battery?.match(/(\d+(\.\d+)?)/)?.[0] || "0");
+      const batteryUser = parseFloat(user.battery?.match(/(\d+(\.\د+)?)/)?.[0] || "0");
 
       // فاقد الإشعاع والتظليل
       let sunlightHours = governorateSunlight[user.governorate as keyof typeof governorateSunlight] || 5.5;
@@ -330,7 +330,7 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
 
       let batteryStatus = "";
       if (batteryUser && Math.abs(batteryUser - suggestedBattery) > 0.5) {
-        batteryStatus = replacePlaceholders(safeTranslate(t, 'calculator.batteryStatus', 'البطارية المختارة ({{user}} كيلوواط ساعة) غير مثالية، الموصى بها: {{recommended}} كيلوواط ساعة ({{panelName}})'), {
+        batteryStatus = replacePlaceholders(safeTranslate(t, 'calculator.batteryStatus', 'البطارية المختارة ({user} كيلوواط ساعة) غير مثالية، الموصى بها: {recommended} كيلوواط ساعة ({panelName})'), {
           user: batteryUser.toString(),
           recommended: suggestedBattery.toString(),
           panelName
@@ -339,7 +339,7 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
 
       let inverterStatus = "";
       if (inverterUser && Math.abs(inverterUser - suggestedInverter) > 0.2) {
-        inverterStatus = replacePlaceholders(safeTranslate(t, 'calculator.inverterStatus', 'الإنفرتر المختار ({{user}} كيلوواط) غير مثالي، الموصى به: {{recommended}} كيلوواط'), {
+        inverterStatus = replacePlaceholders(safeTranslate(t, 'calculator.inverterStatus', 'الإنفرتر المختار ({user} كيلوواط) غير مثالي، الموصى به: {recommended} كيلوواط'), {
           user: inverterUser.toString(),
           recommended: suggestedInverter.toString()
         });
@@ -352,7 +352,7 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
 
       let nightOnlyNote = "";
       if (dayCut === 0 && nightCut > 0) {
-        nightOnlyNote = replacePlaceholders(safeTranslate(t, 'calculator.nightOnlyNote', 'النظام يعمل ليلًا فقط، البطارية المقترحة: {{suggestedBattery}} كيلوواط ساعة لتغطية {{nightLoad}} واط ساعة'), {
+        nightOnlyNote = replacePlaceholders(safeTranslate(t, 'calculator.nightOnlyNote', 'النظام يعمل ليلًا فقط، البطارية المقترحة: {suggestedBattery} كيلوواط ساعة لتغطية {nightLoad} واط ساعة'), {
           suggestedBattery: suggestedBattery.toString(),
           nightLoad: nightLoadWatt.toString()
         });
@@ -361,7 +361,7 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
 let spaceNote = "";
 if (optimalPanels > 0) {
   spaceNote = replacePlaceholders(
-    safeTranslate(t, 'calculator.spaceNote', 'Required space: {{area}} m² for {{count}} panels of {{watt}} W each ({{panelName}})'),
+    safeTranslate(t, 'calculator.spaceNote', 'المساحة المطلوبة{ \':\' } {area} متر مربع لـ {count} لوح بقدرة {watt} واط ({panelName})'),
     {
       area: totalPanelArea.toString(),
       count: optimalPanels.toString(),
@@ -374,17 +374,17 @@ if (optimalPanels > 0) {
 let largeAreaNote = "";
 if (totalPanelArea > 20) {
   largeAreaNote = replacePlaceholders(
-    safeTranslate(t, 'calculator.largeAreaNote', '⚠️ Required area is large: {{area}} m²'),
+    safeTranslate(t, 'calculator.largeAreaNote', '⚠️ المساحة المطلوبة كبيرة{ \':\' } {area} متر مربع'),
     {
       area: totalPanelArea.toString()
     }
   );
 }
 
-const lossNote = safeTranslate(t, 'calculator.lossNote', 'Note: Calculations account for efficiency losses (15% battery, 10% panels)');
+const lossNote = safeTranslate(t, 'calculator.lossNote', 'ملاحظة: الحسابات تأخذ بعين الاعتبار فاقد الكفاءة');
 
 const scheduleNote = replacePlaceholders(
-  safeTranslate(t, 'calculator.scheduleSummary', 'Outage schedule: {{cutDuration}} hours off, {{availableHours}} hours on, {{cycles}} cycles per day'),
+  safeTranslate(t, 'calculator.scheduleSummary', 'جدول الانقطاع{ \':\' } مدة القطع {cutDuration} ساعة، ساعات التوفر {availableHours} ساعة، عدد الدورات يوميًا{ \':\' } {cycles}'),
   {
     cutDuration: cycleCut.toString(),
     availableHours: cycleSupply.toString(),
@@ -393,23 +393,23 @@ const scheduleNote = replacePlaceholders(
 );
 
 // توليد التقرير النهائي
-let details = `🔆 **${safeTranslate(t, 'calculator.planTitle', 'Proposed Solar Power System Design')}**\n\n`;
+let details = `🔆 **${safeTranslate(t, 'calculator.planTitle', 'خطة الطاقة الشمسية')}**\n\n`;
 if (consumptionNote) details += `${consumptionNote}\n\n`;
-details += `**${safeTranslate(t, 'calculator.consumptionHeader', 'Energy Consumption Details')}**\n`;
+details += `**${safeTranslate(t, 'calculator.consumptionHeader', 'الاستهلاك')}**\n`;
 details += `${scheduleNote}\n`;
-details += `• ${safeTranslate(t, 'calculator.totalConsumption', 'Total Daily Consumption')}: **${totalConsumptionWatt} ${safeTranslate(t, 'calculator.wattHour', 'Wh')}** (${totalConsumptionAmp} ${safeTranslate(t, 'calculator.ampHour', 'Ah')})\n`;
-details += `• ${safeTranslate(t, 'calculator.nightConsumption', 'Consumption During Outage (Night)')}: **${nightLoadWatt} ${safeTranslate(t, 'calculator.wattHour', 'Wh')}** (${nightLoadAmp} ${safeTranslate(t, 'calculator.ampHour', 'Ah')} - ${Math.round(nightCut)} ${safeTranslate(t, 'calculator.hours', 'hours')})\n`;
-details += `• ${safeTranslate(t, 'calculator.dayConsumption', 'Consumption During Grid Availability (Day)')}: **${dayLoadWatt} ${safeTranslate(t, 'calculator.wattHour', 'Wh')}** (${dayLoadAmp} ${safeTranslate(t, 'calculator.ampHour', 'Ah')} - ${Math.round(dayCut)} ${safeTranslate(t, 'calculator.hours', 'hours')})\n\n`;
-details += `**${safeTranslate(t, 'calculator.systemComponents', 'System Components Overview')}**\n`;
-details += `• ${safeTranslate(t, 'calculator.suggestedBattery', 'Recommended Battery Capacity')}: **${suggestedBattery} ${safeTranslate(t, 'calculator.kwh', 'kWh')} (${panelName})**\n`;
-details += `• ${safeTranslate(t, 'calculator.suggestedInverter', 'Recommended Inverter Capacity')}: **${suggestedInverter} ${safeTranslate(t, 'calculator.kw', 'kW')}**\n`;
+details += `• ${safeTranslate(t, 'calculator.totalConsumption', 'إجمالي الاستهلاك')}: **${totalConsumptionWatt} ${safeTranslate(t, 'calculator.wattHour', 'واط ساعة')}** (${totalConsumptionAmp} ${safeTranslate(t, 'calculator.ampHour', 'أمبير ساعة')})\n`;
+details += `• ${safeTranslate(t, 'calculator.nightConsumption', 'الاستهلاك الليلي')}: **${nightLoadWatt} ${safeTranslate(t, 'calculator.wattHour', 'واط ساعة')}** (${nightLoadAmp} ${safeTranslate(t, 'calculator.ampHour', 'أمبير ساعة')} - ${Math.round(nightCut)} ${safeTranslate(t, 'calculator.hours', 'ساعات')})\n`;
+details += `• ${safeTranslate(t, 'calculator.dayConsumption', 'الاستهلاك النهاري')}: **${dayLoadWatt} ${safeTranslate(t, 'calculator.wattHour', 'واط ساعة')}** (${dayLoadAmp} ${safeTranslate(t, 'calculator.ampHour', 'أمبير ساعة')} - ${Math.round(dayCut)} ${safeTranslate(t, 'calculator.hours', 'ساعات')})\n\n`;
+details += `**${safeTranslate(t, 'calculator.systemComponents', 'مكونات النظام')}**\n`;
+details += `• ${safeTranslate(t, 'calculator.suggestedBattery', 'البطارية المقترحة')}: **${suggestedBattery} ${safeTranslate(t, 'calculator.kwh', 'كيلوواط ساعة')} (${panelName})**\n`;
+details += `• ${safeTranslate(t, 'calculator.suggestedInverter', 'الإنفرتر المقترح')}: **${suggestedInverter} ${safeTranslate(t, 'calculator.kw', 'كيلوواط')}**\n`;
 if (optimalPanels > 0) {
-  details += `• ${safeTranslate(t, 'calculator.requiredPanels', 'Required Number of Panels')}: **${optimalPanels} × ${panelWatt} ${safeTranslate(t, 'calculator.watt', 'W')} (${panelName})**\n`;
-  details += `• ${safeTranslate(t, 'calculator.panelArea', 'Required Panel Installation Area')}: **${totalPanelArea} ${safeTranslate(t, 'calculator.squareMeter', 'm²')}**\n`;
+  details += `• ${safeTranslate(t, 'calculator.requiredPanels', 'الألواح المطلوبة')}: **${optimalPanels} × ${panelWatt} ${safeTranslate(t, 'calculator.watt', 'واط')} (${panelName})**\n`;
+  details += `• ${safeTranslate(t, 'calculator.panelArea', 'مساحة الألواح')}: **${totalPanelArea} ${safeTranslate(t, 'calculator.squareMeter', 'متر مربع')}**\n`;
 }
 details += `\n${lossNote}\n`;
 if (batteryStatus || inverterStatus || efficiencyNote || nightOnlyNote || largeAreaNote) {
-  details += `\n**${safeTranslate(t, 'calculator.warningsHeader', 'Technical Notes & Recommendations')}**\n`;
+  details += `\n**${safeTranslate(t, 'calculator.warningsHeader', 'تحذيرات')}**\n`;
   if (batteryStatus) details += `${batteryStatus}\n`;
   if (inverterStatus) details += `${inverterStatus}\n`;
   if (efficiencyNote) details += `${efficiencyNote}\n`;
@@ -417,8 +417,8 @@ if (batteryStatus || inverterStatus || efficiencyNote || nightOnlyNote || largeA
   if (largeAreaNote) details += `${largeAreaNote}\n`;
 }
 if (spaceNote) details += `\n${spaceNote}\n`;
-details += `\n🟢 ${safeTranslate(t, 'calculator.supportNote', 'Contact us at 009647749992888 for tailored support.')}`;
-details += `\n\n— ${safeTranslate(t, 'calculator.teamSignature', 'Technical Team – Sama Al-Sedra')} —`;
+details += `\n🟢 ${safeTranslate(t, 'calculator.supportNote', 'للحصول على دعم إضافي، تواصلوا معنا')}`;
+details += `\n\n— ${safeTranslate(t, 'calculator.teamSignature', 'فريق سدرة')} —`;
 
 aiMsg.value = details;
 console.log('Step 11 report generated:', aiMsg.value);
@@ -435,26 +435,23 @@ console.log('Step 11 report generated:', aiMsg.value);
     "calculator.questionBattery",
     "calculator.questionInverter"
   ];
-  aiMsg.value = safeTranslate(t, questionKeys[newStep - 1], `Step ${newStep} Question`);
+  aiMsg.value = safeTranslate(t, questionKeys[newStep - 1], `سؤال الخطوة ${newStep}`);
   if (newStep === 7) {
     if (errors.cycleCut || errors.cycleSupply) {
-      aiMsg.value += `\n${safeTranslate(t, 'calculator.fixErrors', 'Please fix the following errors:')}`;
+      aiMsg.value += `\n${safeTranslate(t, 'calculator.fixErrors', 'يرجى تصحيح الأخطاء')}`;
       if (errors.cycleCut) aiMsg.value += `\n- ${errors.cycleCut}`;
       if (errors.cycleSupply) aiMsg.value += `\n- ${errors.cycleSupply}`;
     } else if (user.cycleCut && user.cycleSupply) {
-      aiMsg.value += `\n` + replacePlaceholders(
-        safeTranslate(t, 'calculator.scheduleSummary', 'Outage schedule: {{cutDuration}} hours off, {{availableHours}} hours on, {{cycles}} cycles per day'),
-        {
-          cutDuration: user.cycleCut,
-          availableHours: user.cycleSupply,
-          cycles: Math.floor(24 / (parseFloat(user.cycleCut) + parseFloat(user.cycleSupply))).toString()
-        }
-      );
+      aiMsg.value += `\n` + replacePlaceholders(safeTranslate(t, 'calculator.scheduleSummary', "جدول الانقطاع{ \':\' } مدة القطع {cutDuration} ساعة، ساعات التوفر {availableHours} ساعة، عدد الدورات يوميًا{ \':\' } {cycles}"), {
+        cutDuration: user.cycleCut,
+        availableHours: user.cycleSupply,
+        cycles: Math.floor(24 / (parseFloat(user.cycleCut) + parseFloat(user.cycleSupply))).toString()
+      });
     }
   }
-    } else {
-      aiMsg.value = safeTranslate(t, 'calculator.aiStartMsg', 'ابدأ باختيار نوع النظام');
-    }
+} else {
+  aiMsg.value = safeTranslate(t, 'calculator.aiStartMsg', 'ابدأ باختيار نوع النظام');
+}
   }, 0);
 });
 
@@ -589,7 +586,7 @@ function resetCalculator() {
 </script>
 
 <template>
-<section id="calculator" class="calculator">
+<section id="calculator" class="calculator" :dir="locale === 'ar' ? 'rtl' : 'ltr'">
   <div class="calculator-bar">
     <div class="ai-column">
       <div class="sama-ai-box-ai">
