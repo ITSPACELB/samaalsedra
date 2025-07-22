@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import './assets/styles/main.scss' // 💥 أهم سطر
 import 'bootstrap'
+import 'normalize.css';
 import App from './App.vue'
 import router from './router'
 
