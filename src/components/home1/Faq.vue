@@ -66,7 +66,13 @@ function toggleFaq(id: number) {
   </section>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/_mixins.scss";
+
+.faq-home {
+  @include preserve-layout($key: 'md');
+}
+
 .sama-title {
   color: rgb(5, 52, 12) !important;
   font-weight: 800;

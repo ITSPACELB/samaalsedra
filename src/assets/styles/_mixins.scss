@@ -1,6 +1,8 @@
 @use "sass:map";
+
+// الحفاظ على الـ breakpoints الأصلية مع تحسين للـ units (إضافة px إذا لزم للتوافق)
 $screen: (
-  xs: 320,
+  xs: 320px,
   sm: 576px,
   md: 768px,
   lg: 992px,
@@ -9,9 +11,56 @@ $screen: (
   3xl: 1600px,
   4xl: 1800px,
 );
+
+// Mixin الأصلي للـ min-width (يبقى كما هو)
 @mixin screen($key) {
   $size: map-get($screen, $key);
   @media (min-width: $size) {
     @content;
+  }
+}
+
+// Mixin جديد قوي للحفاظ على الـ layout (يضمن الـ responsive ويمنع التشوه)
+@mixin preserve-layout($key: null, $elements: '.card, .container, .section') {
+  // Base reset للـ elements المستهدفة
+  #{$elements} {
+    box-sizing: border-box;
+    will-change: transform, opacity; // يحسن الـ rendering في production
+    transition: all 0.1s ease; // يجعل التغييرات سلسة عند resize
+    width: 100%; // reset أساسي
+    max-width: 100%; // يمنع overflow
+  }
+
+  // تطبيق media queries بناءً على $key أو كل breakpoints
+  @if $key {
+    @include screen($key) {
+      #{$elements} {
+        @content; // يسمح بتخصيص إضافي
+        width: auto; // إعادة حساب الأبعاد
+        display: flex; // افتراضي flex للـ responsive (غير إذا لزم)
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px; // يحافظ على التنسيق
+      }
+    }
+  } @else {
+    // تطبيق عام لكل breakpoints لضمان التوافق الكامل
+    @each $breakpoint, $size in $screen {
+      @media (min-width: $size) {
+        #{$elements} {
+          @content;
+          max-width: calc(100% / map-get($screen, $breakpoint) * 100px); // حساب ديناميكي للأبعاد
+          min-width: 0; // يمنع التشوه في RTL
+        }
+      }
+    }
+  }
+
+  // إضافة دعم لـ max-width للشاشات الصغيرة (يحل مشكلة الزوم)
+  @media (max-width: 767px) { // تحت md
+    #{$elements} {
+      flex-direction: column; // يجعلها عمودية لتجنب التشوه
+      width: 100% !important;
+    }
   }
 }
