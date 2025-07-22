@@ -227,7 +227,7 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
   setTimeout(async () => {
     await nextTick();
 
-    // دالة استبدال المتغيرات داخل النصوص المترجمة - غيرت لتدعم {key} بدلاً من {{key}}
+    // دالة استبدال المتغيرات داخل النصوص المترجمة - غيرت لـ {key}
     function replacePlaceholders(str: string, replacements: Record<string, string>) {
       try {
         return str.replace(/{(\w+)}/g, (_: string, key: string) => replacements[key] ?? '');
@@ -330,7 +330,7 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
 
       let batteryStatus = "";
       if (batteryUser && Math.abs(batteryUser - suggestedBattery) > 0.5) {
-        batteryStatus = replacePlaceholders(safeTranslate(t, 'calculator.batteryStatus', 'البطارية المختارة ({user} كيلوواط ساعة) غير مثالية، الموصى بها: {recommended} كيلوواط ساعة ({panelName})'), {
+        batteryStatus = replacePlaceholders(safeTranslate(t, 'calculator.batteryStatus', 'البطارية المختارة ({user} كيلوواط ساعة) غير مثالية، الموصى بها{ \':\' } {recommended} كيلوواط ساعة ({panelName})'), {
           user: batteryUser.toString(),
           recommended: suggestedBattery.toString(),
           panelName
@@ -339,7 +339,7 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
 
       let inverterStatus = "";
       if (inverterUser && Math.abs(inverterUser - suggestedInverter) > 0.2) {
-        inverterStatus = replacePlaceholders(safeTranslate(t, 'calculator.inverterStatus', 'الإنفرتر المختار ({user} كيلوواط) غير مثالي، الموصى به: {recommended} كيلوواط'), {
+        inverterStatus = replacePlaceholders(safeTranslate(t, 'calculator.inverterStatus', 'الإنفرتر المختار ({user} كيلوواط) غير مثالي، الموصى به{ \':\' } {recommended} كيلوواط'), {
           user: inverterUser.toString(),
           recommended: suggestedInverter.toString()
         });
@@ -352,7 +352,7 @@ watch([() => step.value, () => locale.value], async ([newStep, newLocale]) => {
 
       let nightOnlyNote = "";
       if (dayCut === 0 && nightCut > 0) {
-        nightOnlyNote = replacePlaceholders(safeTranslate(t, 'calculator.nightOnlyNote', 'النظام يعمل ليلًا فقط، البطارية المقترحة: {suggestedBattery} كيلوواط ساعة لتغطية {nightLoad} واط ساعة'), {
+        nightOnlyNote = replacePlaceholders(safeTranslate(t, 'calculator.nightOnlyNote', 'النظام يعمل ليلًا فقط، البطارية المقترحة{ \':\' } {suggestedBattery} كيلوواط ساعة لتغطية {nightLoad} واط ساعة'), {
           suggestedBattery: suggestedBattery.toString(),
           nightLoad: nightLoadWatt.toString()
         });
