@@ -1,6 +1,18 @@
 :root {
-  font-size: 22px; /* زد إلى 20px إذا لزم، لكن ابدأ بـ18px */
+  font-size: 20px; /* زد إلى 20px إذا لزم، لكن ابدأ بـ18px */
 }
+
+html {
+  font-size: 16px !important;  /* base لـrem، غير إلى 18px إذا لزم */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'YourFont', sans-serif;  /* استبدل باسم font الرئيسي */
+  margin: 0;
+  padding: 0;
+}
+
 *,
 *::before,
 *::after {
@@ -11,7 +23,7 @@ html, body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif;
   direction: rtl;
   background-color: #fff;
   color: #222;
@@ -44,9 +56,8 @@ button {
 --------------------------------------------------------------*/
 
 html[lang="ar"] body {
-font-family: 'Tajawal', sans-serif !important;
+  font-family: 'Tajawal', sans-serif !important;
 }
-
 
 /*---------------------------------------
     Template Name:  Solarox - Lawer Attory Agency HTML Template
