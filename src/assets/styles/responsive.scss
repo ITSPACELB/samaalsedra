@@ -1,0 +1,35 @@
+/* 📁 src/assets/styles/responsive.scss */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Tajawal', sans-serif !important;
+  font-size: clamp(14px, 1.2vw, 18px); // ✅ يضبط حجم الخط حسب الحجم
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  background-color: #fff;
+  color: #222;
+  scroll-behavior: smooth;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 15px;
+}
+
+/* ✅ كل العناصر تاخد مرونة */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ✅ تخلي العناوين والصور ما تنفجر أو تصغر */
+h1, h2, h3, p {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}

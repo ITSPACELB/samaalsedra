@@ -10,7 +10,9 @@ import { useI18n } from 'vue-i18n'
 const { locale } = useI18n()
 
 onMounted(() => {
+  // ✅ تحديد لغة الصفحة
   document.documentElement.lang = locale.value
+
 })
 
 watch(locale, (newLang) => {
@@ -26,12 +28,33 @@ watch(locale, (newLang) => {
 </template>
 
 <style>
-/* تأكيد تطبيق الـ styles الأساسية */
+/* ===== إصلاح مشاكل العرض العام بكل المتصفحات ===== */
 :root {
   font-size: 16px;
 }
-body {
+
+html, body {
   margin: 0;
   padding: 0;
+  overflow-x: visible !important;
+  max-width: 100vw;
+  font-family: 'Tajawal', sans-serif;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container,
+.row,
+.section {
+  overflow: visible !important;
+  position: relative;
+}
+
+.side-text, .vertical-text, .floating-title {
+  position: absolute;
+  z-index: 5;
 }
 </style>

@@ -57,7 +57,7 @@ const partners = [
     <div class="line"></div>
     <div class="container">
       <div class="row">
-        <div class="col-lg-10 offset-lg-2 col-xl-9 offset-xl-3 col-xxl-8 offset-xxl-4">
+        <div class="col-12">
           <div class="reveal reveal--left">
             <div class="recent-projects">
               <!-- ✅ العنوان مع اتجاه حسب اللغة -->

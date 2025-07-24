@@ -4,6 +4,7 @@ const props = defineProps<{
   question: string;
   answer: string;
   opened: boolean;
+  dir?: 'ltr' | 'rtl';
 }>();
 
 const emit = defineEmits(['toggle']);
@@ -14,7 +15,7 @@ function handleClick() {
 </script>
 
 <template>
-  <div class="accordion-item">
+  <div class="accordion-item" :dir="props.dir">
     <div class="accordion-header" @click="handleClick" style="cursor:pointer;">
       <button
         class="accordion-button"
@@ -36,3 +37,12 @@ function handleClick() {
     </div>
   </div>
 </template>
+
+<style scoped>
+.accordion-button::after {
+  display: none !important;
+}
+.accordion-button::before {
+  display: none !important;
+}
+</style>

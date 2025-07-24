@@ -39,7 +39,7 @@ const whatsapp = {
     <div class="line"></div>
     <div class="container" :dir="locale === 'ar' ? 'rtl' : 'ltr'" :style="{ textAlign: locale === 'ar' ? 'right' : 'left' }">
       <div class="row">
-        <div class="col-lg-10 col-xl-9 col-xxl-8">
+        <div class="col-12">
           <div class="reveal reveal--right reveal--overlay">
             <div class="testimonial-inner">
               <h2 class="fade_up_anim">{{ t("testimonials.title") }}</h2>

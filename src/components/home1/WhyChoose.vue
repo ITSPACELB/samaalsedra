@@ -1,46 +1,51 @@
 <script setup lang="ts">
 import { PhArrowUpRight } from "@phosphor-icons/vue"
 import { useI18n } from "vue-i18n"
-
 const { t, locale } = useI18n()
 </script>
 
 <template>
-  <section class="whychoose">
-    <div class="side-text d-none d-xl-flex flex-column align-items-center gap-5">
+  <section class="whychoose position-relative" id="whychoose">
+    <div class="right-text d-none d-xl-block">
       <h2 class="vertical">{{ t("whychoose.vertical") }}</h2>
     </div>
     <div class="line"></div>
     <div class="container">
       <div class="row">
-        <div class="col-lg-10 col-xl-9 position-relative">
+        <div class="col-12">
           <div class="reveal reveal--right">
             <div class="whychoose-card">
-              <!-- العنوان مع التنسيق الصحيح -->
-              <h2 class="pb-1 fade_up_anim" :dir="locale === 'ar' ? 'rtl' : 'ltr'">
+              <!-- ✅ العنوان -->
+              <h2
+                class="pb-1 fade_up_anim"
+                :dir="locale === 'ar' ? 'rtl' : 'ltr'"
+                :style="{ textAlign: locale === 'ar' ? 'right' : 'left' }"
+              >
                 {{ t("whychoose.title") }}
               </h2>
 
-              <!-- الفقرة الرئيسية -->
-              <p class="mb-4 fade_up_anim" data-delay=".3" :dir="locale === 'ar' ? 'rtl' : 'ltr'">
+              <!-- ✅ النص -->
+              <p
+                class="pb-2 pb-lg-3 fade_up_anim small"
+                data-delay=".3"
+                :dir="locale === 'ar' ? 'rtl' : 'ltr'"
+                :style="{ textAlign: locale === 'ar' ? 'right' : 'left' }"
+              >
                 {{ t("whychoose.descFinal") }}
               </p>
 
-              <!-- زر الاتصال مع نص ديناميكي وتأثير ستايل محفوظ -->
+              <!-- ✅ زر واتساب -->
               <a
-                class="primary-btn"
+                class="primary-btn d-inline-flex align-items-center gap-2"
                 href="https://wa.me/009647749992888"
                 target="_blank"
+                rel="noopener"
               >
                 {{ locale === 'ar' ? 'اتصل بنا' : 'Contact Us' }}
-                <PhArrowUpRight />
+                <PhArrowUpRight size="20" />
               </a>
             </div>
           </div>
-        </div>
-        <div class="d-none col-lg-2 col-xl-3 d-lg-block position-relative">
-          <div class="about-line-2"></div>
-          <div class="about-line-3"></div>
         </div>
       </div>
     </div>

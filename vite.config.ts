@@ -6,7 +6,7 @@ import autoprefixer from 'autoprefixer' // إضافة Autoprefixer
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/', // ✅ الحل لمشكلة Vercel
+  base: './', // ✅ الحل الحقيقي لمشكلة اختلاف الشكل بين Vercel والمحلي
   plugins: [
     vue(),
     vueDevTools(),
@@ -19,11 +19,15 @@ export default defineConfig({
   css: {
     postcss: {
       plugins: [
-        autoprefixer(), // إضافة Autoprefixer كمكوّن PostCSS
+        autoprefixer(), // ✅ يضمن تنسيق CSS على كل المتصفحات
       ],
     },
   },
   build: {
+    target: 'esnext', // ✅ يضمن أحدث ميزات JS وDOM
+    cssTarget: 'chrome100', // ✅ يحاكي بيئة حقيقية للمتصفح
+    outDir: 'dist', // ✅ مجلد الإخراج
+    emptyOutDir: true, // ✅ تنظيف تلقائي قبل كل build
     rollupOptions: {
       output: {
         manualChunks: {

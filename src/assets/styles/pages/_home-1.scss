@@ -18,20 +18,20 @@
     background: linear-gradient(90deg, rgba(16, 39, 29, 0.8) 0%, rgba(16, 39, 29, 0.6) 45.61%, rgba(16, 39, 29, 0.6) 76.6%, rgba(16, 39, 29, 0.8) 100%);
   }
 
-  .banner-content {
-    position: relative;
-    z-index: 8;
-    padding: 70px 0;
-    @media (min-width: 768px) {
-      padding: 90px 0;
-    }
-    @media (min-width: 1200px) {
-      padding: 155px 0 250px;
-    }
-    @media (min-width: 1600px) {
-      padding: 155px 0 280px;
-    }
+.banner-content {
+  position: relative;
+  z-index: 8;
+  padding: 70px 0;
+  @media (min-width: 768px) {
+    padding: 90px 0;
   }
+  @media (min-width: 1200px) {
+    padding: 155px 0 250px;
+  }
+  @media (min-width: 1600px) {
+    padding: 155px 0 280px;
+  }
+}
   .hero-text {
     font-weight: 600;
     text-transform: uppercase;
@@ -506,7 +506,6 @@
     border-color: $secondary2;
   }
 }
-// why choose us
 .whychoose {
   background-image: url("/images/why-choose-bg-1.webp");
   background-color: $n0;
@@ -514,54 +513,55 @@
   background-repeat: no-repeat;
   background-position: right;
   background-size: contain;
+
   @media (max-width: 768px) {
     background-size: cover;
   }
+
   .whychoose-card {
-    margin: 60px 0;
-    @include screen(xl) {
-      margin: 120px 0;
-    }
-    padding: 24px 16px;
+    background-color: $bg1;
+    padding: 16px;
+
     @include screen(md) {
-      padding: 40px 30px;
+      padding: 30px;
     }
     @include screen(lg) {
-      padding: 50px;
-    }
-    @include screen(xl) {
-      padding: 80px;
+      padding: 60px;
     }
     @include screen(xxl) {
-      padding: 120px 110px;
+      padding: 110px 100px 120px;
     }
-    background-color: $bg1;
-  }
-}
-.why-list {
-  column-count: 1;
-  margin-bottom: 30px;
-  padding-left: 0;
-  list-style-type: none;
-  @include screen(lg) {
-    column-count: 2;
-  }
-  @include screen(xl) {
-    margin-bottom: 30px;
-  }
-  li {
-    font-size: 16px;
-    @include screen(lg) {
-      font-size: 20px;
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 16px;
+
+      @include screen(md) {
+        font-size: 32px;
+      }
+
+      @include screen(lg) {
+        font-size: 36px;
+      }
     }
-    font-weight: 500;
-    margin-bottom: 10px;
-    line-height: 150%;
-    color: $n700;
-    i,
-    svg {
-      font-size: 1.2rem;
-      flex-shrink: 0;
+
+    p {
+      font-size: 15px;
+      line-height: 1.6; // 160%
+      color: $n700;
+      margin-bottom: 24px;
+
+      @include screen(md) {
+        font-size: 16px;
+      }
+    }
+
+    a.primary-btn {
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px 20px;
     }
   }
 }
@@ -846,7 +846,6 @@
   padding: 60px 0;
   @include screen(xl) {
     padding: 120px 0;
-    background-image: url(/images/faq-bg-1.webp);
   }
   &.faq-home {
     @include screen(xl) {
@@ -958,9 +957,9 @@
     }
   }
   .footer-up {
-    padding-bottom: 60px;
+    padding-bottom: 20px;
     @include screen(xl) {
-      padding-bottom: 120px;
+      padding-bottom: 40px;
     }
   }
   .arrow-up-2 {

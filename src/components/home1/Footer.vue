@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n"
-import { RouterLink } from "vue-router"
 import {
   PhArrowUpRight,
   PhEnvelopeOpen,
   PhFacebookLogo,
   PhInstagramLogo,
-  PhLinkedinLogo,
-  PhMapPin,
-  PhPaperPlaneTilt,
   PhPhoneCall,
-  PhTwitterLogo,
 } from "@phosphor-icons/vue"
-import logo from "/images/logo.png"
+import logo from "/images/partners/mansour.png"
 
 const { t, locale } = useI18n()
 </script>
@@ -20,174 +15,156 @@ const { t, locale } = useI18n()
 <template>
   <footer class="footer position-relative">
     <div class="container-fluid">
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-12 left-col pe-0">
-          <div>
-            <div class="cta reveal reveal--left reveal--overlay">
-              <div class="cta-content">
-                <h2 class="mb-2 fade_up_anim">{{ t('footer.ctaTitle') }}</h2>
-                <p class="mb-3 mb-xl-4 fade_up_anim" data-delay=".3">{{ t('footer.ctaDesc') }}</p>
-                <a
-                  href="https://wa.me/009647800530333"
-                  target="_blank"
-                  class="black-btn"
-                  style="display: inline-flex; align-items: center;"
-                >
-                  {{ t('footer.ctaBtn') }} <PhArrowUpRight />
-                </a>
-              </div>
+          <div class="cta reveal reveal--left reveal--overlay text-center">
+            <div class="cta-content">
+              <h2 class="mb-2 fade_up_anim">{{ t('footer.ctaTitle') }}</h2>
+              <p class="mb-3 mb-xl-4 fade_up_anim" data-delay=".3">{{ t('footer.ctaDesc') }}</p>
+              <a
+                href="https://wa.me/009647800530333"
+                target="_blank"
+                class="black-btn d-inline-flex align-items-center gap-2 px-4 py-2"
+              >
+                {{ t('footer.ctaBtn') }} <PhArrowUpRight />
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="position-relative overflow-x-hidden">
-      <div class="container footer-up">
-        <div class="row g-3 g-lg-4">
-          <div class="col-md-6 col-xl-3">
-            <div class="footer-card fade_up_anim">
-              <a href="/"><img :src="logo" class="img-fluid mb-4" alt="Sama Al-Sedra Logo" /></a>
-              <p class="mb-4 pb-lg-3 text-white">{{ t('footer.desc') }}</p>
-              <ul class="social-link">
-                <li>
-                  <a href="https://www.facebook.com/profile.php?id=61567916993019" target="_blank" rel="noopener noreferrer">
-                    <PhFacebookLogo />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/sm_lsdr/" target="_blank" rel="noopener noreferrer">
-                    <PhInstagramLogo />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
 
-          <div class="col-md-6 col-xl-3">
-            <div class="footer-card fade_up_anim" data-delay=".2">
-              <!-- روابط القائمة السريعة مخفية -->
-            </div>
-          </div>
+<!-- جملة العنوان فوق اللوغو -->
+<p class="text-white description text-center mb-3">
+  {{ t('footer.addressText') }}
+</p>
 
-          <div class="col-md-6 col-xl-3">
-            <div class="footer-card fade_up_anim" data-delay=".4">
-              <h3 class="text-white pb-3">{{ t('footer.contact') }}</h3>
-              <ul class="contact">
-                <li class="contact-item">
-                  <div class="contact-icon"><PhPhoneCall /></div>
-                  <div class="d-flex flex-column gap-1">
-                    <a href="tel:009647749992888" class="text-white">00964 774 999 2888</a>
-                    <a href="tel:009647820000000" class="text-white">00964 782 000 0000</a>
-                  </div>
-                </li>
-                <li class="contact-item">
-                  <div class="contact-icon"><PhEnvelopeOpen /></div>
-                  <div class="d-flex flex-column gap-1">
-                    <a href="mailto:info@samaalsedra.com" class="text-white">info@samaalsedra.com</a>
-                  </div>
-                </li>
-                <li class="contact-item">
-                  <div class="contact-icon"><PhMapPin /></div>
-                  <div class="d-flex flex-column gap-1">
-                    <a
-                      href="https://maps.app.goo.gl/kACRTDJPCiwboe4p6"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-white d-inline-block"
-                      style="text-decoration: none; position: relative;"
-                    >
-                      <span class="text-white" style="display: inline-block;">{{ t('footer.addressText') }}</span>
-                      <span style="display: inline-block; position: relative; margin-top: 5px; width: 100%; height: 20px;">
-                        <span
-                          style="
-                            display: block;
-                            width: 100%;
-                            height: 2px;
-                            background: repeating-linear-gradient(to right, #fff 0 5px, transparent 5px 10px);
-                            position: absolute;
-                            bottom: 0;
-                          "
-                        ></span>
-                        <span
-                          class="animated-car"
-                          style="position: absolute; bottom: 3px; left: 0; font-size: 1.2em;"
-                        >
-                          🚕
-                        </span>
-                      </span>
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+    <!-- الشعار -->
+    <div class="footer-logo-wrapper container text-center my-4">
+      <img :src="logo" alt="Logo" class="footer-logo" />
+    </div>
 
-          <div class="col-md-6 col-xl-3">
-            <div class="footer-card fade_up_anim" data-delay=".6">
-              <!-- النشرة الإخبارية مخفية -->
-            </div>
-          </div>
-        </div>
+    <!-- جملة الشرح -->
+    <div
+      class="footer-contact-section container py-2 px-3"
+      :class="locale === 'ar' ? 'text-end' : 'text-start'"
+    >
+      <p class="text-white mb-4" style="max-width: 900px; margin-inline: auto">
+        {{ t('footer.description') }}
+      </p>
+
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+        <!-- تواصل معنا -->
+        <ul class="contact list-unstyled d-flex flex-column flex-md-row gap-3 m-0">
+          <li class="contact-item d-flex align-items-center gap-2">
+            <div class="contact-icon"><PhPhoneCall /></div>
+            <a href="tel:009647749992888" class="text-white small">00964 774 999 2888</a>
+          </li>
+          <li class="contact-item d-flex align-items-center gap-2">
+            <div class="contact-icon"><PhPhoneCall /></div>
+            <a href="tel:009647820000000" class="text-white small">00964 782 000 0000</a>
+          </li>
+          <li class="contact-item d-flex align-items-center gap-2">
+            <div class="contact-icon"><PhEnvelopeOpen /></div>
+            <a href="mailto:info@samaalsedra.com" class="text-white small">info@samaalsedra.com</a>
+          </li>
+        </ul>
+
+        <!-- أيقونات التواصل -->
+        <ul class="social-link d-flex gap-3 mb-0">
+          <li>
+            <a href="https://www.facebook.com/profile.php?id=61567916993019" target="_blank" rel="noopener" aria-label="Facebook">
+              <PhFacebookLogo />
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/sm_lsdr/" target="_blank" rel="noopener" aria-label="Instagram">
+              <PhInstagramLogo />
+            </a>
+          </li>
+        </ul>
       </div>
+    </div>
 
-      <div class="container copyright">
-        <div class="row">
-          <div class="col-12">
-            <div class="footer-card d-flex flex-wrap gap-3 align-items-center justify-content-between px-3">
-              <p class="text-white">{{ t('footer.copyright') }}</p>
-              <ul class="list-unstyled d-flex flex-wrap align-items-center mb-0 ps-0 gap-2">
-                <li><a href="#" class="text-white">{{ t('footer.privacy') }}</a></li>
-                <li class="text-primary text-sm d-none d-sm-block">•</li>
-                <li><a href="#" class="text-white">{{ t('footer.terms') }}</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- خارطة جوجل -->
+    <div class="map-container w-100">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624!2d44.3661!3d33.3152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15577f4a5a3f6b3d%3A0x4a7a3d5e3e1b8e1e!2sBaghdad!5e0!3m2!1sar!2siq!4v1721841600"
+        width="100%"
+        height="240"
+        frameborder="0"
+        style="border:0; display:block"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+
+    <!-- حقوق النشر -->
+    <div class="text-center py-4">
+      <a
+        href="https://qrbrand.net"
+        class="text-white small text-decoration-none"
+        target="_blank"
+        rel="noopener"
+      >
+        All rights reserved © QRBRAND LTD
+      </a>
     </div>
   </footer>
 </template>
 
-<style lang="scss" scoped>
-@import "@/assets/styles/_mixins.scss";
-
+<style scoped>
 .footer {
-  @include preserve-layout($key: 'md');
+  background: #0c0c0c;
+  color: #fff;
+  font-size: 15px;
 }
 
-@keyframes drive-alternate {
-  0% {
-    left: 0%;
-    transform: scaleX(1);
-  }
-  49.999% {
-    transform: scaleX(1);
-  }
-  50% {
-    transform: scaleX(-1);
-  }
-  100% {
-    left: 100%;
-    transform: scaleX(-1);
+.footer-contact-section {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: start;
+}
+
+.footer-logo {
+  width: 900px;
+  max-width: 100%;
+}
+
+.contact-icon {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-top: 2px;
+}
+
+.social-link a {
+  font-size: 1.5rem;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.social-link a:hover {
+  transform: scale(1.2);
+  color: #ffc107;
+}
+
+.map-container iframe {
+  height: 240px;
+  width: 100%;
+  background-color: #0c0c0c;
+}
+
+@media (min-width: 768px) {
+  .map-container iframe {
+    height: 280px;
   }
 }
 
-.animated-car {
-  animation: drive-alternate 6s ease-in-out infinite alternate;
-}
-
-@keyframes drive {
-  0% {
-    left: 0;
+@media (min-width: 1200px) {
+  .map-container iframe {
+    height: 320px;
   }
-  100% {
-    left: 100%;
-  }
-}
-
-[dir-auto] {
-  unicode-bidi: plaintext;
-  direction: inherit;
 }
 </style>
