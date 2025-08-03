@@ -346,10 +346,13 @@ function openChat() {
     right: 8px;
     bottom: 8px;
     height: 85vh;
+    background-color: #ffffff !important; /* إزالة الشفافية */
+    backdrop-filter: none !important;     /* إلغاء البلور للموبايل */
   }
   .sama-floating-btn {
     right: 12px;
     bottom: 12px;
   }
 }
+
 </style>
