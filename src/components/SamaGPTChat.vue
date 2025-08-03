@@ -8,7 +8,7 @@ const chatOpen = ref(false);
 const messages = ref([
   {
     from: "ai",
-    text: "مرحبا انا سما، روبوت ذكاء اصطناعي عراقي خاص، شلون تحب اساعدك",
+    text: "مرحبا انا سما",
   },
 ]);
 const userInput = ref("");
@@ -132,7 +132,7 @@ function openChat() {
       </form>
       <div class="sama-chatbox-wa-glass">
         <a
-          href="https://wa.me/009647800530333"
+          href="https://wa.me/009647749992888"
           class="sama-wa-btn-glass"
           target="_blank"
           rel="noopener"

@@ -27,7 +27,7 @@ const clients = indexes.map((i) => ({
 
 const whatsapp = {
   img: "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg", // أيقونة واتساب SVG واضحة
-  link: "https://wa.me/009647800530333",
+  link: "https://wa.me/009647749992888",
 };
 </script>
 

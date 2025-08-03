@@ -2,17 +2,69 @@
 import { RouterView } from "vue-router"
 import RootLayout from "./layouts/RootLayout.vue"
 import "@/assets/styles/main.scss"
+import { onMounted, watch } from "vue"
+import { useI18n } from "vue-i18n"
 import SamaGPTChat from "@/components/SamaGPTChat.vue"
-
-import { onMounted, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n()
 
 onMounted(() => {
-  // ✅ تحديد لغة الصفحة
   document.documentElement.lang = locale.value
 
+  // ✅ CSS قوي يثبّت الأيقونة والحركات
+  const style = document.createElement("style")
+  style.innerHTML = `
+    /* تثبيت الأيقونة */
+    .sama-gpt-fixed {
+      position: fixed !important;
+      bottom: 20px !important;
+      right: 20px !important;
+      z-index: 999999 !important;
+      transition: all 0.3s ease !important;
+    }
+
+    /* حركة نبض على الموبايل */
+    @keyframes softPulseMobile {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(159, 212, 86, 0.6); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(159, 212, 86, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(159, 212, 86, 0); }
+    }
+
+    @media (max-width: 600px) {
+      .sama-gpt-fixed {
+        width: 56px !important;
+        height: 56px !important;
+        bottom: 16px !important;
+        right: 16px !important;
+        animation: softPulseMobile 8s ease-in-out infinite;
+      }
+    }
+
+    /* إصلاحات عامة */
+    html, body, #app {
+      transform: none !important;
+      contain: none !important;
+      overflow: visible !important;
+    }
+  `
+  document.head.appendChild(style)
+
+  // ✅ حركة الأيقونة حسب السكرول
+  let lastScroll = window.scrollY
+  const chatWrapper = document.querySelector(".sama-gpt-fixed") as HTMLElement
+
+  window.addEventListener("scroll", () => {
+    if (!chatWrapper) return
+
+    if (window.scrollY > lastScroll + 10) {
+      chatWrapper.style.opacity = "0.5"
+      chatWrapper.style.transform = "scale(0.9)"
+    } else {
+      chatWrapper.style.opacity = "1"
+      chatWrapper.style.transform = "scale(1)"
+    }
+    lastScroll = window.scrollY
+  })
 })
 
 watch(locale, (newLang) => {
@@ -24,37 +76,8 @@ watch(locale, (newLang) => {
   <component :is="$route.meta.layout || RootLayout">
     <RouterView />
   </component>
-  <SamaGPTChat />
+  <!-- ✅ نسخة وحدة للشات مثبّتة -->
+  <div class="sama-gpt-fixed">
+    <SamaGPTChat />
+  </div>
 </template>
-
-<style>
-/* ===== إصلاح مشاكل العرض العام بكل المتصفحات ===== */
-:root {
-  font-size: 16px;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: visible !important;
-  max-width: 100vw;
-  font-family: 'Tajawal', sans-serif;
-  scroll-behavior: smooth;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.container,
-.row,
-.section {
-  overflow: visible !important;
-  position: relative;
-}
-
-.side-text, .vertical-text, .floating-title {
-  position: absolute;
-  z-index: 5;
-}
-</style>

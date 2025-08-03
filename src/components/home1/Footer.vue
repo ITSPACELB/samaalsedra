@@ -22,7 +22,7 @@ const { t, locale } = useI18n()
               <h2 class="mb-2 fade_up_anim">{{ t('footer.ctaTitle') }}</h2>
               <p class="mb-3 mb-xl-4 fade_up_anim" data-delay=".3">{{ t('footer.ctaDesc') }}</p>
               <a
-                href="https://wa.me/009647800530333"
+                href="https://wa.me/009647749992888"
                 target="_blank"
                 class="black-btn d-inline-flex align-items-center gap-2 px-4 py-2"
               >
@@ -166,5 +166,11 @@ const { t, locale } = useI18n()
   .map-container iframe {
     height: 320px;
   }
+  .contact-item a {
+  direction: ltr !important;
+  unicode-bidi: bidi-override;
+  display: inline-block;
+}
+
 }
 </style>

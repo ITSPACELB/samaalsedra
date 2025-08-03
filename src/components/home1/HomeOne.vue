@@ -26,21 +26,21 @@ useFadeUpAnimation()
     <Experts />
 
     <!-- التقسيم من هون وطالع -->
-<section class="two-column-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4">
-        <Faq />
+    <section class="two-column-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <Faq />
+          </div>
+          <div class="col-lg-8">
+            <WhyChoose />
+            <RecentProject />
+            <Testimonial />
+            <Footer />
+          </div>
+        </div>
       </div>
-      <div class="col-lg-8">
-        <WhyChoose />
-        <RecentProject />
-        <Testimonial />
-        <Footer />
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
   </div>
 </template>
 
@@ -52,14 +52,14 @@ useFadeUpAnimation()
 
   // 🎯 نضبط المحاذاة لتكون مثل باقي الأقسام
   width: 100%;
-  max-width: 1320px; // أو 1140px حسب تصميمك (جرب شوف شو أنسب)
+  max-width: 1320px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 48px;
 
   @media (max-width: 992px) {
     flex-direction: column;
-    padding-inline: 16px; // نرجّعها فقط للجوال
+    padding-inline: 16px; // للموبايل فقط
   }
 }
 
@@ -75,7 +75,6 @@ useFadeUpAnimation()
   }
 }
 
-
 .content-side {
   flex: 1;
   display: flex;
@@ -86,5 +85,24 @@ useFadeUpAnimation()
     gap: 32px;
   }
 }
-</style>
 
+/* ✅ إلغاء الفراغات للموبايل */
+@media (max-width: 768px) {
+  .two-column-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .two-column-section .container,
+  .two-column-section .row,
+  .two-column-section .col-lg-4,
+  .two-column-section .col-lg-8 {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+</style>

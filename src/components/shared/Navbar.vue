@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import logoWhite from "/images/logo.png"
-import { useI18n } from "vue-i18n"
+import logoWhite from "/images/logo.png";
+import { useI18n } from "vue-i18n";
 
-const { locale } = useI18n()
+const { locale } = useI18n();
 
 function toggleLanguage() {
-  locale.value = locale.value === "en" ? "ar" : "en"
+  locale.value = locale.value === "en" ? "ar" : "en";
 }
 
 type Props = {
-  cls?: string
-  logo?: string
-}
-defineProps<Props>()
+  cls?: string;
+  logo?: string;
+};
+defineProps<Props>();
 </script>
 
 <template>
@@ -44,7 +44,6 @@ defineProps<Props>()
 </template>
 
 <style scoped>
-/* زر اللغة بتصميم عصري وأنيق */
 .language-btn-wrapper {
   position: absolute;
   left: 15px;
@@ -54,18 +53,18 @@ defineProps<Props>()
 }
 
 .language-toggle {
-  background: linear-gradient(135deg,rgb(80, 180, 3),rgb(217, 255, 0));
-  color: #ffffff;
-  border: none;
-  border-radius: 14px;
-  padding: 0.1px 16px;
+  background: #ffffff;
+  color: #444;
+  border: 2px solid #f9d423; /* مستوحى من ألوان الطاقة الشمسية */
+  border-radius: 30px;
+  padding: 6px 16px;
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-  transition: all 0.25s ease;
+  letter-spacing: 0.6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
   cursor: pointer;
-  min-width: 25px;
+  min-width: 45px;
   text-align: center;
   display: inline-flex;
   align-items: center;
@@ -73,19 +72,31 @@ defineProps<Props>()
 }
 
 .language-toggle:hover {
-  background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
-  transform: scale(1.06);
+  background: linear-gradient(135deg, #f9d423, #ff4e50);
+  color: #fff;
+  transform: translateY(-2px) scale(1.05);
+  border: none;
 }
 
+.language-toggle:active {
+  transform: scale(0.95);
+}
 
 /* تكبير اللوغو */
 .main-logo {
   max-height: 85px;
   transition: all 0.3s ease;
 }
+
 @media (max-width: 768px) {
   .main-logo {
     max-height: 70px;
+  }
+  .language-toggle {
+    padding: 5px 14px;
+    font-size: 13px;
+    border-radius: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 }
 </style>
