@@ -160,7 +160,7 @@ export function sendWhatsApp(
 ${summary}`;
 
   window.open(
-    `https://wa.me/009647749992888?text=${encodeURIComponent(msg)}`,
+    `https://wa.me/+9647749992888?text=${encodeURIComponent(msg)}`,
     '_blank'
   );
 }

@@ -54,7 +54,7 @@ const isFormValid = computed(() => {
 function sendToWhatsapp() {
   if (!isFormValid.value) return;
   const text = `${t('faq.form.name')}: ${name.value}\n${t('faq.form.address')}: ${address.value}\n${t('faq.form.phone')}: ${phone.value}\n${t('faq.form.question')}: ${question.value}`;
-  window.open(`https://wa.me/009647749992888?text=${encodeURIComponent(text)}`, '_blank');
+  window.open(`https://wa.me/+9647749992888?text=${encodeURIComponent(text)}`, '_blank');
   // Reset form after send
   name.value = '';
   address.value = '';

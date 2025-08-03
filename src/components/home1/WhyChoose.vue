@@ -37,7 +37,7 @@ const { t, locale } = useI18n()
               <!-- ✅ زر واتساب -->
               <a
                 class="primary-btn d-inline-flex align-items-center gap-2"
-                href="https://wa.me/009647749992888"
+                href="https://wa.me/+9647749992888"
                 target="_blank"
                 rel="noopener"
               >

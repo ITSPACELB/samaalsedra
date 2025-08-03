@@ -22,7 +22,7 @@ const { t, locale } = useI18n()
               <h2 class="mb-2 fade_up_anim">{{ t('footer.ctaTitle') }}</h2>
               <p class="mb-3 mb-xl-4 fade_up_anim" data-delay=".3">{{ t('footer.ctaDesc') }}</p>
               <a
-                href="https://wa.me/009647749992888"
+                href="https://wa.me/+9647749992888"
                 target="_blank"
                 class="black-btn d-inline-flex align-items-center gap-2 px-4 py-2"
               >
@@ -34,11 +34,10 @@ const { t, locale } = useI18n()
       </div>
     </div>
 
-
-<!-- جملة العنوان فوق اللوغو -->
-<p class="text-white description text-center mb-3">
-  {{ t('footer.addressText') }}
-</p>
+    <!-- جملة العنوان فوق اللوغو -->
+    <p class="description text-center mb-3 blink-text">
+      {{ t('footer.addressText') }}
+    </p>
 
     <!-- الشعار -->
     <div class="footer-logo-wrapper container text-center my-4">
@@ -59,15 +58,15 @@ const { t, locale } = useI18n()
         <ul class="contact list-unstyled d-flex flex-column flex-md-row gap-3 m-0">
           <li class="contact-item d-flex align-items-center gap-2">
             <div class="contact-icon"><PhPhoneCall /></div>
-            <a href="tel:009647749992888" class="text-white small">00964 774 999 2888</a>
+            <a href="tel:+9647749992888" class="text-white small no-flip">00964 774 999 2888</a>
           </li>
           <li class="contact-item d-flex align-items-center gap-2">
             <div class="contact-icon"><PhPhoneCall /></div>
-            <a href="tel:009647820000000" class="text-white small">00964 782 000 0000</a>
+            <a href="tel:009647820000000" class="text-white small no-flip">00964 782 000 0000</a>
           </li>
           <li class="contact-item d-flex align-items-center gap-2">
             <div class="contact-icon"><PhEnvelopeOpen /></div>
-            <a href="mailto:info@samaalsedra.com" class="text-white small">info@samaalsedra.com</a>
+            <a href="mailto:info@samaalsedra.com" class="text-white small no-flip">info@samaalsedra.com</a>
           </li>
         </ul>
 
@@ -156,6 +155,29 @@ const { t, locale } = useI18n()
   background-color: #0c0c0c;
 }
 
+/* ✅ حل قلب الأرقام */
+.no-flip {
+  direction: ltr !important;
+  unicode-bidi: bidi-override;
+  display: inline-block;
+}
+
+/* ✅ نص العنوان يومض بين الأحمر والأبيض */
+.blink-text {
+  font-weight: bold;
+  font-size: 1.2rem;
+  animation: blinkColor 1s infinite;
+}
+
+@keyframes blinkColor {
+  0%, 100% {
+    color: red;
+  }
+  50% {
+    color: white;
+  }
+}
+
 @media (min-width: 768px) {
   .map-container iframe {
     height: 280px;
@@ -166,11 +188,5 @@ const { t, locale } = useI18n()
   .map-container iframe {
     height: 320px;
   }
-  .contact-item a {
-  direction: ltr !important;
-  unicode-bidi: bidi-override;
-  display: inline-block;
-}
-
 }
 </style>

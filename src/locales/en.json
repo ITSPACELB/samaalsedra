@@ -152,6 +152,24 @@
         "description": "Clear and scientific answers to common questions about solar energy and our services.",
         "showMore": "Show More",
         "showLess": "Show Less",
+
+        "form": {
+  "title": "We are at your service 24/7",
+  "description": "Send your question, and our engineering and technical team will respond.",
+  "alert": "Filling out all fields will enable you to send and receive an answer.",
+  "name": "Name",
+  "address": "Address",
+  "phone": "Phone Number",
+  "question": "Question",
+  "namePlaceholder": "Enter your name",
+  "addressPlaceholder": "Enter your address",
+  "phonePlaceholder": "Enter your phone number",
+  "questionPlaceholder": "Enter your question",
+  "submit": "Send",
+  "show": "Ask a Question",
+  "hide": "Hide Form"
+},
+
         "items": [
             {
                 "q": "How does Sama Al-Sedra’s solar system work?",
@@ -459,7 +477,7 @@
     "availableHoursPlaceholder": "Enter supply hours before next outage",
     "chargeWarning": "⚠️ Supply duration ({availableHours} hrs) may be insufficient to fully charge the battery, especially at night.",
 
-      "calculator.startQuestion": "Start by entering your data to design your solar system!",
+  "startQuestion": "Start by entering your data to design your solar system!",
       "questionSystemType": "What type of system do you want? (Economy, Stable, High Performance)",
       "questionGovernorate": "In which governorate is your facility located?",
       "questionGoodSunlight": "Does your area receive good sunlight?",

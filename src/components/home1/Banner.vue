@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import Lines from "../shared/Lines.vue";
 import { useI18n } from "vue-i18n";
 import TopHead from "@/components/tophead.vue";
@@ -16,6 +17,109 @@ const partners = [
   { nameKey: "risen.title", logo: "/images/partners/risen-logo.png" },
   { nameKey: "powersolid.title", logo: "/images/partners/power solid-logo.png" },
 ];
+
+const tickerTrack = ref<HTMLElement | null>(null);
+
+onMounted(() => {
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent); // ✅ كشف الجهاز
+
+  let posX = 0;
+  let velX = 0;
+  let rotY = 0;
+  let velRot = 0;
+  let shake = 0; // 🔥 قوة الاهتزاز
+  let isMoving = false;
+
+  const applyTransform = () => {
+    if (tickerTrack.value) {
+      tickerTrack.value.style.transform = `
+        perspective(800px)
+        translateX(${posX + shake}px)
+        rotateY(${rotY}deg)
+      `;
+    }
+  };
+
+  // 🎯 الموبايل - إحساس السقوط + اهتزاز
+  const handleOrientation = (e: DeviceOrientationEvent) => {
+    if (!isMobile) return;
+    if (e.gamma !== null) {
+      isMoving = true;
+      const tilt = e.gamma; // ميل الموبايل
+      velX += tilt * 0.6;
+      velRot += tilt * 0.25;
+
+      // 🔥 اهتزاز لما الميلان قوي (إحساس سقوط)
+      if (Math.abs(tilt) > 15) {
+        shake = (Math.random() - 0.5) * 8; // اهتزاز قوي
+      } else if (Math.abs(tilt) > 8) {
+        shake = (Math.random() - 0.5) * 4; // اهتزاز خفيف
+      } else {
+        shake = 0;
+      }
+    }
+  };
+
+// 🎯 الكمبيوتر - حركة يمين وشمال لكل العناصر مع الماوس
+const handleMouseMove = (e: MouseEvent) => {
+  if (isMobile) return;
+
+  const screenCenterX = window.innerWidth / 2;
+
+  // احسب إزاحة الماوس عن الوسط
+  const offsetX = (e.clientX - screenCenterX) / 50; // كل ما الرقم أصغر، الحركة أخف
+
+  // حرك كل الشريط يمين وشمال بشكل انسيابي
+  if (tickerTrack.value) {
+    tickerTrack.value.style.transform = `
+      translateX(${offsetX * 8}px)
+    `;
+  }
+};
+
+  // 🌀 فيزياء السقوط (موبايل فقط)
+  const physicsLoop = () => {
+    if (!isMobile) {
+      requestAnimationFrame(physicsLoop);
+      return;
+    }
+
+    if (!isMoving) {
+      velX *= 0.94;
+      velRot *= 0.9;
+      shake *= 0.85; // اهتزاز يخف تدريجياً
+    } else {
+      isMoving = false;
+    }
+
+    posX += velX;
+    rotY += velRot;
+
+    // حدود الميلان
+    posX = Math.max(Math.min(posX, 150), -150);
+    rotY = Math.max(Math.min(rotY, 20), -20);
+
+    applyTransform();
+    requestAnimationFrame(physicsLoop);
+  };
+
+  physicsLoop();
+
+  // ✅ Event Listeners
+  if (isMobile) {
+    window.addEventListener("deviceorientation", handleOrientation, true);
+  } else {
+    window.addEventListener("mousemove", handleMouseMove);
+  }
+
+  onBeforeUnmount(() => {
+    if (isMobile) {
+      window.removeEventListener("deviceorientation", handleOrientation);
+    } else {
+      window.removeEventListener("mousemove", handleMouseMove);
+    }
+  });
+});
 </script>
 
 <template>
@@ -40,42 +144,42 @@ const partners = [
     </div>
 
     <!-- Partners Ticker -->
-    <div class="partners-ticker" role="marquee">
-      <div class="ticker-track">
-        <!-- النسخة الأولى -->
-        <div class="ticker-set">
-          <div
-            class="ticker-item"
-            v-for="(partner, i) in partners"
-            :key="'a-' + i"
-          >
-            <img :src="partner.logo" :alt="t('partners.' + partner.nameKey)" class="ticker-logo" />
-            <div class="ticker-content">
-              <span class="ticker-name">{{ t('partners.' + partner.nameKey) }}</span>
-              <div class="rating-stars">
-                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- النسخة الثانية -->
-        <div class="ticker-set">
-          <div
-            class="ticker-item"
-            v-for="(partner, i) in partners"
-            :key="'b-' + i"
-          >
-            <img :src="partner.logo" :alt="t('partners.' + partner.nameKey)" class="ticker-logo" />
-            <div class="ticker-content">
-              <span class="ticker-name">{{ t('partners.' + partner.nameKey) }}</span>
-              <div class="rating-stars">
-                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-              </div>
-            </div>
+<div class="partners-ticker" role="marquee">
+  <div class="ticker-track" ref="tickerTrack">
+    <!-- النسخة الأولى -->
+    <div class="ticker-set">
+      <div
+        class="ticker-item"
+        v-for="(partner, i) in partners"
+        :key="'a-' + i"
+      >
+        <img :src="partner.logo" :alt="t('partners.' + partner.nameKey)" class="ticker-logo" />
+        <div class="ticker-content">
+          <span class="ticker-name">{{ t('partners.' + partner.nameKey) }}</span>
+          <div class="rating-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
           </div>
         </div>
       </div>
     </div>
+    <!-- النسخة الثانية -->
+    <div class="ticker-set">
+      <div
+        class="ticker-item"
+        v-for="(partner, i) in partners"
+        :key="'b-' + i"
+      >
+        <img :src="partner.logo" :alt="t('partners.' + partner.nameKey)" class="ticker-logo" />
+        <div class="ticker-content">
+          <span class="ticker-name">{{ t('partners.' + partner.nameKey) }}</span>
+          <div class="rating-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   </section>
 </template>
 
@@ -128,7 +232,9 @@ const partners = [
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker-scroll 30s linear infinite;
+  transform-style: preserve-3d;
+  transition: transform 0.05s linear;
+  will-change: transform;
 }
 
 .ticker-set {

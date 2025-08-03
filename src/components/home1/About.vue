@@ -49,12 +49,8 @@ const handleReset = () => {
   // إعادة تعيين الحاسبة
   resetCalculator(user.value, step, aiMsg, resetCount.value, t);
 
-  // تحديد النص وفقًا للغة النشطة
-  aiMsg.value = safeTranslate(
-    t,
-    locale.value === 'ar' ? 'calculator.startQuestion' : 'calculator.startQuestion',
-    locale.value === 'ar' ? 'ابدأ بإدخال بياناتك لتصميم نظامك الشمسي!' : 'Start by entering your data to design your solar system!'
-  );
+// تحديد النص وفقًا للغة النشطة
+aiMsg.value = t('calculator.startQuestion');
 };
 
 // ✅ خيارات البطاريات والإنفرترات

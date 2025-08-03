@@ -2,35 +2,44 @@
 import { ref, nextTick } from "vue";
 import { PhWhatsappLogo, PhArrowRight } from "@phosphor-icons/vue";
 
-const girlBotImg = "https://api.dicebear.com/8.x/adventurer-neutral/svg?seed=TsunaLady&hair=longFrida,ponytail,longStraight&hairColor=ffd580,ffeec4,fff0a3&skinColor=light01";
+const girlBotImg =
+  "https://api.dicebear.com/8.x/adventurer-neutral/svg?seed=TsunaLady&hair=longFrida,ponytail,longStraight&hairColor=ffd580,ffeec4,fff0a3&skinColor=light01";
 
 const chatOpen = ref(false);
-const messages = ref([
-  {
-    from: "ai",
-    text: "مرحبا انا سما",
-  },
-]);
+const messages = ref([{ from: "ai", text: "مرحبا انا سما" }]);
 const userInput = ref("");
 const isLoading = ref(false);
 
 const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 
+// 🟢 إضافة الرسائل
+function addMessage(from: "ai" | "user", text: string) {
+  messages.value.push({ from, text });
+}
+
+// 🟢 إرسال الرسائل
 async function sendMessage() {
   if (!userInput.value.trim() || isLoading.value) return;
   const question = userInput.value.trim();
-  messages.value.push({ from: "user", text: question });
+  addMessage("user", question);
   userInput.value = "";
   isLoading.value = true;
 
   const sysPrompt = `
-أنت سما، روبوت ذكاء اصطناعي عراقي خاص بشركة "سما السدرة"، وكيل حصري لأهم الشركات العالمية في مجال الطاقة الشمسية والطاقة المستدامة في العراق.
-تقدم استشارات في: الطاقة الشمسية، البطاريات، ربط وصيانة المنظومات، خصوصاً لظروف العراق (حرارة مرتفعة وانقطاعات متكررة).
-تكلم بلغة بسيطة أو لهجة عراقية، وادفع الزبون للتواصل مع قسم الصيانة أو الدعم عبر واتساب 009647749992888 بطريقة ذكية وغير مباشرة.
-الشركات التي تمثلها:
-Itel – Cos Power – SOFAR – Dyness – Risen Energy – Chint – Easun
+أنت سما، روبوت ذكاء اصطناعي عراقي خاص بشركة "سما السدرة للطاقة الشمسية"، وكيل حصري لأهم الشركات العالمية في مجال الطاقة الشمسية في العراق.
+عنوان شركتنا: لا تتردد بزيارتنا في بغداد، المنصور، شارع التانكي.
+شركاء سما السدرة حول العالم:
+- شيساج: شركة عالمية رائدة في حلول الطاقة الشمسية والبطاريات من الصين.
+- إيتل: مزود حلول طاقة متكاملة وألواح شمسية موثوقة ذات جودة عالية.
+- كوز بور: ريادة في تكنولوجيا الطاقة المتجددة وتقديم منتجات مبتكرة.
+- سوفار سولار: شركة رائدة في مجال أنظمة الطاقة الشمسية الذكية حول العالم.
+- داينس: متخصصة ببطاريات الليثيوم عالية الأداء للطاقة الشمسية.
+- رايزن إنرجي: إحدى كبرى الشركات العالمية في إنتاج الألواح الشمسية الموثوقة.
+- باور سوليد: توفر منتجات طاقة شمسية متطورة ومتينة لأداء عالي وطويل الأمد.
+
+تحدث باللهجة العراقية البسيطة، وادفع الزبون للتواصل معنا عبر واتساب +9647749992888 بطريقة ذكية وغير مباشرة.
 لا تجب على أسئلة خارج هذا المجال.
-`;
+  `;
 
   try {
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -43,28 +52,34 @@ Itel – Cos Power – SOFAR – Dyness – Risen Energy – Chint – Easun
         model: "gpt-3.5-turbo",
         messages: [
           { role: "system", content: sysPrompt },
-          ...messages.value
-            .filter((msg) => msg.from === "user" || msg.from === "ai")
-            .map((msg) => ({
-              role: msg.from === "user" ? "user" : "assistant",
-              content: msg.text,
-            })),
-          { role: "user", content: question },
+          ...messages.value.map((msg) => ({
+            role: msg.from === "user" ? "user" : "assistant",
+            content: msg.text,
+          })),
         ],
         max_tokens: 800,
         temperature: 0.5,
       }),
     });
     const data = await res.json();
-    const answer = data?.choices?.[0]?.message?.content?.trim() || "عذراً، صار خطأ، حاول مرة ثانية.";
-    messages.value.push({ from: "ai", text: answer });
-  } catch (e) {
-    messages.value.push({ from: "ai", text: "صار خطأ بالإتصال، جرب بعدين." });
+    const answer =
+      data?.choices?.[0]?.message?.content?.trim() ||
+      "عذراً، صار خطأ، حاول مرة ثانية.";
+    addMessage("ai", answer);
+  } catch {
+    addMessage("ai", "صار خطأ بالإتصال، جرب بعدين.");
   } finally {
     isLoading.value = false;
     await nextTick();
     scrollToEnd();
   }
+}
+
+// 🟢 Auto-Resize للـ textarea
+function autoResize(e: Event) {
+  const textarea = e.target as HTMLTextAreaElement;
+  textarea.style.height = "auto"; // تصفير الارتفاع قبل الحساب
+  textarea.style.height = Math.min(textarea.scrollHeight, 120) + "px"; // بحد أقصى 5 أسطر تقريباً
 }
 
 function scrollToEnd() {
@@ -124,7 +139,7 @@ function openChat() {
           :disabled="isLoading"
           placeholder="اكتب سؤالك لسما..."
           rows="1"
-          @input="nextTick(() => scrollToEnd())"
+          @input="autoResize($event)"
         ></textarea>
         <button type="submit" class="sama-send-glass" :disabled="isLoading">
           <PhArrowRight size="20" />
@@ -132,7 +147,7 @@ function openChat() {
       </form>
       <div class="sama-chatbox-wa-glass">
         <a
-          href="https://wa.me/009647749992888"
+          href="https://wa.me/+9647749992888"
           class="sama-wa-btn-glass"
           target="_blank"
           rel="noopener"
@@ -143,6 +158,7 @@ function openChat() {
     </div>
   </transition>
 </template>
+
 <style scoped>
 :root {
   --sama-green: #9FD456;
@@ -153,16 +169,11 @@ function openChat() {
   --bubble-user-border: #cfcfcf;
   --chat-font: "system-ui", sans-serif;
 }
+
 @keyframes softPulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(159, 212, 86, 0.6);
-  }
-  70% {
-    box-shadow: 0 0 0 12px rgba(159, 212, 86, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(159, 212, 86, 0);
-  }
+  0% { box-shadow: 0 0 0 0 rgba(159, 212, 86, 0.6); }
+  70% { box-shadow: 0 0 0 12px rgba(159, 212, 86, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(159, 212, 86, 0); }
 }
 
 .sama-floating-btn {
@@ -182,13 +193,15 @@ function openChat() {
   cursor: pointer;
   transition: all 0.3s ease;
   animation: softPulse 3s ease-in-out infinite;
-
+  
 }
+
 .sama-float-avatar {
   width: 52px;
   height: 52px;
   border-radius: 50%;
 }
+
 .sama-chatbox-glass {
   position: fixed;
   bottom: 24px;
@@ -196,8 +209,8 @@ function openChat() {
   width: 400px;
   max-width: 100vw;
   height: 80vh;
-  background-color: #ffffffee;
-  backdrop-filter: blur(12px);
+  background-color: #ffffff !important; /* إلغاء الشفافية نهائياً */
+  backdrop-filter: none !important;
   border: 1.2px solid #e1e1e1;
   border-radius: 18px;
   display: flex;
@@ -208,6 +221,7 @@ function openChat() {
   animation: fadeInUp 0.5s ease;
   font-family: var(--chat-font);
 }
+
 .sama-chatbox-header-glass {
   display: flex;
   align-items: center;
@@ -216,11 +230,13 @@ function openChat() {
   background: linear-gradient(to right, #f6f6f6, #e9f2eb);
   border-bottom: 1px solid #dddddd;
 }
+
 .sama-header-avatar {
   width: 38px;
   height: 38px;
   border-radius: 50%;
 }
+
 .sama-header-title {
   flex-grow: 1;
   text-align: center;
@@ -228,6 +244,7 @@ function openChat() {
   font-size: 1rem;
   color: #1d1d1d;
 }
+
 .sama-close {
   background: none;
   border: none;
@@ -235,27 +252,28 @@ function openChat() {
   color: #999;
   cursor: pointer;
 }
+
 .sama-chatbox-messages-glass {
   flex: 1;
   overflow-y: auto;
   padding: 16px 12px;
 }
+
 .sama-msg-row-glass {
   display: flex;
   margin-bottom: 10px;
 }
-.sama-msg-row-glass.ai {
-  flex-direction: row;
-}
-.sama-msg-row-glass.user {
-  flex-direction: row-reverse;
-}
+
+.sama-msg-row-glass.ai { flex-direction: row; }
+.sama-msg-row-glass.user { flex-direction: row-reverse; }
+
 .sama-msg-avatar-glass {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   margin-inline-end: 8px;
 }
+
 .sama-msg-bubble-glass {
   max-width: 75%;
   padding: 10px 14px;
@@ -265,15 +283,18 @@ function openChat() {
   white-space: pre-line;
   word-break: break-word;
 }
+
 .sama-msg-bubble-glass.ai {
   background-color: var(--bubble-ai-bg);
   color: #333;
 }
+
 .sama-msg-bubble-glass.user {
   background-color: var(--bubble-user-bg);
   color: #000;
   border: 1px solid var(--bubble-user-border);
 }
+
 .sama-chatbox-input-glass {
   display: flex;
   align-items: center;
@@ -281,6 +302,7 @@ function openChat() {
   border-top: 1px solid #eee;
   gap: 8px;
 }
+
 .sama-input-glass {
   flex: 1;
   resize: none;
@@ -293,10 +315,11 @@ function openChat() {
   max-height: 120px;
   overflow-y: auto;
 }
+
 .sama-send-glass {
   width: 42px;
   height: 42px;
-  background-color: #fdd835; /* أصفر شمس */
+  background-color: #fdd835;
   color: white;
   border: none;
   border-radius: 50%;
@@ -306,15 +329,15 @@ function openChat() {
   transition: background-color 0.25s ease;
 }
 
-.sama-send-glass:hover {
-  background-color: #25D366; /* أخضر واتساب */
-}
+.sama-send-glass:hover { background-color: #25D366; }
+
 .sama-chatbox-wa-glass {
   padding: 10px;
   text-align: center;
   background-color: #f9f9f9;
   border-top: 1px solid #e1e1e1;
 }
+
 .sama-wa-btn-glass {
   background-color: #25D366;
   color: white;
@@ -327,27 +350,22 @@ function openChat() {
   text-decoration: none;
   font-size: 0.95rem;
 }
-.sama-wa-btn-glass:hover {
-  background-color: #20ba59;
-}
+
+.sama-wa-btn-glass:hover { background-color: #20ba59; }
+
 @keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(25px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
+
 @media (max-width: 600px) {
   .sama-chatbox-glass {
     width: 96vw;
     right: 8px;
     bottom: 8px;
     height: 85vh;
-    background-color: #ffffff !important; /* إزالة الشفافية */
-    backdrop-filter: none !important;     /* إلغاء البلور للموبايل */
+    background-color: #ffffff !important; /* إلغاء الشفافية */
+    backdrop-filter: none !important;
   }
   .sama-floating-btn {
     right: 12px;

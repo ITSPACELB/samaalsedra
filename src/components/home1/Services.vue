@@ -58,10 +58,18 @@ const services = [
     <div class="container">
       <div class="row align-items-end g-3 gx-xl-4 section-title">
         <div class="col-lg-6">
-          <h2 class="mb-3 fade_up_anim" :dir="locale === 'ar' ? 'rtl' : 'ltr'">
+          <!-- النصوص الرئيسية -->
+          <h2 
+            class="mb-3 fade_up_anim text-dir" 
+            :class="locale === 'ar' ? 'rtl-text' : 'ltr-text'"
+          >
             {{ t("services.sectionTitle") }}
           </h2>
-          <p class="fade_up_anim" data-delay=".3" :dir="locale === 'ar' ? 'rtl' : 'ltr'">
+          <p 
+            class="fade_up_anim text-dir" 
+            data-delay=".3" 
+            :class="locale === 'ar' ? 'rtl-text' : 'ltr-text'"
+          >
             {{ t("services.sectionDesc") }}
           </p>
         </div>
@@ -77,6 +85,7 @@ const services = [
         </div>
       </div>
 
+      <!-- سلايدر الخدمات -->
       <Swiper
         :navigation="{
           nextEl: '.service-next',
@@ -95,17 +104,23 @@ const services = [
         <SwiperSlide v-for="(service, index) in services" :key="index">
           <div class="service-card scaled-card">
             <img :src="service.img" alt="" />
-            <h4 class="service-title-highlight" :dir="locale === 'ar' ? 'rtl' : 'ltr'">
+            <h4 
+              class="service-title-highlight text-dir" 
+              :class="locale === 'ar' ? 'rtl-text' : 'ltr-text'"
+            >
               {{ t('services.' + service.title) }}
             </h4>
-            <p :dir="locale === 'ar' ? 'rtl' : 'ltr'">
+            <p 
+              class="text-dir" 
+              :class="locale === 'ar' ? 'rtl-text' : 'ltr-text'"
+            >
               {{ t('services.' + service.description) }}
             </p>
             <span class="hr-line"></span>
             <div
-              class="service-benefit"
+              class="service-benefit text-dir"
               style="margin-top: 10px; color: #088"
-              :dir="locale === 'ar' ? 'rtl' : 'ltr'"
+              :class="locale === 'ar' ? 'rtl-text' : 'ltr-text'"
             >
               {{ t('services.' + service.benefit) }}
             </div>
@@ -123,11 +138,26 @@ const services = [
 }
 
 .service-title-highlight {
-  background-color:rgb(228, 234, 57); /* أصفر مائل للبرتقالي */
+  background-color: rgb(228, 234, 57); /* أصفر مائل للبرتقالي */
   display: inline-block;
   padding: 4px 12px;
   border-radius: 10px;
   font-weight: bold;
   color: #000;
+}
+
+/* ✅ التحكم باتجاه النص فقط */
+.text-dir {
+  transition: all 0.3s ease-in-out;
+}
+
+.rtl-text {
+  text-align: right;
+  direction: rtl;
+}
+
+.ltr-text {
+  text-align: left;
+  direction: ltr;
 }
 </style>
