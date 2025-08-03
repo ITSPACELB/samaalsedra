@@ -2,7 +2,7 @@
 import Lines from "../shared/Lines.vue";
 import { useI18n } from "vue-i18n";
 import TopHead from "@/components/tophead.vue";
-import Weather from "@/components/Weather.vue";
+import weather from "@/components/weather.vue";
 
 const { t } = useI18n();
 
