@@ -33,26 +33,39 @@ const partners = [
       <Lines />
       <TopHead />
 
-      <!-- Weather -->
+      <!-- weather -->
       <div class="weather-absolute">
-        <Weather />
+        <weather />
       </div>
     </div>
 
     <!-- Partners Ticker -->
     <div class="partners-ticker" role="marquee">
-      <div class="ticker-wrapper">
-        <div class="ticker-track">
+      <div class="ticker-track">
+        <!-- النسخة الأولى -->
+        <div class="ticker-set">
           <div
             class="ticker-item"
-            v-for="(partner, i) in [...partners, ...partners]"
-            :key="`partner-${i}`"
+            v-for="(partner, i) in partners"
+            :key="'a-' + i"
           >
-            <img
-              :src="partner.logo"
-              :alt="t('partners.' + partner.nameKey)"
-              class="ticker-logo"
-            />
+            <img :src="partner.logo" :alt="t('partners.' + partner.nameKey)" class="ticker-logo" />
+            <div class="ticker-content">
+              <span class="ticker-name">{{ t('partners.' + partner.nameKey) }}</span>
+              <div class="rating-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- النسخة الثانية -->
+        <div class="ticker-set">
+          <div
+            class="ticker-item"
+            v-for="(partner, i) in partners"
+            :key="'b-' + i"
+          >
+            <img :src="partner.logo" :alt="t('partners.' + partner.nameKey)" class="ticker-logo" />
             <div class="ticker-content">
               <span class="ticker-name">{{ t('partners.' + partner.nameKey) }}</span>
               <div class="rating-stars">
@@ -99,6 +112,7 @@ const partners = [
   margin-bottom: 10px;
 }
 
+/* ✅ شريط الشركاء */
 .partners-ticker {
   position: absolute;
   bottom: 0;
@@ -111,24 +125,19 @@ const partners = [
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.ticker-wrapper {
-  width: 100%;
-  overflow: hidden;
-}
-
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker-bounce 20s linear infinite alternate;
+  animation: ticker-scroll 30s linear infinite;
 }
 
-@keyframes ticker-bounce {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+.ticker-set {
+  display: flex;
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .ticker-item {
@@ -169,6 +178,7 @@ const partners = [
   transform: scale(1.1);
 }
 
+/* ✅ الطقس */
 .weather-absolute {
   position: absolute;
   top: 450px;
