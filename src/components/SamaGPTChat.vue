@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, nextTick } from "vue";
+import { ref, nextTick, onMounted } from "vue"; // ✅ أضفنا onMounted
 import { PhWhatsappLogo, PhArrowRight } from "@phosphor-icons/vue";
 
 const girlBotImg =
@@ -93,6 +93,24 @@ function openChat() {
   chatOpen.value = true;
   nextTick(() => scrollToEnd());
 }
+
+// ✅ حل مشكلة الشفافية على iOS عند فتح الكيبورد
+onMounted(() => {
+  const chatBox = document.querySelector(".sama-chatbox-glass") as HTMLElement;
+  const input = document.querySelector(".sama-input-glass") as HTMLTextAreaElement;
+
+  if (input && chatBox) {
+    input.addEventListener("focus", () => {
+      chatBox.style.position = "fixed";
+      chatBox.style.bottom = "0"; // يثبّت الصندوق فوق الكيبورد
+    });
+
+    input.addEventListener("blur", () => {
+      chatBox.style.position = "fixed";
+      chatBox.style.bottom = "24px"; // يرجّعه مكانه الطبيعي
+    });
+  }
+});
 </script>
 
 <template>
@@ -371,6 +389,30 @@ function openChat() {
     right: 12px;
     bottom: 12px;
   }
+  /* 🚀 تثبيت الخلفية على GPU ومنع الشفافية */
+.sama-chatbox-glass {
+  background-color: #ffffff !important;
+  backdrop-filter: none !important;
+  transform: translateZ(0); /* تثبيت على الـ GPU */
+  -webkit-transform: translateZ(0); /* دعم iOS */
+  will-change: transform;
+}
+
+/* 🚀 عند التركيز على الكتابة، نثبت الخلفية ونمنع أي تغيير */
+.sama-input-glass:focus {
+  background-color: #fff !important;
+  outline: none;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* 🚀 إصلاح سلوك iOS عند فتح الكيبورد */
+@supports (-webkit-touch-callout: none) {
+  .sama-chatbox-glass {
+    background-color: #ffffff !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
 }
 
 </style>

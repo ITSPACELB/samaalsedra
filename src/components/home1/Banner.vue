@@ -1,14 +1,12 @@
-```vue
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from "vue";
 import Lines from "../shared/Lines.vue";
 import { useI18n } from "vue-i18n";
 import TopHead from "@/components/tophead.vue";
 import weather from "@/components/weather.vue";
+import { onMounted, onBeforeUnmount } from "vue";
 
 const { t } = useI18n();
 
-// Partner data
 const partners = [
   { nameKey: "chint.title", logo: "/images/partners/chint-logo.png" },
   { nameKey: "easun.title", logo: "/images/partners/easun-logo.png" },
@@ -19,132 +17,56 @@ const partners = [
   { nameKey: "powersolid.title", logo: "/images/partners/power solid-logo.png" },
 ];
 
-const tickerTrack = ref<HTMLElement | null>(null);
-const isMotionSupported = ref(false);
-
+// 🎯 تأثير حركة الشريط بالموبايل عبر ميل الجهاز
 onMounted(() => {
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const tickerTrack = document.querySelector<HTMLElement>(".ticker-track");
+  if (!tickerTrack) return;
 
-  let posX = 0;
-  let velX = 0;
-  let rotY = 0;
-  let velRot = 0;
-  let posY = 0; // Added for vertical translation
-  let velY = 0; // Added for vertical velocity
-  let lastGamma = 0;
-  let isMoving = false;
+  let currentX = 0;
+  let targetX = 0;
+  let animationFrame: number;
 
-  const applyTransform = () => {
-    if (tickerTrack.value) {
-      tickerTrack.value.style.transform = `
-        perspective(1000px)
-        translateX(${posX}px)
-        translateY(${posY}px)
-        rotateY(${rotY}deg)
-      `;
-    }
+  // 🎯 تحديث الحركة بسلاسة
+  const animate = () => {
+    currentX += (targetX - currentX) * 0.08; // حركة سلسة
+    tickerTrack.style.transform = `translateX(${currentX}px)`;
+    animationFrame = requestAnimationFrame(animate);
   };
 
-  // Request motion permission on iOS
-  const requestMotionPermission = async () => {
-    if (
-      typeof DeviceOrientationEvent !== "undefined" &&
-      // @ts-ignore
-      typeof DeviceOrientationEvent.requestPermission === "function"
-    ) {
-      try {
-        // @ts-ignore
-        const permission = await DeviceOrientationEvent.requestPermission();
-        isMotionSupported.value = permission === "granted";
-      } catch (error) {
-        console.warn("Motion permission denied:", error);
-        isMotionSupported.value = false;
-      }
-    } else {
-      isMotionSupported.value = typeof DeviceOrientationEvent !== "undefined";
-    }
+  // ✅ استشعار ميل الجهاز (iOS/Android)
+  const handleOrientation = (event: DeviceOrientationEvent) => {
+    if (window.innerWidth > 1024) return; // موبايل فقط
+    const gamma = event.gamma || 0; // ميل الجهاز لليمين/اليسار
+    targetX = gamma * 5; // تضخيم الحركة قليلاً لظهور التأثير
   };
 
-  // Handle mobile tilt with enhanced "falling off" effect
-  const handleOrientation = (e: DeviceOrientationEvent) => {
-    if (!isMotionSupported.value || e.gamma === null) return;
-
-    isMoving = true;
-    const gamma = e.gamma; // Device tilt left/right
-    const deltaGamma = gamma - lastGamma; // Acceleration
-    lastGamma = gamma;
-
-    // Enhanced sensitivity for dynamic motion
-    velX += gamma * 0.6 + deltaGamma * 0.3; // Increased sensitivity for horizontal movement
-    velRot += gamma * 0.15; // Slightly increased rotation for 3D effect
-    velY += Math.abs(gamma) * 0.1; // Vertical velocity based on tilt magnitude for "falling" effect
-
-    // Speed limits for smooth control
-    velX = Math.max(Math.min(velX, 12), -12); // Increased max speed for responsiveness
-    velRot = Math.max(Math.min(velRot, 20), -20); // Increased rotation limit for dramatic effect
-    velY = Math.max(Math.min(velY, 8), 0); // Vertical movement only downwards
+  // ✅ fallback: اللمس والسحب (إذا ما كان في حساسات متاحة)
+  let isTouching = false;
+  let startX = 0;
+  const handleTouchStart = (e: TouchEvent) => {
+    isTouching = true;
+    startX = e.touches[0].clientX;
   };
-
-  // Physics loop for smooth motion
-  const physicsLoop = () => {
-    if (!isMobile || !isMotionSupported.value) {
-      // Fallback motion for non-motion devices
-      posX = Math.sin(Date.now() * 0.001) * 50;
-      applyTransform();
-      requestAnimationFrame(physicsLoop);
-      return;
-    }
-
-    if (!isMoving) {
-      velX *= 0.92; // Smoother damping
-      velRot *= 0.9; // Smoother rotation damping
-      velY *= 0.88; // Damping for vertical movement
-    } else {
-      isMoving = false;
-    }
-
-    posX += velX;
-    rotY += velRot;
-    posY += velY;
-
-    // Motion boundaries
-    posX = Math.max(Math.min(posX, 250), -250); // Wider horizontal range
-    rotY = Math.max(Math.min(rotY, 25), -25); // Wider rotation range
-    posY = Math.max(Math.min(posY, 50), 0); // Limited vertical range for "falling" effect
-
-    applyTransform();
-    requestAnimationFrame(physicsLoop);
+  const handleTouchMove = (e: TouchEvent) => {
+    if (!isTouching) return;
+    const deltaX = e.touches[0].clientX - startX;
+    targetX = deltaX * 0.8; // يحرك الشريط حسب السحب
   };
+  const handleTouchEnd = () => (isTouching = false);
 
-  // Start motion permission and physics loop
-  if (isMobile) {
-    requestMotionPermission().then(() => {
-      if (isMotionSupported.value) {
-        window.addEventListener("deviceorientation", handleOrientation, true);
-      }
-      physicsLoop();
-    });
-  } else {
-    // Mouse movement for desktop
-    const handleMouseMove = (e: MouseEvent) => {
-      const screenCenterX = window.innerWidth / 2;
-      const offsetX = (e.clientX - screenCenterX) / 50;
-      if (tickerTrack.value) {
-        tickerTrack.value.style.transform = `
-          translateX(${offsetX * 8}px)
-        `;
-      }
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    onBeforeUnmount(() => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    });
-  }
+  window.addEventListener("deviceorientation", handleOrientation, true);
+  window.addEventListener("touchstart", handleTouchStart, { passive: true });
+  window.addEventListener("touchmove", handleTouchMove, { passive: true });
+  window.addEventListener("touchend", handleTouchEnd);
+
+  animate();
 
   onBeforeUnmount(() => {
-    if (isMobile && isMotionSupported.value) {
-      window.removeEventListener("deviceorientation", handleOrientation);
-    }
+    cancelAnimationFrame(animationFrame);
+    window.removeEventListener("deviceorientation", handleOrientation);
+    window.removeEventListener("touchstart", handleTouchStart);
+    window.removeEventListener("touchmove", handleTouchMove);
+    window.removeEventListener("touchend", handleTouchEnd);
   });
 });
 </script>
@@ -172,7 +94,7 @@ onMounted(() => {
 
     <!-- Partners Ticker -->
     <div class="partners-ticker" role="marquee">
-      <div class="ticker-track" ref="tickerTrack">
+      <div class="ticker-track">
         <!-- النسخة الأولى -->
         <div class="ticker-set">
           <div
@@ -259,13 +181,16 @@ onMounted(() => {
 .ticker-track {
   display: flex;
   width: max-content;
-  transform-style: preserve-3d;
-  transition: transform 0.02s linear; /* استجابة أسرع */
-  will-change: transform;
+  animation: ticker-scroll 30s linear infinite;
 }
 
 .ticker-set {
   display: flex;
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .ticker-item {
@@ -275,12 +200,6 @@ onMounted(() => {
   padding: 0 16px;
   min-width: clamp(140px, 18vw, 180px);
   white-space: nowrap;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* ظل خفيف لتأثير ثلاثي الأبعاد */
-  transition: box-shadow 0.2s ease;
-}
-
-.ticker-item:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* تأثير تفاعلي */
 }
 
 .ticker-logo {
@@ -338,4 +257,3 @@ onMounted(() => {
   }
 }
 </style>
-```
