@@ -29,6 +29,8 @@ onMounted(() => {
   let velX = 0;
   let rotY = 0;
   let velRot = 0;
+  let posY = 0; // Added for vertical translation
+  let velY = 0; // Added for vertical velocity
   let lastGamma = 0;
   let isMoving = false;
 
@@ -37,12 +39,13 @@ onMounted(() => {
       tickerTrack.value.style.transform = `
         perspective(1000px)
         translateX(${posX}px)
+        translateY(${posY}px)
         rotateY(${rotY}deg)
       `;
     }
   };
 
-  // 🎯 طلب إذن الحركة على iOS
+  // Request motion permission on iOS
   const requestMotionPermission = async () => {
     if (
       typeof DeviceOrientationEvent !== "undefined" &&
@@ -62,53 +65,58 @@ onMounted(() => {
     }
   };
 
-  // 🎯 الموبايل - حركة مثل قبان القياس
+  // Handle mobile tilt with enhanced "falling off" effect
   const handleOrientation = (e: DeviceOrientationEvent) => {
     if (!isMotionSupported.value || e.gamma === null) return;
 
     isMoving = true;
-    const gamma = e.gamma; // ميلان الموبايل يمين/يسار
-    const deltaGamma = gamma - lastGamma; // التسارع
+    const gamma = e.gamma; // Device tilt left/right
+    const deltaGamma = gamma - lastGamma; // Acceleration
     lastGamma = gamma;
 
-    // حساسية محسّنة للحركة
-    velX += gamma * 0.4 + deltaGamma * 0.2; // حساسية أقل لتجنب الحركة المفرطة
-    velRot += gamma * 0.1; // دوران أقل لإحساس أكثر طبيعية
+    // Enhanced sensitivity for dynamic motion
+    velX += gamma * 0.6 + deltaGamma * 0.3; // Increased sensitivity for horizontal movement
+    velRot += gamma * 0.15; // Slightly increased rotation for 3D effect
+    velY += Math.abs(gamma) * 0.1; // Vertical velocity based on tilt magnitude for "falling" effect
 
-    // حدود السرعة
-    velX = Math.max(Math.min(velX, 8), -8);
-    velRot = Math.max(Math.min(velRot, 12), -12);
+    // Speed limits for smooth control
+    velX = Math.max(Math.min(velX, 12), -12); // Increased max speed for responsiveness
+    velRot = Math.max(Math.min(velRot, 20), -20); // Increased rotation limit for dramatic effect
+    velY = Math.max(Math.min(velY, 8), 0); // Vertical movement only downwards
   };
 
-  // 🌀 فيزياء الحركة
+  // Physics loop for smooth motion
   const physicsLoop = () => {
     if (!isMobile || !isMotionSupported.value) {
-      // حركة افتراضية بسيطة إذا لم يكن الجهاز يدعم الحركة
-      posX = Math.sin(Date.now() * 0.001) * 50; // حركة موجية بسيطة
+      // Fallback motion for non-motion devices
+      posX = Math.sin(Date.now() * 0.001) * 50;
       applyTransform();
       requestAnimationFrame(physicsLoop);
       return;
     }
 
     if (!isMoving) {
-      velX *= 0.9; // تخميد سلس
-      velRot *= 0.88; // تخميد أقوى للدوران
+      velX *= 0.92; // Smoother damping
+      velRot *= 0.9; // Smoother rotation damping
+      velY *= 0.88; // Damping for vertical movement
     } else {
       isMoving = false;
     }
 
     posX += velX;
     rotY += velRot;
+    posY += velY;
 
-    // حدود الحركة
-    posX = Math.max(Math.min(posX, 180), -180);
-    rotY = Math.max(Math.min(rotY, 15), -15);
+    // Motion boundaries
+    posX = Math.max(Math.min(posX, 250), -250); // Wider horizontal range
+    rotY = Math.max(Math.min(rotY, 25), -25); // Wider rotation range
+    posY = Math.max(Math.min(posY, 50), 0); // Limited vertical range for "falling" effect
 
     applyTransform();
     requestAnimationFrame(physicsLoop);
   };
 
-  // تشغيل طلب الإذن ودورة الفيزياء
+  // Start motion permission and physics loop
   if (isMobile) {
     requestMotionPermission().then(() => {
       if (isMotionSupported.value) {
@@ -117,7 +125,7 @@ onMounted(() => {
       physicsLoop();
     });
   } else {
-    // حركة الماوس للكمبيوتر
+    // Mouse movement for desktop
     const handleMouseMove = (e: MouseEvent) => {
       const screenCenterX = window.innerWidth / 2;
       const offsetX = (e.clientX - screenCenterX) / 50;
