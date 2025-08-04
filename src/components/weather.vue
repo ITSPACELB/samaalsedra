@@ -14,63 +14,66 @@ const forecastText = ref("");
 const isLoading = ref(true);
 const error = ref<string | null>(null);
 
-// Alt texts
-const currentIconAlt = computed(() => `${t('weather.currentIconAlt')} ${conditionText.value || ''}`);
-const forecastIconAlt = computed(() => `${t('weather.forecastIconAlt')} ${forecastText.value || ''}`);
+// Compute alt text for accessibility
+const currentIconAlt = computed(() => {
+  return `${t('weather.currentIconAlt')} ${conditionText.value || ''}`;
+});
+const forecastIconAlt = computed(() => {
+  return `${t('weather.forecastIconAlt')} ${forecastText.value || ''}`;
+});
 
-// دالة لتعبئة بيانات الطقس
-const setWeatherData = (data: any) => {
-  location.value = data.location.name;
-  temperature.value = `${data.current.temp_c}°C`;
-  icon.value = 'https:' + data.current.condition.icon;
-  conditionText.value = data.current.condition.text;
-  wind.value = `${data.current.wind_kph} km/h`;
-  humidity.value = `${data.current.humidity}%`;
-  forecastIcon.value = 'https:' + data.forecast.forecastday[1].day.condition.icon;
-  forecastText.value = data.forecast.forecastday[1].day.condition.text;
-};
-
-// دالة لجلب الطقس (بإحداثيات أو نص)
-const fetchWeather = async (query: string, showFallbackMsg = false) => {
+const fetchWeather = async (lat: number, lon: number, retries = 2) => {
   try {
     const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=15170182d3574b5faf921917251107&q=${query}&days=2&lang=en`,
+      `https://api.weatherapi.com/v1/forecast.json?key=15170182d3574b5faf921917251107&q=${lat},${lon}&days=2&lang=en`,
       { signal: AbortSignal.timeout(5000) }
     );
     if (!response.ok) throw new Error("API request failed");
     const data = await response.json();
 
-    // حفظ بالكاش
-    localStorage.setItem("weatherCache", JSON.stringify({ data, timestamp: Date.now() }));
+    const cacheData = {
+      data,
+      timestamp: Date.now(),
+    };
+    localStorage.setItem("weatherCache", JSON.stringify(cacheData));
 
-    // تعبئة البيانات
-    setWeatherData(data);
-
-    // إذا fallback (بسبب رفض الموقع) نخلي الاسم "Iraq"
-    if (showFallbackMsg) {
-      location.value = "Iraq";
+    location.value = data.location.name;
+    temperature.value = `${data.current.temp_c}°C`;
+    icon.value = 'https:' + data.current.condition.icon;
+    conditionText.value = data.current.condition.text;
+    wind.value = `${data.current.wind_kph} km/h`;
+    humidity.value = `${data.current.humidity}%`;
+    forecastIcon.value = 'https:' + data.forecast.forecastday[1].day.condition.icon;
+    forecastText.value = data.forecast.forecastday[1].day.condition.text;
+    isLoading.value = false;
+    error.value = null;
+  } catch (err) {
+    if (retries > 0) {
+      setTimeout(() => fetchWeather(lat, lon, retries - 1), 2000);
+    } else {
+      error.value = t('weather.error');
+      isLoading.value = false;
     }
-
-    isLoading.value = false;
-    error.value = showFallbackMsg ? "⚠️ Location blocked. Showing Iraq's weather by default." : null;
-  } catch (e) {
-    error.value = t('weather.error');
-    isLoading.value = false;
   }
 };
 
-// تحميل الطقس
 const loadWeather = () => {
   isLoading.value = true;
   error.value = null;
 
-  // فحص الكاش
   const cached = localStorage.getItem("weatherCache");
   if (cached) {
     try {
       const { data, timestamp } = JSON.parse(cached);
       if (Date.now() - timestamp < 10 * 60 * 1000) {
-        setWeatherData(data);
+        location.value = "Iraq"; // ✅ نجبرها تظهر العراق دائماً بالفallback
+        temperature.value = `${data.current.temp_c}°C`;
+        icon.value = 'https:' + data.current.condition.icon;
+        conditionText.value = data.current.condition.text;
+        wind.value = `${data.current.wind_kph} km/h`;
+        humidity.value = `${data.current.humidity}%`;
+        forecastIcon.value = 'https:' + data.forecast.forecastday[1].day.condition.icon;
+        forecastText.value = data.forecast.forecastday[1].day.condition.text;
         isLoading.value = false;
         return;
       }
@@ -79,27 +82,53 @@ const loadWeather = () => {
     }
   }
 
-  // طلب الموقع أو fallback
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       async (position) => {
         const lat = position.coords.latitude.toFixed(2);
         const lon = position.coords.longitude.toFixed(2);
-        await fetchWeather(`${lat},${lon}`);
+        await fetchWeather(Number(lat), Number(lon));
       },
       async () => {
-        console.warn("Geolocation blocked, using Iraq fallback.");
-        await fetchWeather("Iraq", true);
+        // ✅ لو انرفض اللوكيشن → fallback مباشر للعراق
+        const response = await fetch(
+          `https://api.weatherapi.com/v1/forecast.json?key=15170182d3574b5faf921917251107&q=Iraq&days=2&lang=en`
+        );
+        const data = await response.json();
+
+        location.value = "Iraq"; // ✅ تثبيت العراق بدل بغداد
+        temperature.value = `${data.current.temp_c}°C`;
+        icon.value = 'https:' + data.current.condition.icon;
+        conditionText.value = data.current.condition.text;
+        wind.value = `${data.current.wind_kph} km/h`;
+        humidity.value = `${data.current.humidity}%`;
+        forecastIcon.value = 'https:' + data.forecast.forecastday[1].day.condition.icon;
+        forecastText.value = data.forecast.forecastday[1].day.condition.text;
+        isLoading.value = false;
       },
       { timeout: 10000 }
     );
   } else {
-    console.warn("Geolocation not supported, using Iraq fallback.");
-    fetchWeather("Iraq", true);
+    // ✅ fallback مباشر للعراق إذا ما في geolocation
+    fetch(`https://api.weatherapi.com/v1/forecast.json?key=15170182d3574b5faf921917251107&q=Iraq&days=2&lang=en`)
+      .then(res => res.json())
+      .then(data => {
+        location.value = "Iraq";
+        temperature.value = `${data.current.temp_c}°C`;
+        icon.value = 'https:' + data.current.condition.icon;
+        conditionText.value = data.current.condition.text;
+        wind.value = `${data.current.wind_kph} km/h`;
+        humidity.value = `${data.current.humidity}%`;
+        forecastIcon.value = 'https:' + data.forecast.forecastday[1].day.condition.icon;
+        forecastText.value = data.forecast.forecastday[1].day.condition.text;
+        isLoading.value = false;
+      });
   }
 };
 
-onMounted(() => loadWeather());
+onMounted(() => {
+  loadWeather();
+});
 </script>
 
 <template>
@@ -110,7 +139,11 @@ onMounted(() => loadWeather());
     </div>
     <div v-else-if="error" class="weather-error" role="alert">
       <span>{{ error }}</span>
-      <button @click="loadWeather" class="retry-button" :aria-label="t('weather.retry')">
+      <button
+        @click="loadWeather"
+        class="retry-button"
+        :aria-label="t('weather.retry')"
+      >
         {{ t('weather.retry') }}
       </button>
     </div>
@@ -122,19 +155,19 @@ onMounted(() => loadWeather());
           <div class="cloud-overlay cloud-2" aria-hidden="true"></div>
           <div class="sun-moon" aria-hidden="true"></div>
         </div>
-        <div class="weather-temp">{{ temperature }}</div>
+        <div class="weather-temp" aria-label="Current temperature">{{ temperature }}</div>
       </div>
       <div class="weather-details-modern">
-        <div class="weather-day-label today-glow">{{ t('weather.today') }}</div>
-        <div class="weather-location">{{ location }}</div>
-        <div class="weather-info">{{ conditionText }}</div>
+        <div class="weather-day-label today-glow" aria-label="Current weather">{{ t('weather.today') }}</div>
+        <div class="weather-location" aria-label="Location">{{ location }}</div>
+        <div class="weather-info" aria-label="Weather condition">{{ conditionText }}</div>
         <div class="weather-extra">
-          <span class="wind-indicator">💨 {{ wind }}</span>
-          <span>💧 {{ humidity }}</span>
+          <span class="wind-indicator" aria-label="Wind speed">💨 {{ wind }}</span>
+          <span aria-label="Humidity">💧 {{ humidity }}</span>
         </div>
       </div>
       <div class="weather-forecast">
-        <div class="weather-day-label">{{ t('weather.tomorrow') }}</div>
+        <div class="weather-day-label" aria-label="Tomorrow's weather">{{ t('weather.tomorrow') }}</div>
         <img v-if="forecastIcon" :src="forecastIcon" :alt="forecastIconAlt" class="forecast-icon" />
         <div class="cloud-overlay cloud-3" aria-hidden="true"></div>
         <span>{{ forecastText }}</span>

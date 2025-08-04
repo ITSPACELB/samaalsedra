@@ -1,3 +1,4 @@
+```vue
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import Lines from "../shared/Lines.vue";
@@ -19,75 +20,79 @@ const partners = [
 ];
 
 const tickerTrack = ref<HTMLElement | null>(null);
+const isMotionSupported = ref(false);
 
 onMounted(() => {
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent); // ✅ كشف الجهاز
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   let posX = 0;
   let velX = 0;
   let rotY = 0;
   let velRot = 0;
-  let shake = 0; // 🔥 قوة الاهتزاز
+  let lastGamma = 0;
   let isMoving = false;
 
   const applyTransform = () => {
     if (tickerTrack.value) {
       tickerTrack.value.style.transform = `
-        perspective(800px)
-        translateX(${posX + shake}px)
+        perspective(1000px)
+        translateX(${posX}px)
         rotateY(${rotY}deg)
       `;
     }
   };
 
-  // 🎯 الموبايل - إحساس السقوط + اهتزاز
-  const handleOrientation = (e: DeviceOrientationEvent) => {
-    if (!isMobile) return;
-    if (e.gamma !== null) {
-      isMoving = true;
-      const tilt = e.gamma; // ميل الموبايل
-      velX += tilt * 0.6;
-      velRot += tilt * 0.25;
-
-      // 🔥 اهتزاز لما الميلان قوي (إحساس سقوط)
-      if (Math.abs(tilt) > 15) {
-        shake = (Math.random() - 0.5) * 8; // اهتزاز قوي
-      } else if (Math.abs(tilt) > 8) {
-        shake = (Math.random() - 0.5) * 4; // اهتزاز خفيف
-      } else {
-        shake = 0;
+  // 🎯 طلب إذن الحركة على iOS
+  const requestMotionPermission = async () => {
+    if (
+      typeof DeviceOrientationEvent !== "undefined" &&
+      // @ts-ignore
+      typeof DeviceOrientationEvent.requestPermission === "function"
+    ) {
+      try {
+        // @ts-ignore
+        const permission = await DeviceOrientationEvent.requestPermission();
+        isMotionSupported.value = permission === "granted";
+      } catch (error) {
+        console.warn("Motion permission denied:", error);
+        isMotionSupported.value = false;
       }
+    } else {
+      isMotionSupported.value = typeof DeviceOrientationEvent !== "undefined";
     }
   };
 
-// 🎯 الكمبيوتر - حركة يمين وشمال لكل العناصر مع الماوس
-const handleMouseMove = (e: MouseEvent) => {
-  if (isMobile) return;
+  // 🎯 الموبايل - حركة مثل قبان القياس
+  const handleOrientation = (e: DeviceOrientationEvent) => {
+    if (!isMotionSupported.value || e.gamma === null) return;
 
-  const screenCenterX = window.innerWidth / 2;
+    isMoving = true;
+    const gamma = e.gamma; // ميلان الموبايل يمين/يسار
+    const deltaGamma = gamma - lastGamma; // التسارع
+    lastGamma = gamma;
 
-  // احسب إزاحة الماوس عن الوسط
-  const offsetX = (e.clientX - screenCenterX) / 50; // كل ما الرقم أصغر، الحركة أخف
+    // حساسية محسّنة للحركة
+    velX += gamma * 0.4 + deltaGamma * 0.2; // حساسية أقل لتجنب الحركة المفرطة
+    velRot += gamma * 0.1; // دوران أقل لإحساس أكثر طبيعية
 
-  // حرك كل الشريط يمين وشمال بشكل انسيابي
-  if (tickerTrack.value) {
-    tickerTrack.value.style.transform = `
-      translateX(${offsetX * 8}px)
-    `;
-  }
-};
+    // حدود السرعة
+    velX = Math.max(Math.min(velX, 8), -8);
+    velRot = Math.max(Math.min(velRot, 12), -12);
+  };
 
-  // 🌀 فيزياء السقوط (موبايل فقط)
+  // 🌀 فيزياء الحركة
   const physicsLoop = () => {
-    if (!isMobile) {
+    if (!isMobile || !isMotionSupported.value) {
+      // حركة افتراضية بسيطة إذا لم يكن الجهاز يدعم الحركة
+      posX = Math.sin(Date.now() * 0.001) * 50; // حركة موجية بسيطة
+      applyTransform();
       requestAnimationFrame(physicsLoop);
       return;
     }
 
     if (!isMoving) {
-      velX *= 0.94;
-      velRot *= 0.9;
-      shake *= 0.85; // اهتزاز يخف تدريجياً
+      velX *= 0.9; // تخميد سلس
+      velRot *= 0.88; // تخميد أقوى للدوران
     } else {
       isMoving = false;
     }
@@ -95,28 +100,42 @@ const handleMouseMove = (e: MouseEvent) => {
     posX += velX;
     rotY += velRot;
 
-    // حدود الميلان
-    posX = Math.max(Math.min(posX, 150), -150);
-    rotY = Math.max(Math.min(rotY, 20), -20);
+    // حدود الحركة
+    posX = Math.max(Math.min(posX, 180), -180);
+    rotY = Math.max(Math.min(rotY, 15), -15);
 
     applyTransform();
     requestAnimationFrame(physicsLoop);
   };
 
-  physicsLoop();
-
-  // ✅ Event Listeners
+  // تشغيل طلب الإذن ودورة الفيزياء
   if (isMobile) {
-    window.addEventListener("deviceorientation", handleOrientation, true);
+    requestMotionPermission().then(() => {
+      if (isMotionSupported.value) {
+        window.addEventListener("deviceorientation", handleOrientation, true);
+      }
+      physicsLoop();
+    });
   } else {
+    // حركة الماوس للكمبيوتر
+    const handleMouseMove = (e: MouseEvent) => {
+      const screenCenterX = window.innerWidth / 2;
+      const offsetX = (e.clientX - screenCenterX) / 50;
+      if (tickerTrack.value) {
+        tickerTrack.value.style.transform = `
+          translateX(${offsetX * 8}px)
+        `;
+      }
+    };
     window.addEventListener("mousemove", handleMouseMove);
+    onBeforeUnmount(() => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    });
   }
 
   onBeforeUnmount(() => {
-    if (isMobile) {
+    if (isMobile && isMotionSupported.value) {
       window.removeEventListener("deviceorientation", handleOrientation);
-    } else {
-      window.removeEventListener("mousemove", handleMouseMove);
     }
   });
 });
@@ -144,42 +163,42 @@ const handleMouseMove = (e: MouseEvent) => {
     </div>
 
     <!-- Partners Ticker -->
-<div class="partners-ticker" role="marquee">
-  <div class="ticker-track" ref="tickerTrack">
-    <!-- النسخة الأولى -->
-    <div class="ticker-set">
-      <div
-        class="ticker-item"
-        v-for="(partner, i) in partners"
-        :key="'a-' + i"
-      >
-        <img :src="partner.logo" :alt="t('partners.' + partner.nameKey)" class="ticker-logo" />
-        <div class="ticker-content">
-          <span class="ticker-name">{{ t('partners.' + partner.nameKey) }}</span>
-          <div class="rating-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+    <div class="partners-ticker" role="marquee">
+      <div class="ticker-track" ref="tickerTrack">
+        <!-- النسخة الأولى -->
+        <div class="ticker-set">
+          <div
+            class="ticker-item"
+            v-for="(partner, i) in partners"
+            :key="'a-' + i"
+          >
+            <img :src="partner.logo" :alt="t('partners.' + partner.nameKey)" class="ticker-logo" />
+            <div class="ticker-content">
+              <span class="ticker-name">{{ t('partners.' + partner.nameKey) }}</span>
+              <div class="rating-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- النسخة الثانية -->
+        <div class="ticker-set">
+          <div
+            class="ticker-item"
+            v-for="(partner, i) in partners"
+            :key="'b-' + i"
+          >
+            <img :src="partner.logo" :alt="t('partners.' + partner.nameKey)" class="ticker-logo" />
+            <div class="ticker-content">
+              <span class="ticker-name">{{ t('partners.' + partner.nameKey) }}</span>
+              <div class="rating-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- النسخة الثانية -->
-    <div class="ticker-set">
-      <div
-        class="ticker-item"
-        v-for="(partner, i) in partners"
-        :key="'b-' + i"
-      >
-        <img :src="partner.logo" :alt="t('partners.' + partner.nameKey)" class="ticker-logo" />
-        <div class="ticker-content">
-          <span class="ticker-name">{{ t('partners.' + partner.nameKey) }}</span>
-          <div class="rating-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
   </section>
 </template>
 
@@ -233,17 +252,12 @@ const handleMouseMove = (e: MouseEvent) => {
   display: flex;
   width: max-content;
   transform-style: preserve-3d;
-  transition: transform 0.05s linear;
+  transition: transform 0.02s linear; /* استجابة أسرع */
   will-change: transform;
 }
 
 .ticker-set {
   display: flex;
-}
-
-@keyframes ticker-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
 }
 
 .ticker-item {
@@ -253,6 +267,12 @@ const handleMouseMove = (e: MouseEvent) => {
   padding: 0 16px;
   min-width: clamp(140px, 18vw, 180px);
   white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* ظل خفيف لتأثير ثلاثي الأبعاد */
+  transition: box-shadow 0.2s ease;
+}
+
+.ticker-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* تأثير تفاعلي */
 }
 
 .ticker-logo {
@@ -310,3 +330,4 @@ const handleMouseMove = (e: MouseEvent) => {
   }
 }
 </style>
+```
