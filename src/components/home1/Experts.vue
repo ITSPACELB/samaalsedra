@@ -11,6 +11,10 @@ import dynessImg from "/images/partners/dyness.png"
 import megarevoImg from "/images/partners/megarevo.png"
 import sofarImg from "/images/partners/sofar.png"
 
+// الإضافات الجديدة
+import risenhyperImg from "/images/partners/risenhyper.png"
+import stellaraikoImg from "/images/partners/stellaraiko.png"
+
 const { locale, t } = useI18n()
 
 const companies = [
@@ -20,6 +24,9 @@ const companies = [
   { name: "DYNESS",      img: dynessImg },
   { name: "MEGAREVO",    img: megarevoImg },
   { name: "SOFAR",       img: sofarImg },
+  // الجُدد
+  { name: "Risen",       img: risenhyperImg },
+  { name: "Stellar",     img: stellaraikoImg },
 ]
 </script>
 

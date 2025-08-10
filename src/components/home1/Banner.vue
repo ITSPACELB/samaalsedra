@@ -3,10 +3,10 @@ import Lines from "../shared/Lines.vue";
 import { useI18n } from "vue-i18n";
 import TopHead from "@/components/tophead.vue";
 import weather from "@/components/weather.vue";
-import { onMounted, onBeforeUnmount } from "vue";
 
 const { t } = useI18n();
 
+// Partner data
 const partners = [
   { nameKey: "chint.title", logo: "/images/partners/chint-logo.png" },
   { nameKey: "easun.title", logo: "/images/partners/easun-logo.png" },
@@ -16,59 +16,6 @@ const partners = [
   { nameKey: "risen.title", logo: "/images/partners/risen-logo.png" },
   { nameKey: "powersolid.title", logo: "/images/partners/power solid-logo.png" },
 ];
-
-// 🎯 تأثير حركة الشريط بالموبايل عبر ميل الجهاز
-onMounted(() => {
-  const tickerTrack = document.querySelector<HTMLElement>(".ticker-track");
-  if (!tickerTrack) return;
-
-  let currentX = 0;
-  let targetX = 0;
-  let animationFrame: number;
-
-  // 🎯 تحديث الحركة بسلاسة
-  const animate = () => {
-    currentX += (targetX - currentX) * 0.08; // حركة سلسة
-    tickerTrack.style.transform = `translateX(${currentX}px)`;
-    animationFrame = requestAnimationFrame(animate);
-  };
-
-  // ✅ استشعار ميل الجهاز (iOS/Android)
-  const handleOrientation = (event: DeviceOrientationEvent) => {
-    if (window.innerWidth > 1024) return; // موبايل فقط
-    const gamma = event.gamma || 0; // ميل الجهاز لليمين/اليسار
-    targetX = gamma * 5; // تضخيم الحركة قليلاً لظهور التأثير
-  };
-
-  // ✅ fallback: اللمس والسحب (إذا ما كان في حساسات متاحة)
-  let isTouching = false;
-  let startX = 0;
-  const handleTouchStart = (e: TouchEvent) => {
-    isTouching = true;
-    startX = e.touches[0].clientX;
-  };
-  const handleTouchMove = (e: TouchEvent) => {
-    if (!isTouching) return;
-    const deltaX = e.touches[0].clientX - startX;
-    targetX = deltaX * 0.8; // يحرك الشريط حسب السحب
-  };
-  const handleTouchEnd = () => (isTouching = false);
-
-  window.addEventListener("deviceorientation", handleOrientation, true);
-  window.addEventListener("touchstart", handleTouchStart, { passive: true });
-  window.addEventListener("touchmove", handleTouchMove, { passive: true });
-  window.addEventListener("touchend", handleTouchEnd);
-
-  animate();
-
-  onBeforeUnmount(() => {
-    cancelAnimationFrame(animationFrame);
-    window.removeEventListener("deviceorientation", handleOrientation);
-    window.removeEventListener("touchstart", handleTouchStart);
-    window.removeEventListener("touchmove", handleTouchMove);
-    window.removeEventListener("touchend", handleTouchEnd);
-  });
-});
 </script>
 
 <template>

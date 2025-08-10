@@ -311,12 +311,19 @@
         "phone": "Phone",
         "email": "Email",
         "address": "Address",
-        "addressText": "Baghdad, Iraq – almansour Dawody St., next to Al-TANKY",
+"addressText": "Discover our branch locations on Google and phone numbers at the bottom of the page",
         "subscribe": "Subscribe",
         "emailPlaceholder": "Your Email...",
         "copyright": "All rights reserved ©...............",
         "privacy": "Privacy Policy",
-        "terms": "Terms of Service"
+        "terms": "Terms of Service",
+        "mainOffice": "Main Office",
+        "mainOfficeAddress": "Al-Mansour – Al-Dawoodi – Al-Tanki Street",
+        "branchAmeriya": "Ameriya Branch",
+        "branchAmeriyaAddress": "Al-Ameriya – Middle East Complex",
+        "shoppingCenter": "Shopping Center",
+        "shoppingCenterAddress": "Al-Shoala – Al-Dawanim"
+        
     },
     "calculator": {
         "title": "Solar Energy Calculator",
@@ -533,7 +540,9 @@
   "planEconomyMessage": "To save on budget and reduce bills, send us your number now and our engineering team will contact you with a detailed, customized plan.",
   "planBalancedMessage": "You chose reliability to ensure continuous power and system quality. Send us your number now and our engineering team will provide you with a tailored design.",
   "planPerformanceMessage": "You chose a high-performance system for the best possible results. Send us your number now and our team will contact you with a premium customized design.",
-  "inverterUpgrade": "Upgrading to a larger inverter ({suggested} kW) will allow full utilization of the proposed batteries and faster charging."
+  "inverterUpgrade": "Upgrading to a larger inverter ({suggested} kW) will allow full utilization of the proposed batteries and faster charging.",
+"panelTiltNote": "It is recommended to install the panels facing south (towards Qibla) with a suitable tilt angle to ensure optimal energy production"
+
 
     },
     "productsSection": {

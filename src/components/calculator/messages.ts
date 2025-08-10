@@ -128,16 +128,24 @@ if (inverterUser && optimalInverter && inverterUser < optimalInverter) {
   );
 
   // 💬 الرسائل التسويقية حسب اختيار الزبون
-  if (priority === 'economy') {
-    notes.push(t('calculator.notes.planEconomyMessage'));
-  } else if (priority === 'balanced') {
-    notes.push(t('calculator.notes.planBalancedMessage'));
-  } else if (priority === 'performance') {
-    notes.push(t('calculator.notes.planPerformanceMessage'));
-  }
+// 💬 الرسائل التسويقية حسب اختيار الزبون
+if (priority === 'economy') {
+  notes.push(t('calculator.notes.planEconomyMessage'));
+} else if (priority === 'balanced') {
+  notes.push(t('calculator.notes.planBalancedMessage'));
+} else if (priority === 'performance') {
+  notes.push(t('calculator.notes.planPerformanceMessage'));
+}
 
-  // 📞 CTA
-  notes.push(t('calculator.notes.cta'));
+// 🆕 ملاحظة اتجاه الألواح
+notes.push(
+  t('calculator.panelTiltNote', 'يُفضل تركيب الألواح باتجاه الجنوب (اتجاه القبلة) مع زاوية ميل مناسبة لضمان أفضل إنتاجية للطاقة')
+);
+
+// 📞 CTA
+notes.push(t('calculator.notes.cta'));
+
+return notes;
 
   return notes;
 }
