@@ -87,7 +87,7 @@ const { t, locale } = useI18n()
             href="https://maps.app.goo.gl/DfMQf2GVx1cp5Ptx7"
             target="_blank"
             rel="noopener"
-          >{{ t('footer.openInMaps') }}</a>
+          </a>
         </div>
 
         <!-- مركز التسوق -->
