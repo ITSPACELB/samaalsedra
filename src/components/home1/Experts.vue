@@ -15,7 +15,28 @@ import sofarImg from "/images/partners/sofar.png"
 import risenhyperImg from "/images/partners/risenhyper.png"
 import stellaraikoImg from "/images/partners/stellaraiko.png"
 
-const { locale, t } = useI18n()
+// ✅ استخدم i18n العالمي + رقعة مفاتيح قسم المنتجات بالإنكليزي
+const { locale, t, getLocaleMessage } = useI18n({ useScope: "global" })
+
+const ensureProductsKeys = (lng: string) => {
+  const msgs = getLocaleMessage(lng) || {}
+  // إذا العنوان مش موجود بالإنكليزي، منضيفه (ومنضيف وصف اختياري إذا بتستعمله)
+  if (!msgs.productsSection || !msgs.productsSection.title) {
+    const patch = {
+      productsSection: {
+        title: "Our Certified Products",
+        desc: "We carefully select top global brands to deliver reliable, long-lasting solar solutions."
+      }
+    }
+    // @ts-ignore: نستخدم setLocaleMessage من النطاق العالمي وندمج بدون ما نمسح الموجود
+    const { setLocaleMessage } = (useI18n as any)({ useScope: "global" })
+    setLocaleMessage(lng, { ...msgs, ...patch })
+  }
+}
+
+// نضمن وجود مفاتيح EN حتى لو انكتبت فوقها بمكان آخر
+ensureProductsKeys("en")
+ensureProductsKeys("en-US")
 
 const companies = [
   { name: "CHISAGE ESS", img: chisageImg },

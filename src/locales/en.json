@@ -557,9 +557,13 @@
         "retry": "Retry",
         "currentIconAlt": "Current weather icon:",
         "today": "Today",
-        "tomorrow": "Tomorrow"
-    }
-    
-}
+        "tomorrow": "Tomorrow",
 
+  "worksSection": {
+    "title": "Projects Executed by Sama Al-Sedra in Iraq",
+    "line1": "We deliver carefully engineered solar solutions tailored to local needs across Iraq, with a full commitment to quality and reliability.",
+    "line2": "Here is a selection of our on-site projects, executed professionally with dedicated post-delivery support."
+  }
+}
+    }
 }

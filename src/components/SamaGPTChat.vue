@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, nextTick, onMounted } from "vue"; // ✅ أضفنا onMounted
+import { ref, nextTick, onMounted } from "vue";
 import { PhWhatsappLogo, PhArrowRight } from "@phosphor-icons/vue";
 
 const girlBotImg =
@@ -10,14 +10,15 @@ const messages = ref([{ from: "ai", text: "مرحبا انا سما" }]);
 const userInput = ref("");
 const isLoading = ref(false);
 
-const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+// 🔥 حذفنا API Key من هنا - صار آمن!
+// const apiKey = import.meta.env.VITE_OPENAI_API_KEY; // ❌ محذوف
 
 // 🟢 إضافة الرسائل
 function addMessage(from: "ai" | "user", text: string) {
   messages.value.push({ from, text });
 }
 
-// 🟢 إرسال الرسائل
+// 🟢 إرسال الرسائل - معدل للـ Backend
 async function sendMessage() {
   if (!userInput.value.trim() || isLoading.value) return;
   const question = userInput.value.trim();
@@ -42,14 +43,13 @@ async function sendMessage() {
   `;
 
   try {
-    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    // 🔥 تعديل للاستخدام مع Vercel API Routes
+    const res = await fetch("/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
         messages: [
           { role: "system", content: sysPrompt },
           ...messages.value.map((msg) => ({
@@ -57,16 +57,20 @@ async function sendMessage() {
             content: msg.text,
           })),
         ],
-        max_tokens: 800,
-        temperature: 0.5,
       }),
     });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
     const data = await res.json();
     const answer =
       data?.choices?.[0]?.message?.content?.trim() ||
       "عذراً، صار خطأ، حاول مرة ثانية.";
     addMessage("ai", answer);
-  } catch {
+  } catch (error) {
+    console.error("Chat Error:", error);
     addMessage("ai", "صار خطأ بالإتصال، جرب بعدين.");
   } finally {
     isLoading.value = false;
@@ -78,8 +82,8 @@ async function sendMessage() {
 // 🟢 Auto-Resize للـ textarea
 function autoResize(e: Event) {
   const textarea = e.target as HTMLTextAreaElement;
-  textarea.style.height = "auto"; // تصفير الارتفاع قبل الحساب
-  textarea.style.height = Math.min(textarea.scrollHeight, 120) + "px"; // بحد أقصى 5 أسطر تقريباً
+  textarea.style.height = "auto";
+  textarea.style.height = Math.min(textarea.scrollHeight, 120) + "px";
 }
 
 function scrollToEnd() {
@@ -102,12 +106,16 @@ onMounted(() => {
   if (input && chatBox) {
     input.addEventListener("focus", () => {
       chatBox.style.position = "fixed";
-      chatBox.style.bottom = "0"; // يثبّت الصندوق فوق الكيبورد
+      chatBox.style.bottom = "0";
+      chatBox.style.backgroundColor = "#ffffff";
+      chatBox.style.background = "#ffffff";
     });
 
     input.addEventListener("blur", () => {
       chatBox.style.position = "fixed";
-      chatBox.style.bottom = "24px"; // يرجّعه مكانه الطبيعي
+      chatBox.style.bottom = "24px";
+      chatBox.style.backgroundColor = "#ffffff";
+      chatBox.style.background = "#ffffff";
     });
   }
 });
@@ -211,7 +219,6 @@ onMounted(() => {
   cursor: pointer;
   transition: all 0.3s ease;
   animation: softPulse 3s ease-in-out infinite;
-  
 }
 
 .sama-float-avatar {
@@ -227,8 +234,11 @@ onMounted(() => {
   width: 400px;
   max-width: 100vw;
   height: 80vh;
-  background-color: #ffffff !important; /* إلغاء الشفافية نهائياً */
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  -webkit-background-color: #ffffff !important;
   backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   border: 1.2px solid #e1e1e1;
   border-radius: 18px;
   display: flex;
@@ -245,7 +255,9 @@ onMounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: 14px 16px;
-  background: linear-gradient(to right, #f6f6f6, #e9f2eb);
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  -webkit-background-color: #ffffff !important;
   border-bottom: 1px solid #dddddd;
 }
 
@@ -275,6 +287,9 @@ onMounted(() => {
   flex: 1;
   overflow-y: auto;
   padding: 16px 12px;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  -webkit-background-color: #ffffff !important;
 }
 
 .sama-msg-row-glass {
@@ -319,6 +334,9 @@ onMounted(() => {
   padding: 10px 12px;
   border-top: 1px solid #eee;
   gap: 8px;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  -webkit-background-color: #ffffff !important;
 }
 
 .sama-input-glass {
@@ -332,6 +350,17 @@ onMounted(() => {
   min-height: 38px;
   max-height: 120px;
   overflow-y: auto;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  -webkit-background-color: #ffffff !important;
+}
+
+.sama-input-glass:focus {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  -webkit-background-color: #ffffff !important;
+  outline: none;
+  -webkit-text-size-adjust: 100%;
 }
 
 .sama-send-glass {
@@ -352,7 +381,9 @@ onMounted(() => {
 .sama-chatbox-wa-glass {
   padding: 10px;
   text-align: center;
-  background-color: #f9f9f9;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  -webkit-background-color: #ffffff !important;
   border-top: 1px solid #e1e1e1;
 }
 
@@ -382,37 +413,130 @@ onMounted(() => {
     right: 8px;
     bottom: 8px;
     height: 85vh;
-    background-color: #ffffff !important; /* إلغاء الشفافية */
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    -webkit-background-color: #ffffff !important;
     backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
   .sama-floating-btn {
     right: 12px;
     bottom: 12px;
   }
-  /* 🚀 تثبيت الخلفية على GPU ومنع الشفافية */
-.sama-chatbox-glass {
-  background-color: #ffffff !important;
-  backdrop-filter: none !important;
-  transform: translateZ(0); /* تثبيت على الـ GPU */
-  -webkit-transform: translateZ(0); /* دعم iOS */
-  will-change: transform;
-}
-
-/* 🚀 عند التركيز على الكتابة، نثبت الخلفية ونمنع أي تغيير */
-.sama-input-glass:focus {
-  background-color: #fff !important;
-  outline: none;
-  -webkit-text-size-adjust: 100%;
-}
-
-/* 🚀 إصلاح سلوك iOS عند فتح الكيبورد */
-@supports (-webkit-touch-callout: none) {
+  
   .sama-chatbox-glass {
+    background: #ffffff !important;
     background-color: #ffffff !important;
+    -webkit-background-color: #ffffff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .sama-chatbox-header-glass {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    -webkit-background-color: #ffffff !important;
+  }
+
+  .sama-chatbox-messages-glass {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    -webkit-background-color: #ffffff !important;
+  }
+
+  .sama-chatbox-input-glass {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    -webkit-background-color: #ffffff !important;
+  }
+
+  .sama-chatbox-wa-glass {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    -webkit-background-color: #ffffff !important;
+  }
+
+  .sama-input-glass:focus {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    -webkit-background-color: #ffffff !important;
+    outline: none;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    .sama-chatbox-glass {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      -webkit-background-color: #ffffff !important;
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+
+    .sama-chatbox-header-glass {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      -webkit-background-color: #ffffff !important;
+    }
+
+    .sama-chatbox-messages-glass {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      -webkit-background-color: #ffffff !important;
+    }
+
+    .sama-chatbox-input-glass {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      -webkit-background-color: #ffffff !important;
+    }
+
+    .sama-chatbox-wa-glass {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      -webkit-background-color: #ffffff !important;
+    }
+
+    .sama-input-glass {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      -webkit-background-color: #ffffff !important;
+    }
+  }
+}
+
+/* 🍎 إضافة إضافية للايفون */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .sama-chatbox-glass,
+  .sama-chatbox-header-glass,
+  .sama-chatbox-messages-glass,
+  .sama-chatbox-input-glass,
+  .sama-chatbox-wa-glass,
+  .sama-input-glass {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    -webkit-background-color: #ffffff !important;
+    backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
 }
 
+/* 🌙 إلغاء Dark Mode للبقاء أبيض */
+@media (prefers-color-scheme: dark) {
+  .sama-chatbox-glass,
+  .sama-chatbox-header-glass,
+  .sama-chatbox-messages-glass,
+  .sama-chatbox-input-glass,
+  .sama-chatbox-wa-glass,
+  .sama-input-glass {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    -webkit-background-color: #ffffff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
 }
-
 </style>

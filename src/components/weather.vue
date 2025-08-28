@@ -2,7 +2,35 @@
 import { computed, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 
-const { t } = useI18n();
+// ✅ استخدم i18n العالمي + رقعة مفاتيح الطقس للإنكليزي
+const { t, locale, getLocaleMessage } = useI18n({ useScope: "global" });
+
+const ensureWeatherKeys = (lng: string) => {
+  const msgs = getLocaleMessage(lng) || {};
+  if (!msgs.weather) {
+    const patch = {
+      weather: {
+        loading: "Loading weather data...",
+        error: "Failed to load weather data, please try again later",
+        geolocationError: "Unable to access your location, please check location settings",
+        geolocationNotSupported: "Geolocation is not supported by your browser",
+        retry: "Retry",
+        currentIconAlt: "Current weather icon:",
+        forecastIconAlt: "Forecast weather icon:",
+        today: "Today",
+        tomorrow: "Tomorrow"
+      }
+    };
+    // @ts-ignore — نستخدم setLocaleMessage من النطاق العالمي لدمج الرسائل بأمان
+    const { setLocaleMessage } = (useI18n as any)({ useScope: "global" });
+    setLocaleMessage(lng, { ...msgs, ...patch });
+  }
+};
+
+// نضمن وجود مفاتيح EN حتى لو تم الكتابة فوقها بمكان آخر
+ensureWeatherKeys("en");
+ensureWeatherKeys("en-US");
+
 const location = ref("");
 const temperature = ref("");
 const icon = ref("");

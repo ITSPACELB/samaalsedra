@@ -533,17 +533,23 @@
         "desc": "نعرض لكم نخبة من المنتجات المعتمدة من شركائنا العالميين في مجال الطاقة الشمسية.\nتتميز هذه المنتجات بكفاءتها العالية واعتمادها في آلاف المشاريع حول العالم."
     },
     "weather": {
-        "loading": "Loading weather data...",
-        "error": "Failed to load weather data, please try again later",
-        "geolocationError": "Unable to access your location, please check location settings",
-        "geolocationNotSupported": "Geolocation is not supported by your browser",
-        "retry": "Retry",
-        "currentIconAlt": "Current weather icon:",
-        "forecastIconAlt": "Forecast weather icon:",
-        "today": "Today",
-        "tomorrow": "Tomorrow"
-    }
-    
-}
+  "loading": "جارٍ تحميل بيانات الطقس...",
+  "error": "فشل في تحميل بيانات الطقس، يرجى المحاولة لاحقًا",
+  "geolocationError": "تعذّر الوصول إلى موقعك، يرجى التحقق من إعدادات الموقع",
+  "geolocationNotSupported": "المتصفح الحالي لا يدعم تحديد الموقع الجغرافي",
+  "retry": "إعادة المحاولة",
+  "currentIconAlt": "أيقونة الطقس الحالية:",
+  "forecastIconAlt": "أيقونة الطقس المتوقعة:",
+  "today": "اليوم",
+  "tomorrow": "غدًا"
 
-    
+    },
+
+  
+  "worksSection": {
+    "title": "أعمال نفذتها شركة سما السدرة في العراق",
+    "line1": "نقدّم حلول طاقة شمسية مصمّمة بعناية لتلائم احتياجاتكم في مختلف المحافظات، مع التزام كامل بالجودة والاعتمادية.",
+    "line2": "هذه عيّنة من مشاريعنا المنجزة ميدانياً، حيث نحرص على التنفيذ الاحترافي والمتابعة حتى ما بعد التسليم."
+  }
+}
+     

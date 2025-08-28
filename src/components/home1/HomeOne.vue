@@ -12,6 +12,9 @@ import Testimonial from "@/components/home1/Testimonial.vue"
 import WhyChoose from "@/components/home1/WhyChoose.vue"
 import Navbar from "@/components/shared/Navbar.vue"
 
+/* ✅ إضافة سكشن الأعمال الجديدة */
+import SedraWorks from "@/components/home1/Sedraworks.vue"
+
 useRevealAnimation()
 useFadeUpAnimation()
 </script>
@@ -22,6 +25,10 @@ useFadeUpAnimation()
     <Navbar />
     <Banner />
     <About />
+
+    <!-- ✅ سكشن الأعمال فوق الخدمات -->
+    <SedraWorks />
+
     <Services />
     <Experts />
 
