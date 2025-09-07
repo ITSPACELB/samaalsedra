@@ -77,29 +77,6 @@ export function generateDynamicMessages({
     );
   }
 
-// ⚡ الإنفرتر
-notes.push(
-  t('calculator.notes.inverterCoverage', {
-    margin: (coverageFactor * 100).toFixed(0),
-  })
-);
-
-if (inverterUser && optimalInverter && inverterUser < optimalInverter) {
-  notes.push(
-    t('calculator.notes.inverterLow', {
-      inverter: inverterUser,
-      coverage: inverterCoverage || 0,
-    })
-  );
-
-  // ✅ ملاحظة ترقية الإنفرتر
-  notes.push(
-    t('calculator.notes.inverterUpgrade', {
-      suggested: optimalInverter
-    })
-  );
-}
-
   // ☀️ الإشعاع والعوائق
   if (!goodSunlight && highBuildings) {
     notes.push(t('calculator.notes.shadingWeak', { panel: panelName }));
