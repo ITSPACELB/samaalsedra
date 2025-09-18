@@ -250,8 +250,9 @@ const isNextDisabled = computed(() => {
   if (step.value === 6) return Boolean(errors.ampHour) || !user.value.ampHour;
   if (step.value === 7) return Boolean(errors.cycleCut || errors.cycleSupply) || !user.value.cycleCut || !user.value.cycleSupply;
   if (step.value === 8) return !user.value.cutPeriod;
-  if (step.value === 9) return !user.value.battery;
-  if (step.value === 10) return !user.value.inverter;
+  if (step.value === 9) return false; // السماح بالانتقال دون اختيار
+  if (step.value === 10) return false; // السماح بالانتقال دون اختيار
+
   return false;
 });
 
@@ -389,10 +390,10 @@ const handleSend = () => {
             </div>
           </template>
           
-          <!-- الخطوة 9: البطارية -->
+<!-- الخطوة 9: البطارية -->
           <template v-else-if="step === 9">
             <div class="input-wrapper">
-              <select class="calc-input" v-model="user.battery" required>
+              <select class="calc-input" v-model="user.battery">
                 <option value="" disabled>{{ safeTranslate(t, 'calculator.batteryPlaceholder', 'اختر البطارية') }}</option>
                 <optgroup v-for="group in filteredBatteryOptions" :label="group.group">
                   <option v-for="item in group.items" :value="item">{{ item }}</option>
@@ -405,14 +406,14 @@ const handleSend = () => {
           <!-- الخطوة 10: الإنفرتر -->
           <template v-else-if="step === 10">
             <div class="input-wrapper">
-              <select class="calc-input" v-model="user.inverter" required>
+              <select class="calc-input" v-model="user.inverter">
                 <option value="" disabled>{{ safeTranslate(t, 'calculator.inverterPlaceholder', 'اختر الإنفرتر') }}</option>
                 <option v-for="option in inverterOptions" :value="option">{{ option }}</option>
               </select>
               <label class="floating-label">{{ safeTranslate(t, 'calculator.inverterLabel', 'الإنفرتر') }}</label>
             </div>
           </template>
-          
+                    
           <!-- الخطوة 11: النتائج -->
           <template v-else-if="step === 11">
             <div class="cost-section">

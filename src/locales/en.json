@@ -462,7 +462,7 @@
     "area": "Required Area",
     "notesTitle": "Notes",
     "components": "Proposed System Components",
-    "cta": "These are preliminary results. Our technical team can optimize the design and reduce costs. Contact us: 009647749992888",
+  "cta": "These results are preliminary. Our technical team can refine the design and reduce costs. Contact us at 009647749992888, or enter your phone number and press Send to receive an approximate cost estimate for a solar system tailored to the needs you entered in the calculator.",
     "footer": "With regards, Sama Al-Sedra Team",
 
     "consumptionNote": "⚠️ Consumption not specified accurately. Review estimates: Refrigerator (2A), TV (0.5A), Lamp (0.1A), AC (6–10A).",
@@ -493,8 +493,8 @@
       "questionAmpHour": "What is your daily consumption (in Amp·Hour)?",
       "questionCycleCut": "Enter your electricity schedule (e.g., 3 hrs off, 3 hrs on)",
       "questionCutPeriod": "How many outage hours and supply hours per cycle?",
-      "questionBattery": "What battery capacity do you plan to use? (or leave for system recommendation)",
-      "questionInverter": "What inverter size do you prefer? (or leave for system recommendation)",
+  "questionBattery": "Select the battery, or press Next to have the AI choose the most suitable option for you.",
+  "questionInverter": "Select the inverter, or press Next to have the AI choose the most suitable option for you.",
     
 
     "fixErrors": "Please correct the following inputs:",
@@ -536,7 +536,6 @@
       "planEconomy": "💰 Economy plan: Focused on essential loads at lowest cost.",
       "planBalanced": "⚖️ Balanced plan: Balances cost and performance to cover most loads.",
       "planPerformance": "⚡ High-performance plan: Covers full loads with future scalability.",
-      "cta": "📞 For detailed consultation, contact us: 009647749992888",
   "planEconomyMessage": "To save on budget and reduce bills, send us your number now and our engineering team will contact you with a detailed, customized plan.",
   "planBalancedMessage": "You chose reliability to ensure continuous power and system quality. Send us your number now and our engineering team will provide you with a tailored design.",
   "planPerformanceMessage": "You chose a high-performance system for the best possible results. Send us your number now and our team will contact you with a premium customized design.",
