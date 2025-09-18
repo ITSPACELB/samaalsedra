@@ -239,7 +239,7 @@ const partners = [
 /* ✅ الطقس */
 .weather-absolute {
   position: absolute;
-  top: 450px;
+  top: 300px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
